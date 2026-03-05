@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -49,7 +50,7 @@ export function Navbar() {
           y: 10,
           width: "calc(100% - 3rem)",
           left: "1.5rem",
-          backgroundColor: "rgba(35, 45, 95, 0.9)", // Brightened from 11, 15, 47
+          backgroundColor: "rgba(35, 45, 95, 0.9)", // Brightened for better visibility on scroll
           backdropFilter: "blur(20px)",
           paddingTop: "0.85rem",
           paddingBottom: "0.85rem",
@@ -70,7 +71,7 @@ export function Navbar() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             className="bg-accent-gradient p-2 rounded-lg shadow-lg"
           >
-            <GraduationCap className="w-6 h-6 text-white" />
+            <ProjectIcon className="w-6 h-6 text-white" />
           </motion.div>
           <span className="font-headline font-bold text-xl tracking-tight text-white">
             LetsCatchUp
@@ -78,7 +79,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav Links - Centered and Aligned */}
-        <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2 h-full">
+        <div className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 h-full">
           {navLinks.map((link) => (
             <div key={link.name} className="relative flex items-center h-full">
               <Link href={link.href} className="flex items-center h-full">
@@ -87,8 +88,8 @@ export function Navbar() {
                   whileHover={{ 
                     scale: 1.2,
                     color: "hsl(var(--accent))",
-                    paddingLeft: "8px",
-                    paddingRight: "8px"
+                    paddingLeft: "12px",
+                    paddingRight: "12px"
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
@@ -166,5 +167,22 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
+  );
+}
+
+function ProjectIcon({ className }: { className?: string }) {
+  return (
+    <svg 
+      className={className} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>
   );
 }
