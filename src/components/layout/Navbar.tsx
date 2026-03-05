@@ -52,7 +52,7 @@ export function Navbar() {
           y: 10,
           width: "calc(100% - 3rem)",
           left: "1.5rem",
-          backgroundColor: "rgba(35, 45, 115, 0.98)", // Brightened scrolled background
+          backgroundColor: "rgba(35, 45, 115, 0.98)", 
           backdropFilter: "blur(20px)",
           paddingTop: "0.85rem",
           paddingBottom: "0.85rem",
@@ -74,16 +74,16 @@ export function Navbar() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             className="bg-accent-gradient p-2 rounded-lg shadow-lg"
           >
-            <GraduationCap className="w-6 h-6 text-white" />
+            < GraduationCap className="w-6 h-6 text-white" />
           </motion.div>
           <span className="font-headline font-bold text-xl tracking-tight text-white hidden sm:inline-block">
             LetsCatchUp
           </span>
         </Link>
 
-        {/* Center Group: Navigation Items */}
-        <div className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2 h-full py-2">
-          <div className="flex items-center gap-10 bg-white/5 border border-white/5 backdrop-blur-md rounded-full px-6 py-1.5 shadow-inner">
+        {/* Center Group: Navigation Items (Invisible Grouping) */}
+        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full py-2">
+          <div className="flex items-center gap-10">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
