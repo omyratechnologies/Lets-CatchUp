@@ -2,16 +2,24 @@ import { Hero } from "@/components/home/Hero";
 import { Features } from "@/components/home/Features";
 import { CourseGrid } from "@/components/home/CourseGrid";
 import { CTASection } from "@/components/home/CTASection";
+import { PlatformDescription } from "@/components/home/PlatformDescription";
+import { UnifiedSpace } from "@/components/home/UnifiedSpace";
+import { Testimonials } from "@/components/home/Testimonials";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
+      <PlatformDescription />
+      <UnifiedSpace />
+      
       <div className="relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <CourseGrid />
       </div>
+      
       <Features />
+      <Testimonials />
       <CTASection />
       
       {/* Footer */}
@@ -42,7 +50,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 pt-12 mt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-500 text-sm">© 2024 LetsCatchUp. Built with passion for learners.</p>
           <div className="flex gap-6">
-            {/* Social icons placeholder */}
             <div className="w-8 h-8 rounded-lg bg-white/5"></div>
             <div className="w-8 h-8 rounded-lg bg-white/5"></div>
             <div className="w-8 h-8 rounded-lg bg-white/5"></div>
