@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -52,21 +51,21 @@ export function Navbar() {
           width: "calc(100% - 3rem)",
           left: "1.5rem",
           backgroundColor: "rgba(11, 15, 47, 0.85)",
-          backdropFilter: "blur(16px)",
-          paddingTop: "0.75rem",
-          paddingBottom: "0.75rem",
-          borderBottomColor: "rgba(255, 255, 255, 0.1)",
-          borderRadius: "2rem",
-          boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.5)",
+          backdropFilter: "blur(20px)",
+          paddingTop: "0.85rem",
+          paddingBottom: "0.85rem",
+          borderBottomColor: "rgba(255, 255, 255, 0.15)",
+          borderRadius: "2.5rem",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.6)",
         },
       }}
       transition={{ 
-        duration: 0.5, 
-        ease: [0.22, 1, 0.36, 1] // Custom quintic ease-out
+        duration: 0.6, 
+        ease: [0.22, 1, 0.36, 1] 
       }}
       className="fixed top-0 z-50 px-6 border-b"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between relative">
         <Link href="/" className="flex items-center gap-2 group shrink-0">
           <motion.div 
             whileHover={{ scale: 1.1, rotate: 5 }}
@@ -79,31 +78,47 @@ export function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+        {/* Desktop Nav Links - Increased Gap and Interactive Hover */}
+        <div className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 h-full">
           {navLinks.map((link) => (
-            <Link
+            <motion.div
               key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-accent transition-colors relative group"
+              layout
+              className="relative"
             >
-              {link.name}
-              <motion.span 
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent rounded-full"
-                whileHover={{ width: "100%" }}
-                transition={{ duration: 0.3 }}
-              />
-            </Link>
+              <Link
+                href={link.href}
+                className="block"
+              >
+                <motion.span
+                  className="inline-block text-sm font-bold text-gray-300 transition-colors cursor-pointer"
+                  whileHover={{ 
+                    scale: 1.25,
+                    color: "hsl(var(--accent))",
+                    margin: "0 8px"
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  {link.name}
+                </motion.span>
+                <motion.span 
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent rounded-full"
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </Link>
+            </motion.div>
           ))}
         </div>
 
         <div className="hidden lg:flex items-center gap-4">
           <Link href="/dashboard">
-            <Button variant="ghost" className="text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-full px-5">
+            <Button variant="ghost" className="text-sm font-bold text-gray-300 hover:text-white hover:bg-white/5 rounded-full px-5 transition-all">
               Log in
             </Button>
           </Link>
           <Link href="/contact">
-            <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-bold rounded-full px-6 shadow-lg border-none h-10 transition-transform active:scale-95">
+            <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-extrabold rounded-full px-8 shadow-lg border-none h-11 transition-all active:scale-95">
               Get Started
             </Button>
           </Link>
@@ -123,9 +138,9 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 mt-4 bg-[#0b0f2f]/95 backdrop-blur-2xl border border-white/10 rounded-3xl lg:hidden overflow-hidden mx-4 shadow-2xl"
+            className="absolute top-full left-0 right-0 mt-4 bg-[#0b0f2f]/98 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] lg:hidden overflow-hidden mx-4 shadow-2xl"
           >
-            <div className="flex flex-col p-6 gap-4">
+            <div className="flex flex-col p-8 gap-6">
               {navLinks.map((link, idx) => (
                 <motion.div
                   initial={{ opacity: 0, x: -10 }}
@@ -135,22 +150,27 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="text-lg font-medium py-2 text-gray-300 hover:text-accent flex items-center justify-between group"
+                    className="text-xl font-bold py-2 text-gray-300 hover:text-accent flex items-center justify-between group"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.name}
-                    <X className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity rotate-45" />
+                    <motion.div 
+                      whileHover={{ x: 5 }}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="w-4 h-4 rotate-45" />
+                    </motion.div>
                   </Link>
                 </motion.div>
               ))}
-              <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
+              <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
                 <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="outline" className="w-full glass border-white/10 rounded-full h-12">
+                  <Button variant="outline" className="w-full glass border-white/10 rounded-full h-14 text-lg font-bold">
                     Log in
                   </Button>
                 </Link>
                 <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="w-full bg-accent-gradient border-none rounded-full h-12 shadow-lg">Get Started</Button>
+                  <Button className="w-full bg-accent-gradient border-none rounded-full h-14 text-lg font-extrabold shadow-lg">Get Started</Button>
                 </Link>
               </div>
             </div>
