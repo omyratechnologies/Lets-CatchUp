@@ -1,9 +1,9 @@
-
 "use client";
 
 import React from "react";
-import { Network, Settings, Users, Layout, ArrowRight } from "lucide-react";
+import { Network, Settings, Users, Layout } from "lucide-react";
 import { motion } from "framer-motion";
+import { FeatureCard } from "@/components/ui/FeatureCard";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,25 +30,25 @@ export function Features() {
       title: "Connected Learning Spaces",
       description: "Unified digital environments where students and educators interact effortlessly to build the future of education.",
       icon: Network,
-      color: "text-emerald-400",
+      color: "from-emerald-400 to-teal-300",
     },
     {
       title: "Seamless Academic Management",
       description: "Powerful administrative tools designed to streamline grading, scheduling, and student progress tracking with ease.",
       icon: Settings,
-      color: "text-primary",
+      color: "from-primary to-accent",
     },
     {
       title: "Interest-Based Communities",
       description: "Join or create specialized groups centered around your specific passions, career goals, and academic interests.",
       icon: Users,
-      color: "text-pink-400",
+      color: "from-pink-400 to-purple-400",
     },
     {
       title: "Inclusive Collaboration Tools",
       description: "Accessible and intuitive features built for diverse teams to collaborate, communicate, and execute projects seamlessly.",
       icon: Layout,
-      color: "text-accent",
+      color: "from-teal-400 to-cyan-300",
     },
   ];
 
@@ -60,7 +60,7 @@ export function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-24 space-y-6"
+          className="text-center max-w-4xl mx-auto mb-32 space-y-6"
         >
           <h2 className="text-accent font-bold tracking-widest text-sm uppercase">Core Capabilities</h2>
           <h3 className="text-4xl lg:text-6xl font-headline font-bold leading-tight">
@@ -76,36 +76,17 @@ export function Features() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 gap-12"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-24"
         >
           {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="relative group h-full"
-            >
-              <div className="glass-card p-10 flex flex-col h-full border-white/5 group-hover:bg-white/10 transition-colors duration-500">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-white/10">
-                  <feature.icon className={`w-8 h-8 ${feature.color} glow-icon`} />
-                </div>
-
-                <div className="space-y-4 flex-1">
-                  <h4 className="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
-                    {feature.title}
-                  </h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-white/5">
-                  <button className="flex items-center gap-2 text-accent font-bold text-sm uppercase tracking-widest group/btn hover:opacity-80 transition-opacity">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                  </button>
-                </div>
-              </div>
+            <motion.div key={idx} variants={itemVariants}>
+              <FeatureCard
+                title={feature.title}
+                description={feature.description}
+                icon={feature.icon}
+                gradientFrom={feature.color.split(' ')[0]}
+                gradientTo={feature.color.split(' ')[1]}
+              />
             </motion.div>
           ))}
         </motion.div>

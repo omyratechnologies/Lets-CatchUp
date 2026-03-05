@@ -1,10 +1,10 @@
-
 "use client";
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Network, Settings, Users, Layout, Zap, Shield, Cpu, Globe } from "lucide-react";
+import { Network, Settings, Users, Layout, Zap, Shield, Cpu } from "lucide-react";
+import { FeatureCard } from "@/components/ui/FeatureCard";
 
 export default function FeaturesPage() {
   const detailedFeatures = [
@@ -12,28 +12,28 @@ export default function FeaturesPage() {
       title: "Connected Learning Spaces",
       description: "Unified digital environments where students and educators interact effortlessly to build the future of education.",
       icon: Network,
-      color: "text-emerald-400",
+      color: "from-emerald-400 to-teal-300",
       capabilities: ["Real-time interaction", "Virtual labs", "Resource sharing"]
     },
     {
       title: "Seamless Academic Management",
       description: "Powerful administrative tools designed to streamline grading, scheduling, and student progress tracking with ease.",
       icon: Settings,
-      color: "text-blue-400",
+      color: "from-primary to-accent",
       capabilities: ["Automated grading", "Schedule optimizer", "Progress reporting"]
     },
     {
       title: "Interest-Based Communities",
       description: "Join or create specialized groups centered around your specific passions, career goals, and academic interests.",
       icon: Users,
-      color: "text-pink-400",
+      color: "from-pink-400 to-purple-400",
       capabilities: ["Peer-to-peer learning", "Subject forums", "Mentorship programs"]
     },
     {
       title: "Inclusive Collaboration Tools",
       description: "Accessible and intuitive features built for diverse teams to collaborate, communicate, and execute projects seamlessly.",
       icon: Layout,
-      color: "text-purple-400",
+      color: "from-teal-400 to-cyan-300",
       capabilities: ["Team workspaces", "Shared calendars", "Live document editing"]
     }
   ];
@@ -55,27 +55,25 @@ export default function FeaturesPage() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-32">
           {detailedFeatures.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card p-10 space-y-8 group"
+              className="space-y-8"
             >
-              <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <f.icon className={`w-10 h-10 ${f.color} glow-icon`} />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-bold group-hover:text-accent transition-colors">{f.title}</h3>
-                </div>
-              </div>
-              <p className="text-lg text-gray-400 leading-relaxed">{f.description}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/5">
+              <FeatureCard
+                title={f.title}
+                description={f.description}
+                icon={f.icon}
+                gradientFrom={f.color.split(' ')[0]}
+                gradientTo={f.color.split(' ')[1]}
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 pt-4">
                 {f.capabilities.map((cap, j) => (
-                  <div key={j} className="flex items-center gap-2 text-sm text-gray-300">
+                  <div key={j} className="flex items-center gap-2 text-xs font-bold text-gray-300 uppercase tracking-widest">
                     <Zap className="w-3 h-3 text-accent" />
                     {cap}
                   </div>
@@ -90,7 +88,7 @@ export default function FeaturesPage() {
           whileInView={{ opacity: 1 }}
           className="glass-card p-12 bg-gradient-to-br from-primary/10 to-accent/10 border-white/10 flex flex-col md:flex-row items-center justify-between gap-12"
         >
-          <div className="space-y-4">
+          <div className="space-y-4 text-center md:text-left">
             <h2 className="text-4xl font-headline font-bold">Secure & Reliable</h2>
             <p className="text-lg text-gray-400 max-w-xl">
               Our infrastructure is built with enterprise-grade security to ensure your data is always protected and your platform stays online.
