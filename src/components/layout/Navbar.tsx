@@ -19,10 +19,11 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "/about" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   return (
@@ -33,17 +34,18 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
+        {/* Left: Logo */}
+        <Link href="/" className="flex items-center gap-2 group shrink-0">
           <div className="bg-accent-gradient p-2 rounded-lg transition-transform group-hover:scale-110">
             <GraduationCap className="w-6 h-6 text-white" />
           </div>
-          <span className="font-headline font-bold text-xl tracking-tight">
-            LetsCatchUp <span className="text-gradient">Learn</span>
+          <span className="font-headline font-bold text-xl tracking-tight text-white">
+            LetsCatchUp
           </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Center: Navigation Links */}
+        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -55,6 +57,7 @@ export function Navbar() {
           ))}
         </div>
 
+        {/* Right: Buttons */}
         <div className="hidden md:flex items-center gap-4">
           <Link href="/dashboard">
             <Button variant="ghost" className="text-sm font-medium text-gray-300 hover:text-white">
@@ -62,7 +65,7 @@ export function Navbar() {
             </Button>
           </Link>
           <Link href="/contact">
-            <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-bold rounded-full px-6 shadow-[0_0_20px_rgba(79,209,197,0.3)] border-none">
+            <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-bold rounded-full px-6 shadow-[0_0_20px_rgba(79,209,197,0.3)] border-none h-10">
               Get Started
             </Button>
           </Link>
@@ -98,7 +101,7 @@ export function Navbar() {
                 </Button>
               </Link>
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full bg-accent-gradient border-none">Sign Up</Button>
+                <Button className="w-full bg-accent-gradient border-none">Get Started</Button>
               </Link>
             </div>
           </div>
