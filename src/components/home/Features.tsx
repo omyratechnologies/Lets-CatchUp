@@ -36,19 +36,19 @@ export function Features() {
       title: "Seamless Academic Management",
       description: "Powerful administrative tools designed to streamline grading, scheduling, and student progress tracking with ease.",
       icon: Settings,
-      color: "from-primary to-accent",
+      color: "from-blue-500 to-indigo-400",
     },
     {
       title: "Interest-Based Communities",
       description: "Join or create specialized groups centered around your specific passions, career goals, and academic interests.",
       icon: Users,
-      color: "from-pink-400 to-purple-400",
+      color: "from-fuchsia-500 to-purple-500",
     },
     {
       title: "Inclusive Collaboration Tools",
       description: "Accessible and intuitive features built for diverse teams to collaborate, communicate, and execute projects seamlessly.",
       icon: Layout,
-      color: "from-teal-400 to-cyan-300",
+      color: "from-amber-400 to-orange-500",
     },
   ];
 
