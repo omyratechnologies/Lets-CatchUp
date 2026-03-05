@@ -10,7 +10,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
+      staggerChildren: 0.1
     }
   }
 };
@@ -27,48 +27,45 @@ const itemVariants = {
 export function Features() {
   const features = [
     {
-      title: "Connected Learning Spaces",
-      description: "Unified digital environments where students and educators interact effortlessly to build the future of education.",
+      title: "Learning Spaces",
+      description: "Unified digital environments where students and educators interact effortlessly.",
       icon: Network,
       color: "from-emerald-400 to-teal-300",
     },
     {
-      title: "Seamless Academic Management",
-      description: "Powerful administrative tools designed to streamline grading, scheduling, and student progress tracking with ease.",
+      title: "Management",
+      description: "Powerful administrative tools designed to streamline grading and scheduling.",
       icon: Settings,
       color: "from-blue-500 to-indigo-400",
     },
     {
-      title: "Interest-Based Communities",
-      description: "Join or create specialized groups centered around your specific passions, career goals, and academic interests.",
+      title: "Communities",
+      description: "Join or create specialized groups centered around your specific passions.",
       icon: Users,
       color: "from-fuchsia-500 to-purple-500",
     },
     {
-      title: "Inclusive Collaboration Tools",
-      description: "Accessible and intuitive features built for diverse teams to collaborate, communicate, and execute projects seamlessly.",
+      title: "Collaboration",
+      description: "Accessible features built for diverse teams to communicate and execute projects.",
       icon: Layout,
       color: "from-amber-400 to-orange-500",
     },
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 relative overflow-hidden px-6">
+      <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-32 space-y-6"
+          className="text-center max-w-3xl mx-auto mb-20 space-y-4"
         >
-          <h2 className="text-accent font-bold tracking-widest text-sm uppercase">Core Capabilities</h2>
-          <h3 className="text-4xl lg:text-6xl font-headline font-bold leading-tight">
-            Features designed to connect, <br className="hidden md:block" /> collaborate, and grow
+          <h2 className="text-accent font-bold tracking-widest text-xs uppercase">Core Capabilities</h2>
+          <h3 className="text-3xl md:text-5xl font-headline font-bold leading-tight">
+            Features built for growth
           </h3>
-          <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
-            Everything you need to build, manage, and scale your learning ecosystem in one professional dashboard.
-          </p>
         </motion.div>
 
         <motion.div 
@@ -76,7 +73,7 @@ export function Features() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-24"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20"
         >
           {features.map((feature, idx) => (
             <motion.div key={idx} variants={itemVariants}>

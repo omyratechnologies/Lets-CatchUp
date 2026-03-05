@@ -51,7 +51,7 @@ export function Navbar() {
           y: 10,
           width: "calc(100% - 3rem)",
           left: "1.5rem",
-          backgroundColor: "rgba(20, 26, 75, 0.95)",
+          backgroundColor: "rgba(25, 35, 95, 0.95)", // Brightened scrolled background
           backdropFilter: "blur(20px)",
           paddingTop: "0.85rem",
           paddingBottom: "0.85rem",
