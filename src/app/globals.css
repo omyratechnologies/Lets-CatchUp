@@ -1,30 +1,29 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 240 21% 10%;
+    --background: 233 62% 11%;
     --foreground: 210 40% 98%;
-    --card: 240 21% 15%;
+    --card: 233 58% 19%;
     --card-foreground: 210 40% 98%;
-    --popover: 240 21% 12%;
+    --popover: 233 62% 12%;
     --popover-foreground: 210 40% 98%;
-    --primary: 250 60% 50%;
+    --primary: 230 76% 66%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 240 21% 20%;
+    --secondary: 233 50% 25%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 240 21% 25%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 195 100% 60%;
-    --accent-foreground: 240 21% 10%;
+    --muted: 233 40% 25%;
+    --muted-foreground: 215 20% 75%;
+    --accent: 174 56% 56%;
+    --accent-foreground: 233 62% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 240 21% 25%;
-    --input: 240 21% 25%;
-    --ring: 250 60% 50%;
-    --radius: 1rem;
+    --border: 233 40% 30%;
+    --input: 233 40% 30%;
+    --ring: 230 76% 66%;
+    --radius: 1.5rem;
   }
 }
 
@@ -34,7 +33,7 @@
   }
   body {
     @apply bg-background text-foreground font-body;
-    background-image: radial-gradient(circle at 50% 0%, hsl(250 60% 15%) 0%, hsl(240 21% 10%) 100%);
+    background-image: radial-gradient(circle at 50% 0%, hsl(230 76% 15%) 0%, hsl(233 62% 11%) 100%);
     background-attachment: fixed;
   }
 }
@@ -44,13 +43,22 @@
 }
 
 .glass-card {
-  @apply glass hover:bg-white/10 transition-all duration-300;
-}
-
-.glow-icon {
-  filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.5));
+  @apply glass hover:bg-white/10 transition-all duration-500 rounded-[24px];
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-accent;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#4fd1c5] via-[#667eea] to-[#f687b3];
+}
+
+.glow-icon {
+  filter: drop-shadow(0 0 10px hsla(var(--primary) / 0.6));
+}
+
+.bg-accent-gradient {
+  @apply bg-gradient-to-r from-[#4fd1c5] via-[#667eea] to-[#f687b3];
+}
+
+.soft-shadow {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
 }

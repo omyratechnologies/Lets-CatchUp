@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -9,64 +8,63 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export function Hero() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-bg");
+  const heroImage = PlaceHolderImages?.find((img) => img.id === "hero-bg");
 
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
-      {/* Background Gradients */}
-      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
+      <div className="absolute top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+      <div className="absolute bottom-0 left-0 -z-10 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px]" />
 
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <Badge variant="secondary" className="bg-white/5 border-white/10 text-accent px-4 py-1.5 rounded-full backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="space-y-10">
+          <Badge variant="secondary" className="bg-white/5 border-white/10 text-accent px-5 py-2 rounded-full backdrop-blur-md">
             🚀 Your Future Starts Here
           </Badge>
           
-          <h1 className="text-5xl lg:text-7xl font-headline font-bold leading-[1.1] text-gradient">
+          <h1 className="text-6xl lg:text-8xl font-headline font-bold leading-tight tracking-tight">
             Master Skills That <br />
-            <span className="text-accent">Define Tomorrow.</span>
+            <span className="text-gradient">Define Tomorrow.</span>
           </h1>
           
-          <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-lg leading-relaxed font-medium">
             LetsCatchUp Learn provides world-class courses designed by industry experts. Join thousands of students accelerating their careers.
           </p>
 
-          <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 rounded-full px-8 h-14 text-lg">
+          <div className="flex flex-wrap gap-5">
+            <Button size="lg" className="bg-accent-gradient hover:opacity-90 rounded-full px-10 h-16 text-lg font-bold transition-all hover:scale-105 shadow-xl">
               Enroll Now <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-lg glass border-white/20">
+            <Button size="lg" variant="outline" className="rounded-full px-10 h-16 text-lg glass border-white/20 hover:bg-white/10 transition-all">
               <Play className="mr-2 w-5 h-5 fill-current" /> Watch Intro
             </Button>
           </div>
 
-          <div className="flex items-center gap-6 pt-4">
-            <div className="flex -space-x-3">
+          <div className="flex items-center gap-6 pt-6">
+            <div className="flex -space-x-4">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-10 h-10 rounded-full border-2 border-background overflow-hidden">
+                <div key={i} className="w-12 h-12 rounded-full border-4 border-[#0b0f2f] overflow-hidden shadow-lg">
                   <Image
                     src={`https://picsum.photos/seed/${i + 10}/100/100`}
                     alt="User"
-                    width={40}
-                    height={40}
+                    width={48}
+                    height={48}
                   />
                 </div>
               ))}
             </div>
             <div className="text-sm">
               <div className="flex items-center gap-1 text-accent">
-                {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="w-3 h-3 fill-current" />)}
+                {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="w-4 h-4 fill-current" />)}
               </div>
-              <p className="text-muted-foreground font-medium">Trusted by 10k+ Learners</p>
+              <p className="text-muted-foreground font-semibold mt-1">Trusted by 10k+ Learners</p>
             </div>
           </div>
         </div>
 
         <div className="relative">
-          <div className="glass-card rounded-3xl p-4 rotate-2 relative z-10">
+          <div className="glass-card p-5 rotate-2 relative z-10 soft-shadow">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-              {heroImage && (
+              {heroImage ? (
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
@@ -74,20 +72,21 @@ export function Hero() {
                   className="object-cover"
                   data-ai-hint={heroImage.imageHint}
                 />
+              ) : (
+                <div className="w-full h-full bg-card animate-pulse" />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f2f]/80 via-transparent to-transparent" />
             </div>
           </div>
-          {/* Floating elements */}
-          <div className="absolute -top-6 -right-6 glass-card p-4 rounded-2xl z-20 animate-bounce delay-700">
-            <div className="bg-accent rounded-lg p-2 mb-2">
-              <Star className="text-background w-5 h-5" />
+          <div className="absolute -top-10 -right-6 glass-card p-6 rounded-2xl z-20 animate-bounce delay-700">
+            <div className="bg-accent rounded-xl p-3 mb-2 shadow-lg">
+              <Star className="text-background w-6 h-6" />
             </div>
-            <p className="text-xs font-bold">Top Rated Course</p>
+            <p className="text-xs font-bold uppercase tracking-wider">Top Rated Course</p>
           </div>
-          <div className="absolute -bottom-6 -left-6 glass-card p-6 rounded-2xl z-20 animate-pulse">
-            <p className="text-2xl font-bold font-headline text-accent">85%</p>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Success Rate</p>
+          <div className="absolute -bottom-10 -left-6 glass-card p-8 rounded-2xl z-20">
+            <p className="text-4xl font-bold font-headline text-gradient">85%</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold mt-1">Success Rate</p>
           </div>
         </div>
       </div>
