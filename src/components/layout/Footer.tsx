@@ -1,8 +1,10 @@
+
 "use client";
 
 import React from "react";
 import Link from "next/link";
-import { GraduationCap, Facebook, Twitter, Instagram, Linkedin, MapPin, Mail } from "lucide-react";
+import { GraduationCap, Facebook, Twitter, Instagram, Linkedin, MapPin, Mail, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,7 +20,7 @@ export function Footer() {
               <GraduationCap className="w-6 h-6 text-white" />
             </div>
             <span className="font-headline font-bold text-2xl tracking-tight text-white">
-              LetsCatchUp <span className="text-accent">Learn</span>
+              LetsCatchUp
             </span>
           </Link>
           <div className="space-y-4">
@@ -37,24 +39,34 @@ export function Footer() {
           </div>
           <div className="flex gap-4">
             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-              <a key={i} href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-gradient hover:border-transparent transition-all group">
+              <motion.a 
+                whileHover={{ scale: 1.1, y: -2 }}
+                key={i} 
+                href="#" 
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-gradient hover:border-transparent transition-all group"
+              >
                 <Icon className="w-5 h-5 text-gray-400 group-hover:text-white" />
-              </a>
+              </motion.a>
             ))}
           </div>
         </div>
 
         <div className="space-y-6">
           <h5 className="font-bold text-white text-lg">Navigation</h5>
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {[
               { name: "Home", href: "/" },
               { name: "About Us", href: "/about" },
+              { name: "Features", href: "/features" },
+              { name: "Services", href: "/services" },
               { name: "Pricing", href: "/pricing" },
+              { name: "Testimonials", href: "/testimonials" },
+              { name: "FAQ", href: "/faq" },
               { name: "Contact Us", href: "/contact" },
             ].map((link) => (
               <li key={link.name}>
-                <Link href={link.href} className="text-gray-400 hover:text-accent transition-colors text-sm">
+                <Link href={link.href} className="text-gray-400 hover:text-accent transition-colors text-sm flex items-center group">
+                  <ArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                   {link.name}
                 </Link>
               </li>
@@ -64,14 +76,14 @@ export function Footer() {
 
         <div className="space-y-6">
           <h5 className="font-bold text-white text-lg">Services</h5>
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             <li>
-              <Link href="/services" className="text-gray-400 hover:text-accent transition-colors text-sm">
+              <Link href="/services/educational-institutions" className="text-gray-400 hover:text-accent transition-colors text-sm">
                 Educational Institutions
               </Link>
             </li>
             <li>
-              <Link href="/services" className="text-gray-400 hover:text-accent transition-colors text-sm">
+              <Link href="/services/startups-organizations" className="text-gray-400 hover:text-accent transition-colors text-sm">
                 Startups & Organizations
               </Link>
             </li>
@@ -80,7 +92,7 @@ export function Footer() {
 
         <div className="space-y-6">
           <h5 className="font-bold text-white text-lg">Policies</h5>
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {[
               "Privacy Policy",
               "Terms & Conditions",
@@ -99,7 +111,7 @@ export function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 pt-12 border-t border-white/5 text-center">
         <p className="text-gray-500 text-xs">
-          © {currentYear} LetsCatchUp. All rights reserved. Crafted for excellence.
+          © {currentYear} LetsCatchUp. All rights reserved. Crafting excellence in education technology.
         </p>
       </div>
     </footer>

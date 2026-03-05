@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -5,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,9 +23,11 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
+    { name: "Features", href: "/features" },
     { name: "Services", href: "/services" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Testimonials", href: "/testimonials" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -35,27 +39,31 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <div className="bg-accent-gradient p-2 rounded-lg transition-transform group-hover:scale-110">
+          <motion.div 
+            whileHover={{ scale: 1.1 }}
+            className="bg-accent-gradient p-2 rounded-lg"
+          >
             <GraduationCap className="w-6 h-6 text-white" />
-          </div>
+          </motion.div>
           <span className="font-headline font-bold text-xl tracking-tight text-white">
             LetsCatchUp
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              className="text-sm font-medium text-gray-300 hover:text-accent transition-colors relative group"
             >
               {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
             </Link>
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <Link href="/dashboard">
             <Button variant="ghost" className="text-sm font-medium text-gray-300 hover:text-white">
               Log in
@@ -69,39 +77,46 @@ export function Navbar() {
         </div>
 
         <button
-          className="md:hidden p-2 text-gray-300"
+          className="lg:hidden p-2 text-gray-300"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-[#0b0f2f]/95 backdrop-blur-xl border-b border-white/10 md:hidden animate-in slide-in-from-top duration-300">
-          <div className="flex flex-col p-6 gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-lg font-medium py-2 text-gray-300"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
-              <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full glass border-white/10">
-                  Log in
-                </Button>
-              </Link>
-              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full bg-accent-gradient border-none">Get Started</Button>
-              </Link>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 right-0 bg-[#0b0f2f]/95 backdrop-blur-xl border-b border-white/10 lg:hidden overflow-hidden"
+          >
+            <div className="flex flex-col p-6 gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-medium py-2 text-gray-300 border-b border-white/5 last:border-none"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
+                <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full glass border-white/10">
+                    Log in
+                  </Button>
+                </Link>
+                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button className="w-full bg-accent-gradient border-none">Get Started</Button>
+                </Link>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
