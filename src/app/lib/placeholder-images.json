@@ -1,4 +1,3 @@
-
 {
   "placeholderImages": [
     {
@@ -26,16 +25,10 @@
       "imageHint": "artificial intelligence"
     },
     {
-      "id": "instructor-1",
-      "description": "Professional instructor portrait",
-      "imageUrl": "https://picsum.photos/seed/instr1/200/200",
-      "imageHint": "professional portrait"
-    },
-    {
-      "id": "instructor-2",
-      "description": "Professional instructor portrait",
-      "imageUrl": "https://picsum.photos/seed/instr2/200/200",
-      "imageHint": "teacher mentor"
+      "id": "about-img",
+      "description": "Collaborative team working in a modern office",
+      "imageUrl": "https://picsum.photos/seed/about-us/800/600",
+      "imageHint": "team collaboration"
     }
   ]
 }
