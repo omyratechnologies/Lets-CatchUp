@@ -15,6 +15,8 @@ export function Footer() {
     navigation: [
       { name: "Home", href: "/" },
       { name: "About Us", href: "/about" },
+      { name: "Events", href: "/events" },
+      { name: "Careers", href: "/careers" },
       { name: "Pricing", href: "/pricing" },
       { name: "Testimonials", href: "/testimonials" },
     ],
@@ -126,6 +128,7 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Links Sections */}
           <div className="lg:col-span-2 space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Services</h5>
             <ul className="space-y-4">
@@ -142,6 +145,7 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Support Sections */}
           <div className="lg:col-span-2 space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Support</h5>
             <ul className="space-y-4">

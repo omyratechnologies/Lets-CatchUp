@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -29,6 +30,18 @@
       "description": "Collaborative team working in a modern office",
       "imageUrl": "https://picsum.photos/seed/about-us/800/600",
       "imageHint": "team collaboration"
+    },
+    {
+      "id": "events-hero",
+      "description": "Crowd at a tech conference",
+      "imageUrl": "https://picsum.photos/seed/events-tech/1200/600",
+      "imageHint": "tech conference"
+    },
+    {
+      "id": "careers-hero",
+      "description": "Diverse team laughing in a modern workspace",
+      "imageUrl": "https://picsum.photos/seed/careers-team/1200/600",
+      "imageHint": "happy workplace"
     }
   ]
 }

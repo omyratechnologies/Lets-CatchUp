@@ -26,6 +26,8 @@ export function Navbar() {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Events", href: "/events" },
+    { name: "Careers", href: "/careers" },
     { name: "Pricing", href: "/pricing" },
     { name: "Testimonials", href: "/testimonials" },
     { name: "Contact", href: "/contact" },
@@ -52,7 +54,7 @@ export function Navbar() {
           y: 10,
           width: "calc(100% - 3rem)",
           left: "1.5rem",
-          backgroundColor: "rgba(35, 45, 115, 0.98)", 
+          backgroundColor: "rgba(45, 65, 155, 0.98)", // Brightened navy
           backdropFilter: "blur(20px)",
           paddingTop: "0.85rem",
           paddingBottom: "0.85rem",
@@ -74,7 +76,7 @@ export function Navbar() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             className="bg-accent-gradient p-2 rounded-lg shadow-lg"
           >
-            < GraduationCap className="w-6 h-6 text-white" />
+            <GraduationCap className="w-6 h-6 text-white" />
           </motion.div>
           <span className="font-headline font-bold text-xl tracking-tight text-white hidden sm:inline-block">
             LetsCatchUp
@@ -83,7 +85,7 @@ export function Navbar() {
 
         {/* Center Group: Navigation Items (Invisible Grouping) */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full py-2">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-6"> {/* Consistent gap */}
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -144,7 +146,7 @@ export function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-full left-0 right-0 mt-4 bg-[#0b0f2f]/98 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] lg:hidden overflow-hidden mx-4 shadow-2xl z-50"
           >
-            <div className="flex flex-col p-8 gap-6">
+            <div className="flex flex-col p-8 gap-4">
               {navLinks.map((link, idx) => {
                 const isActive = pathname === link.href;
                 return (
@@ -157,7 +159,7 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       className={cn(
-                        "text-xl font-bold py-2 flex items-center justify-between group",
+                        "text-lg font-bold py-2 flex items-center justify-between group",
                         isActive ? "text-accent" : "text-gray-300 hover:text-white"
                       )}
                       onClick={() => setIsMobileMenuOpen(false)}
