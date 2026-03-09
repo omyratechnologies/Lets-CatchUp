@@ -10,19 +10,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 233 62% 12%;
     --popover-foreground: 210 40% 98%;
-    --primary: 24 95% 53%; /* Vivid Orange matching the logo */
+    --primary: 221 83% 53%; /* Professional Indigo */
     --primary-foreground: 210 40% 98%;
     --secondary: 233 50% 25%;
     --secondary-foreground: 210 40% 98%;
     --muted: 233 40% 25%;
     --muted-foreground: 215 20% 75%;
-    --accent: 174 56% 56%; /* Complementary Teal */
+    --accent: 174 56% 56%; /* Signature Teal */
     --accent-foreground: 233 62% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 233 40% 30%;
     --input: 233 40% 30%;
-    --ring: 24 95% 53%;
+    --ring: 221 83% 53%;
     --radius: 1.5rem;
   }
 }
@@ -52,7 +52,7 @@
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#f97316] via-[#4fd1c5] to-[#667eea];
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] via-[#4fd1c5] to-[#8b5cf6];
 }
 
 .glow-icon {
@@ -60,11 +60,11 @@
 }
 
 .bg-accent-gradient {
-  @apply bg-gradient-to-r from-[#f97316] via-[#4fd1c5] to-[#667eea];
+  @apply bg-gradient-to-r from-[#6366f1] via-[#4fd1c5] to-[#8b5cf6];
 }
 
 .button-glow {
-  @apply shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-shadow duration-300;
+  @apply shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] transition-shadow duration-300;
 }
 
 @keyframes float {
