@@ -23,7 +23,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -69,20 +69,23 @@ export function Navbar() {
           borderRadius: "0px",
         },
         scrolled: {
-          y: 10,
+          y: 12,
           width: "calc(100% - 3rem)",
           left: "1.5rem",
-          backgroundColor: "rgba(20, 29, 75, 0.95)",
-          backdropFilter: "blur(20px)",
-          paddingTop: "0.75rem",
-          paddingBottom: "0.75rem",
-          borderBottomColor: "rgba(255, 255, 255, 0.15)",
+          backgroundColor: "rgba(20, 29, 75, 0.85)",
+          backdropFilter: "blur(24px)",
+          paddingTop: "0.6rem",
+          paddingBottom: "0.6rem",
+          borderBottomColor: "rgba(255, 255, 255, 0.1)",
           borderRadius: "2.5rem",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+          boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.4)",
         },
       }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 z-50 px-6 border-b"
+      transition={{ 
+        duration: 0.8, 
+        ease: [0.16, 1, 0.3, 1] // Custom quint ease for smoother 'stick' effect
+      }}
+      className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
         {/* Logo Section */}
@@ -98,9 +101,9 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Center Group: Navigation Items */}
+        {/* Center Group: Navigation Items - Invisible grouping as requested */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = item.type === "dropdown" 
                 ? item.items?.some(sub => pathname === sub.href)
@@ -118,24 +121,38 @@ export function Navbar() {
                       <Link href={item.href!}>
                         <motion.span
                           className={cn(
-                            "inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full",
-                            isActive ? "text-accent bg-white/10" : "text-gray-300 hover:text-white"
+                            "inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative",
+                            isActive ? "text-accent" : "text-gray-300 hover:text-white"
                           )}
-                          whileHover={{ scale: 1.15, x: 0 }}
+                          whileHover={{ scale: 1.1, x: 0 }}
                           transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
                           {item.name}
+                          {isActive && (
+                            <motion.div 
+                              layoutId="activeNav"
+                              className="absolute inset-0 bg-white/10 rounded-full -z-10"
+                              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                            />
+                          )}
                         </motion.span>
                       </Link>
                     ) : (
                       <div
                         className={cn(
-                          "inline-flex items-center gap-1 text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full",
-                          isActive ? "text-accent bg-white/10" : "text-gray-300 hover:text-white"
+                          "inline-flex items-center gap-1 text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative",
+                          isActive ? "text-accent" : "text-gray-300 hover:text-white"
                         )}
                       >
                         {item.name}
                         <ChevronDown className={cn("w-3 h-3 opacity-50 transition-transform duration-300", hoveredItem === item.name && "rotate-180")} />
+                        {isActive && (
+                          <motion.div 
+                            layoutId="activeNav"
+                            className="absolute inset-0 bg-white/10 rounded-full -z-10"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          />
+                        )}
                       </div>
                     )}
                   </div>
@@ -218,7 +235,10 @@ export function Navbar() {
                             <Link
                               key={sub.name}
                               href={sub.href}
-                              className="text-gray-400 font-semibold py-2"
+                              className={cn(
+                                "font-semibold py-2 transition-colors",
+                                pathname === sub.href ? "text-accent" : "text-gray-400"
+                              )}
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               {sub.name}
