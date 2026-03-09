@@ -83,7 +83,7 @@ export function Navbar() {
       }}
       transition={{ 
         duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] // Custom quint ease for smoother 'stick' effect
+        ease: [0.16, 1, 0.3, 1] 
       }}
       className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
     >
@@ -101,7 +101,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Center Group: Navigation Items - Invisible grouping as requested */}
+        {/* Center Group: Navigation Items */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
           <div className="flex items-center gap-1">
             {navItems.map((item) => {
@@ -196,6 +196,11 @@ export function Navbar() {
 
         {/* Right Group: Action Buttons */}
         <div className="hidden lg:flex items-center gap-4 relative z-10">
+          <Link href="/login">
+            <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/5 text-sm font-bold rounded-full px-6 h-11 transition-all">
+              Sign In
+            </Button>
+          </Link>
           <Link href="/contact">
             <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-extrabold rounded-full px-8 shadow-lg border-none h-11 transition-all active:scale-95">
               Contact Us
@@ -275,6 +280,11 @@ export function Navbar() {
               </Accordion>
               
               <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
+                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full glass border-white/10 rounded-full h-14 text-lg font-bold">
+                    Sign In
+                  </Button>
+                </Link>
                 <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button className="w-full bg-accent-gradient border-none rounded-full h-14 text-lg font-extrabold shadow-lg">
                     Contact Us
