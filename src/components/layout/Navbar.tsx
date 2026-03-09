@@ -30,14 +30,7 @@ export function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/", type: "link" },
-    { 
-      name: "Company", 
-      type: "dropdown",
-      items: [
-        { name: "About Us", href: "/about" },
-        { name: "Careers", href: "/careers" },
-      ]
-    },
+    { name: "About Us", href: "/about", type: "link" },
     { 
       name: "Services", 
       type: "dropdown",
@@ -46,7 +39,6 @@ export function Navbar() {
         { name: "Startups & Organizations", href: "/services/startups-organizations" },
       ]
     },
-    { name: "Events", href: "/events", type: "link" },
     { name: "Testimonials", href: "/testimonials", type: "link" },
     { name: "Pricing", href: "/pricing", type: "link" },
   ];

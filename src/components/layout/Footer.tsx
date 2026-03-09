@@ -14,8 +14,6 @@ export function Footer() {
     navigation: [
       { name: "Home", href: "/" },
       { name: "About Us", href: "/about" },
-      { name: "Events", href: "/events" },
-      { name: "Careers", href: "/careers" },
       { name: "Pricing", href: "/pricing" },
       { name: "Testimonials", href: "/testimonials" },
     ],
