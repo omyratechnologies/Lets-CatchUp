@@ -169,11 +169,6 @@ export function Navbar() {
 
         {/* Right Group: Action Buttons */}
         <div className="hidden lg:flex items-center gap-4 relative z-10">
-          <Link href="/dashboard">
-            <Button variant="ghost" className="text-sm font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded-full px-5 transition-all">
-              Log in
-            </Button>
-          </Link>
           <Link href="/contact">
             <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-extrabold rounded-full px-8 shadow-lg border-none h-11 transition-all active:scale-95">
               Contact Us
@@ -250,11 +245,6 @@ export function Navbar() {
               </Accordion>
               
               <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
-                <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="outline" className="w-full glass border-white/10 rounded-full h-14 text-lg font-bold">
-                    Log in
-                  </Button>
-                </Link>
                 <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button className="w-full bg-accent-gradient border-none rounded-full h-14 text-lg font-extrabold shadow-lg">
                     Contact Us

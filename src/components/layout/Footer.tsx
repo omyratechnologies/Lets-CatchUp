@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -22,7 +23,6 @@ export function Footer() {
     services: [
       { name: "Institutions", href: "/services/educational-institutions" },
       { name: "Startups", href: "/services/startups-organizations" },
-      { name: "Career Path AI", href: "/dashboard" },
     ],
     legal: [
       { name: "Privacy Policy", href: "#" },
