@@ -1,4 +1,3 @@
-
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -50,6 +49,20 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        "accordion-up": "accordion-up 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },
