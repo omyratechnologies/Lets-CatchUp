@@ -85,7 +85,7 @@ export function Navbar() {
 
         {/* Center Group: Navigation Items (Invisible Grouping) */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full py-2">
-          <div className="flex items-center gap-6"> {/* Consistent gap */}
+          <div className="flex items-center gap-6">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -144,7 +144,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 mt-4 bg-[#0b0f2f]/98 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] lg:hidden overflow-hidden mx-4 shadow-2xl z-50"
+            className="absolute top-full left-0 right-0 mt-4 bg-[#0b0f2f] border border-white/10 rounded-[2.5rem] lg:hidden overflow-hidden mx-4 shadow-2xl z-50"
           >
             <div className="flex flex-col p-8 gap-4">
               {navLinks.map((link, idx) => {
