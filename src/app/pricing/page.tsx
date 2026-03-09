@@ -8,17 +8,6 @@ import { Check, ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function PricingPage() {
-  const unifiedFeatures = [
-    "Student Information Management",
-    "Attendance Tracking",
-    "Gradebook (basic features)",
-    "Parent-Teacher Communication",
-    "Fee Management (basic record-keeping)",
-    "Timetable Scheduling",
-    "Basic Reporting",
-    "Standard email support"
-  ];
-
   const plans = [
     {
       name: "Small School",
@@ -26,7 +15,16 @@ export default function PricingPage() {
       period: "per user / month",
       min: "min ₹1,500/month",
       desc: "Perfect for localized learning centers and small tutoring groups.",
-      features: unifiedFeatures,
+      features: [
+        "Student Information System (SIS)",
+        "Smart Attendance Management",
+        "Academic Performance & Gradebook",
+        "Parent–Teacher Communication Portal",
+        "Fee & Payment Management",
+        "Automated Timetable Scheduling",
+        "Analytics & Institutional Reporting",
+        "Standard Email Support"
+      ],
       cta: "Get Started",
       popular: false,
       color: "from-teal-400 to-cyan-300",
@@ -37,7 +35,15 @@ export default function PricingPage() {
       period: "per user / month",
       min: "min ₹12,500/month",
       desc: "Optimized for expanding institutions looking to scale digital operations.",
-      features: unifiedFeatures,
+      features: [
+        "All Small School Features Included",
+        "Advanced Academic Gradebook",
+        "Enhanced Parent–Teacher Communication Hub",
+        "Comprehensive Fee & Payment Management",
+        "Advanced Analytics & Performance Reporting",
+        "Learning Management System (LMS) Integration",
+        "Priority Email Support"
+      ],
       cta: "Contact Sales",
       popular: true,
       color: "from-indigo-500 to-purple-500",
@@ -48,7 +54,16 @@ export default function PricingPage() {
       period: "per user / month",
       min: "min ₹10,000/month",
       desc: "For globally recognized campuses requiring multi-region support.",
-      features: unifiedFeatures,
+      features: [
+        "All Growing School Features Included",
+        "Advanced Communication & Notification Tools",
+        "Multi-Currency Fee & Payment Management",
+        "Scholarship & Financial Aid Management",
+        "Customizable Reports & Data Export",
+        "Advanced LMS Integration",
+        "Dedicated Customer Support",
+        "User Roles & Permission Management"
+      ],
       cta: "Talk to Expert",
       popular: false,
       color: "from-pink-500 to-rose-500",
