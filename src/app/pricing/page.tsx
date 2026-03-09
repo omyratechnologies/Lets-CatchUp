@@ -8,14 +8,24 @@ import { Check, ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function PricingPage() {
+  // Unified feature set for all plans as requested
+  const unifiedFeatures = [
+    "Unlimited student access",
+    "AI-powered learning paths",
+    "Advanced performance analytics",
+    "Custom institutional branding",
+    "24/7 Priority support",
+    "Community collaboration tools"
+  ];
+
   const plans = [
     {
       name: "Small School",
       price: "₹300",
       period: "per user / month",
       min: "min ₹1,500/month",
-      desc: "Perfect for localized learning centers.",
-      features: ["Up to 50 students", "Basic LMS tools", "Community forums", "Standard support"],
+      desc: "Perfect for localized learning centers and small tutoring groups.",
+      features: unifiedFeatures,
       cta: "Get Started",
       popular: false,
       color: "from-teal-400 to-cyan-300",
@@ -25,8 +35,8 @@ export default function PricingPage() {
       price: "₹250",
       period: "per user / month",
       min: "min ₹12,500/month",
-      desc: "Optimized for expanding institutions.",
-      features: ["Unlimited students", "Advanced Analytics", "Custom branding", "Priority support", "AI Learning Paths"],
+      desc: "Optimized for expanding institutions looking to scale digital operations.",
+      features: unifiedFeatures,
       cta: "Contact Sales",
       popular: true,
       color: "from-indigo-500 to-purple-500",
@@ -36,8 +46,8 @@ export default function PricingPage() {
       price: "₹500",
       period: "per user / month",
       min: "min ₹10,000/month",
-      desc: "For globally recognized campuses.",
-      features: ["Multilingual support", "Global data hosting", "SSO & Security", "Dedicated manager", "Research tools"],
+      desc: "For globally recognized campuses requiring multi-region support.",
+      features: unifiedFeatures,
       cta: "Talk to Expert",
       popular: false,
       color: "from-pink-500 to-rose-500",
@@ -68,15 +78,12 @@ export default function PricingPage() {
               whileHover={{ scale: 1.02, y: -10 }}
               className="group relative h-full"
             >
-              {/* Pulsing Glow for Popular Plan */}
               {plan.popular && (
                 <div className="absolute -inset-1 bg-gradient-to-r from-accent via-primary to-accent rounded-[42px] blur-xl opacity-20 group-hover:opacity-40 animate-pulse transition-opacity" />
               )}
 
-              {/* The "Success Card" Rounded-Tab Design */}
               <div className={`relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-[40px] p-10 flex flex-col h-full transition-all duration-500 group-hover:bg-white/10 group-hover:border-white/20 shadow-2xl ${plan.popular ? 'ring-2 ring-accent/30' : ''}`}>
                 
-                {/* Top Glossy Lip */}
                 <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-20" />
                 
                 {plan.popular && (
@@ -118,7 +125,6 @@ export default function PricingPage() {
                   </Button>
                 </div>
 
-                {/* Ambient glow matching plan theme */}
                 <div className={`absolute -bottom-10 -left-10 w-48 h-48 bg-gradient-to-br ${plan.color} blur-[100px] opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity`} />
               </div>
             </motion.div>

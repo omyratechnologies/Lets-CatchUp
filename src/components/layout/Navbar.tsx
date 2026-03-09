@@ -72,7 +72,7 @@ export function Navbar() {
           y: 12,
           width: "calc(100% - 3rem)",
           left: "1.5rem",
-          backgroundColor: "rgba(20, 29, 75, 0.85)",
+          backgroundColor: "rgba(20, 29, 75, 0.95)",
           backdropFilter: "blur(24px)",
           paddingTop: "0.6rem",
           paddingBottom: "0.6rem",
@@ -88,7 +88,6 @@ export function Navbar() {
       className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
-        {/* Logo Section */}
         <Link href="/" className="flex items-center gap-2 group shrink-0 relative z-10">
           <motion.div 
             whileHover={{ scale: 1.1, rotate: 5 }}
@@ -101,7 +100,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Center Group: Navigation Items */}
+        {/* Floating Center Group */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
           <div className="flex items-center gap-1">
             {navItems.map((item) => {
@@ -124,15 +123,13 @@ export function Navbar() {
                             "inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative",
                             isActive ? "text-accent" : "text-gray-300 hover:text-white"
                           )}
-                          whileHover={{ scale: 1.1, x: 0 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                          whileHover={{ scale: 1.15 }}
                         >
                           {item.name}
                           {isActive && (
                             <motion.div 
                               layoutId="activeNav"
                               className="absolute inset-0 bg-white/10 rounded-full -z-10"
-                              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                             />
                           )}
                         </motion.span>
@@ -150,14 +147,12 @@ export function Navbar() {
                           <motion.div 
                             layoutId="activeNav"
                             className="absolute inset-0 bg-white/10 rounded-full -z-10"
-                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                           />
                         )}
                       </div>
                     )}
                   </div>
 
-                  {/* Hover Dropdown Content */}
                   {item.type === "dropdown" && (
                     <AnimatePresence>
                       {hoveredItem === item.name && (
@@ -165,7 +160,6 @@ export function Navbar() {
                           initial={{ opacity: 0, y: 10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          transition={{ duration: 0.2, ease: "easeOut" }}
                           className="absolute top-full left-1/2 -translate-x-1/2 mt-0 pt-2 w-max min-w-[220px] z-50"
                         >
                           <div className="bg-[#141d4b]/95 backdrop-blur-xl border border-white/10 rounded-[24px] p-2 shadow-2xl">
@@ -194,7 +188,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Right Group: Action Buttons */}
         <div className="hidden lg:flex items-center gap-4 relative z-10">
           <Link href="/login">
             <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/5 text-sm font-bold rounded-full px-6 h-11 transition-all">
@@ -208,16 +201,14 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden p-2 text-gray-300 hover:bg-white/5 rounded-full transition-colors relative z-10"
+          className="lg:hidden p-2 text-gray-300 hover:bg-white/5 rounded-full relative z-10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -228,7 +219,7 @@ export function Navbar() {
           >
             <div className="flex flex-col p-8 gap-4">
               <Accordion type="single" collapsible className="w-full">
-                {navItems.map((item, idx) => {
+                {navItems.map((item) => {
                   if (item.type === "dropdown") {
                     return (
                       <AccordionItem key={item.name} value={item.name} className="border-none">
@@ -253,28 +244,19 @@ export function Navbar() {
                       </AccordionItem>
                     );
                   }
-
-                  const isActive = pathname === item.href;
                   return (
-                    <motion.div
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      key={item.name}
-                      className="py-2"
-                    >
+                    <div key={item.name} className="py-2">
                       <Link
                         href={item.href!}
                         className={cn(
-                          "text-lg font-bold flex items-center justify-between group",
-                          isActive ? "text-accent" : "text-gray-300 hover:text-white"
+                          "text-lg font-bold block",
+                          pathname === item.href ? "text-accent" : "text-gray-300"
                         )}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.name}
-                        {isActive && <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />}
                       </Link>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </Accordion>

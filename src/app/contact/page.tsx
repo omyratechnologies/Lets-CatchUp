@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -24,7 +25,6 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto space-y-24">
-        {/* Top Section: Info & Form */}
         <div className="grid lg:grid-cols-2 gap-16">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -98,7 +98,6 @@ export default function ContactPage() {
           </motion.div>
         </div>
 
-        {/* Bottom Section: Interactive Map */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +114,6 @@ export default function ContactPage() {
           </div>
 
           <div className="relative group">
-            {/* Architectural Layered Shadow */}
             <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[40px] bg-gradient-to-br from-primary/30 to-accent/30 opacity-40 transition-all duration-500 group-hover:opacity-70 group-hover:-bottom-5 group-hover:-right-5" />
 
             <div className="relative bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[40px] p-3 shadow-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500">
