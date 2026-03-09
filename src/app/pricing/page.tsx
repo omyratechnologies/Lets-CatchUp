@@ -98,6 +98,12 @@ export default function PricingPage() {
       intl: true,
     },
     {
+      feature: "Timetable Scheduling",
+      small: true,
+      growing: true,
+      intl: true,
+    },
+    {
       feature: "Academic Gradebook",
       small: "Basic",
       growing: "Advanced",
@@ -114,12 +120,6 @@ export default function PricingPage() {
       small: "Core Fee Records",
       growing: "Online Payments + Reminders",
       intl: "Multi-Currency Payments + Scholarships",
-    },
-    {
-      feature: "Timetable Scheduling",
-      small: true,
-      growing: true,
-      intl: true,
     },
     {
       feature: "Reports & Analytics",
