@@ -149,12 +149,12 @@ export default function PricingPage() {
   const renderVal = (val: string | boolean) => {
     if (typeof val === "boolean") {
       return val ? (
-        <Check className="w-5 h-5 text-accent mx-auto" />
+        <Check className="w-6 h-6 text-accent mx-auto" />
       ) : (
-        <Minus className="w-5 h-5 text-gray-600 mx-auto" />
+        <Minus className="w-6 h-6 text-gray-600 mx-auto" />
       );
     }
-    return <span className="text-sm font-medium text-gray-300">{val}</span>;
+    return <span className="text-base font-medium text-gray-300">{val}</span>;
   };
 
   return (
@@ -245,7 +245,7 @@ export default function PricingPage() {
         >
           <div className="text-center space-y-4">
             <h2 className="text-4xl font-headline font-bold tracking-tight">Compare <span className="text-gradient">Plans</span></h2>
-            <p className="text-gray-400 font-medium">A side-by-side look at our institutional capabilities.</p>
+            <p className="text-gray-400 font-medium text-lg">A side-by-side look at our institutional capabilities.</p>
           </div>
 
           <div className="glass-card p-4 md:p-8 border-white/10 overflow-hidden shadow-2xl">
@@ -253,19 +253,19 @@ export default function PricingPage() {
               <Table>
                 <TableHeader className="border-white/10 bg-white/5">
                   <TableRow className="hover:bg-transparent border-white/10">
-                    <TableHead className="w-[300px] text-gray-400 font-bold uppercase tracking-widest text-lg py-8">Features</TableHead>
-                    <TableHead className="text-center text-accent font-bold uppercase tracking-widest text-lg py-8">Small School</TableHead>
-                    <TableHead className="text-center text-primary font-bold uppercase tracking-widest text-lg py-8">Growing School</TableHead>
-                    <TableHead className="text-center text-accent font-bold uppercase tracking-widest text-lg py-8">International School</TableHead>
+                    <TableHead className="w-[300px] text-gray-200 font-bold uppercase tracking-widest text-xl py-8">Features</TableHead>
+                    <TableHead className="text-center text-accent font-bold uppercase tracking-widest text-xl py-8">Small School</TableHead>
+                    <TableHead className="text-center text-[#6366f1] font-bold uppercase tracking-widest text-xl py-8">Growing School</TableHead>
+                    <TableHead className="text-center text-accent font-bold uppercase tracking-widest text-xl py-8">International School</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {comparisonData.map((row, idx) => (
                     <TableRow key={idx} className="border-white/5 hover:bg-white/5 transition-colors">
-                      <TableCell className="font-bold text-white py-8 text-xl">{row.feature}</TableCell>
-                      <TableCell className="text-center py-8">{renderVal(row.small)}</TableCell>
-                      <TableCell className="text-center py-8 bg-primary/5">{renderVal(row.growing)}</TableCell>
-                      <TableCell className="text-center py-8">{renderVal(row.intl)}</TableCell>
+                      <TableCell className="font-bold text-white py-10 text-2xl">{row.feature}</TableCell>
+                      <TableCell className="text-center py-10">{renderVal(row.small)}</TableCell>
+                      <TableCell className="text-center py-10 bg-white/5">{renderVal(row.growing)}</TableCell>
+                      <TableCell className="text-center py-10">{renderVal(row.intl)}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
