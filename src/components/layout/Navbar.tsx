@@ -93,14 +93,14 @@ export function Navbar() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             className="bg-accent-gradient p-2 rounded-lg shadow-lg"
           >
-            <GraduationCap className="w-6 h-6 text-white" />
+            < GraduationCap className="w-6 h-6 text-white" />
           </motion.div>
           <span className="font-headline font-bold text-xl tracking-tight text-white hidden sm:inline-block">
             LetsCatchUp
           </span>
         </Link>
 
-        {/* Floating Center Group */}
+        {/* Floating Center Group - Transparent Container */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
           <div className="flex items-center gap-1">
             {navItems.map((item) => {

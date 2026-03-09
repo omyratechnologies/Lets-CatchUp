@@ -38,7 +38,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, x: 0 }}
             className="space-y-8"
           >
-            <Badge variant="secondary" className="glass text-accent px-4 py-1 border-white/10">
+            <Badge variant="secondary" className="glass text-accent px-4 py-1 border-white/10 uppercase tracking-widest text-[10px] font-black">
               Our Story
             </Badge>
             <h1 className="text-5xl md:text-7xl font-headline font-bold leading-tight">

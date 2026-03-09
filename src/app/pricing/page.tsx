@@ -8,14 +8,15 @@ import { Check, ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function PricingPage() {
-  // Unified feature set for all plans as requested
   const unifiedFeatures = [
-    "Unlimited student access",
-    "AI-powered learning paths",
-    "Advanced performance analytics",
-    "Custom institutional branding",
-    "24/7 Priority support",
-    "Community collaboration tools"
+    "Digital Student Database",
+    "Smart Attendance System",
+    "Exams & Dynamic Gradebooks",
+    "Fee Collection & Invoicing",
+    "Staff Management & Payroll",
+    "Parent & Student Mobile App",
+    "SMS & Email Notifications",
+    "24/7 Institutional Support"
   ];
 
   const plans = [
@@ -58,7 +59,7 @@ export default function PricingPage() {
     <div className="min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <Badge className="glass text-accent border-white/10 px-4 py-1">Pricing Plans</Badge>
+          <Badge className="glass text-accent border-white/10 px-4 py-1 uppercase tracking-widest text-[10px] font-black">Pricing Plans</Badge>
           <h1 className="text-5xl font-headline font-bold">Choose Your <span className="text-gradient">Path</span></h1>
           <p className="text-xl text-gray-400">Scale your institution with flexible plans designed for growth.</p>
         </div>
@@ -110,8 +111,8 @@ export default function PricingPage() {
                 <div className="flex-1 space-y-5 mb-12">
                   {plan.features.map((feature, j) => (
                     <div key={j} className="flex items-center gap-4 group/item">
-                      <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center shrink-0 shadow-lg group-hover/item:scale-110 transition-transform`}>
-                        <Check className="w-3.5 h-3.5 text-white stroke-[3px]" />
+                      <div className="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
+                        <Check className="w-3.5 h-3.5 text-orange-500 stroke-[3px]" />
                       </div>
                       <span className="text-sm text-gray-300 font-medium">{feature}</span>
                     </div>
