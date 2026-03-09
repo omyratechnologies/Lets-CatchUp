@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -6,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Navigation, Send } from "lucide-react";
+import { Mail, MapPin, Navigation, Send, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -21,6 +20,9 @@ export default function ContactPage() {
       description: "We'll get back to you within 24 hours.",
     });
   };
+
+  const fullAddress = "Building No.: 3-37, Old RC Puram, Back Side ZPHS School, Mumbai Highway, Hyderabad, Nearby: Shri Durga Bhawani Steel Work, Ramachandrapuram, Sangareddy, Telangana – 502032";
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
@@ -45,7 +47,6 @@ export default function ContactPage() {
 
             <div className="grid gap-6">
               <div className="flex gap-5 items-start glass-card p-6 border-white/5 group relative overflow-hidden">
-                {/* Visual indicator */}
                 <div className="absolute top-0 left-0 w-1 h-full bg-accent-gradient opacity-50" />
                 
                 <div className="bg-white/5 p-4 rounded-2xl group-hover:scale-110 transition-transform shadow-xl border border-white/10">
@@ -123,7 +124,7 @@ export default function ContactPage() {
             <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[40px] bg-accent-gradient opacity-20 transition-all duration-500 group-hover:opacity-40 group-hover:-bottom-5 group-hover:-right-5" />
 
             <div className="relative bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[40px] p-3 shadow-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500">
-              <div className="relative h-[500px] w-full rounded-[32px] overflow-hidden grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+              <div className="relative h-[500px] w-full rounded-[32px] overflow-hidden grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 cursor-pointer">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.419028445161!2d78.29168431527581!3d17.487425188018617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91f5e8f5b8a5%3A0x7d6688e1a5a8f9a!2sRamachandrapuram%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1709123456789!5m2!1sen!2sin"
                   width="100%"
@@ -134,6 +135,19 @@ export default function ContactPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="rounded-[32px]"
                 ></iframe>
+                
+                {/* Clickable Overlay */}
+                <a 
+                  href={googleMapsUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 bg-transparent flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-background/20 backdrop-blur-[2px]"
+                >
+                  <div className="bg-accent-gradient px-8 py-4 rounded-full flex items-center gap-3 shadow-2xl scale-90 hover:scale-100 transition-transform">
+                    <span className="font-bold text-white uppercase tracking-widest">Open in Google Maps</span>
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </div>
+                </a>
               </div>
             </div>
           </div>
