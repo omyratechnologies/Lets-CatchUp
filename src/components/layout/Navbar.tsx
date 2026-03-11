@@ -84,9 +84,9 @@ export function Navbar() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             className="bg-accent-gradient p-2.5 rounded-xl shadow-lg"
           >
-            <Zap className="w-6 h-6 text-white" />
+            <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </motion.div>
-          <span className="font-headline font-bold text-xl tracking-tight text-white hidden sm:inline-block">
+          <span className="font-headline font-bold text-lg sm:text-xl tracking-tight text-white block">
             Let's Catch Up
           </span>
         </Link>
