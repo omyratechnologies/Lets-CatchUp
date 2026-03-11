@@ -270,14 +270,14 @@ export function Navbar() {
                 })}
               </Accordion>
               
-              <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
-                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="outline" className="w-full glass border-white/10 rounded-full h-14 text-lg font-bold">
+              <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10 justify-start items-start">
+                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full sm:w-auto">
+                  <Button variant="outline" className="w-full sm:w-48 glass border-white/10 rounded-full h-14 text-lg font-bold">
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="w-full bg-accent-gradient border-none rounded-full h-14 text-lg font-extrabold shadow-lg">
+                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="w-full sm:w-auto">
+                  <Button className="w-full sm:w-48 bg-accent-gradient border-none rounded-full h-14 text-lg font-extrabold shadow-lg">
                     Contact Us
                   </Button>
                 </Link>
