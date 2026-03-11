@@ -8,17 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Zap, ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [mobileHoveredItem, setMobileHoveredItem] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -210,42 +205,62 @@ export function Navbar() {
             className="absolute top-full left-0 right-0 mt-4 bg-[#0b0f2f] border border-white/10 rounded-[2.5rem] lg:hidden overflow-hidden mx-4 shadow-2xl z-50"
           >
             <div className="flex flex-col p-8 gap-4">
-              <Accordion type="single" collapsible className="w-full">
+              <div className="w-full space-y-4">
                 {navItems.map((item) => {
+                  const isActive = item.type === "dropdown" 
+                    ? item.items?.some(sub => pathname === sub.href)
+                    : pathname === item.href;
+
                   if (item.type === "dropdown") {
                     return (
-                      <AccordionItem key={item.name} value={item.name} className="border-none">
-                        <AccordionTrigger className="text-lg font-bold py-2 text-gray-300 hover:text-[#2dd4bf] hover:no-underline group">
-                          <div className="flex items-center">
-                            <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                              <ArrowRight className="w-4 h-4 mr-2" />
-                            </span>
-                            <span className="group-hover:translate-x-1 transition-transform duration-300">
-                              {item.name}
-                            </span>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="flex flex-col gap-2 pl-4 pt-2">
-                          {item.items?.map((sub) => (
-                            <Link
-                              key={sub.name}
-                              href={sub.href}
-                              className={cn(
-                                "font-semibold py-2 flex items-center group transition-all duration-300",
-                                pathname === sub.href ? "text-[#2dd4bf]" : "text-gray-400 hover:text-[#2dd4bf]"
-                              )}
-                              onClick={() => setIsMobileMenuOpen(false)}
+                      <div 
+                        key={item.name} 
+                        className="py-2"
+                        onMouseEnter={() => setMobileHoveredItem(item.name)}
+                        onMouseLeave={() => setMobileHoveredItem(null)}
+                      >
+                        <div className={cn(
+                          "text-lg font-bold flex items-center group transition-all duration-300 cursor-pointer",
+                          isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
+                        )}>
+                          <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
+                            <ArrowRight className="w-4 h-4 mr-2" />
+                          </span>
+                          <span className="group-hover:translate-x-1 transition-transform duration-300 flex items-center gap-2">
+                            {item.name}
+                            <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", mobileHoveredItem === item.name && "rotate-180")} />
+                          </span>
+                        </div>
+                        <AnimatePresence>
+                          {mobileHoveredItem === item.name && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden flex flex-col gap-2 pl-6 mt-3"
                             >
-                              <span className="w-0 group-hover:w-5 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                                <ArrowRight className="w-3 h-3 mr-2" />
-                              </span>
-                              <span className="group-hover:translate-x-1 transition-transform duration-300">
-                                {sub.name}
-                              </span>
-                            </Link>
-                          ))}
-                        </AccordionContent>
-                      </AccordionItem>
+                              {item.items?.map((sub) => (
+                                <Link
+                                  key={sub.name}
+                                  href={sub.href}
+                                  className={cn(
+                                    "font-semibold py-2 flex items-center group transition-all duration-300",
+                                    pathname === sub.href ? "text-[#2dd4bf]" : "text-gray-400 hover:text-[#2dd4bf]"
+                                  )}
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  <span className="w-0 group-hover:w-5 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
+                                    <ArrowRight className="w-3 h-3 mr-2" />
+                                  </span>
+                                  <span className="group-hover:translate-x-1 transition-transform duration-300">
+                                    {sub.name}
+                                  </span>
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     );
                   }
                   return (
@@ -268,7 +283,7 @@ export function Navbar() {
                     </div>
                   );
                 })}
-              </Accordion>
+              </div>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10 justify-start items-start">
                 <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full sm:w-auto">
