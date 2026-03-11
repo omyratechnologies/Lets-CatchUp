@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Zap, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -77,10 +77,10 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
         <Link href="/" className="flex items-center gap-2 group shrink-0 relative z-10">
           <motion.div 
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            className="bg-accent-gradient p-2.5 rounded-xl shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            className="bg-accent-gradient w-10 h-10 sm:w-12 sm:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden"
           >
-            <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <span className="text-white font-black text-sm sm:text-base leading-none tracking-tighter">LC</span>
           </motion.div>
           <span className="font-headline font-bold text-lg sm:text-xl tracking-tight text-white block">
             Let's Catch Up
@@ -189,10 +189,14 @@ export function Navbar() {
         </div>
 
         <button
-          className="lg:hidden p-2 text-gray-300 hover:bg-white/5 rounded-full relative z-10"
+          className="lg:hidden p-2 text-gray-300 hover:text-accent hover:bg-white/5 rounded-full relative z-10 transition-all duration-300 group/ham"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6 transition-all group-hover/ham:drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
+          ) : (
+            <Menu className="w-6 h-6 transition-all group-hover/ham:drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
+          )}
         </button>
       </div>
 

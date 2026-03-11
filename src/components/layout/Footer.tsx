@@ -1,8 +1,9 @@
+
 "use client";
 
 import React from "react";
 import Link from "next/link";
-import { Zap, Facebook, Twitter, Instagram, Linkedin, MapPin, Mail, ArrowRight, Send, ShieldCheck } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, MapPin, Mail, ArrowRight, Send, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,8 +68,8 @@ export function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-accent-gradient p-2.5 rounded-xl shadow-xl transition-transform group-hover:scale-110">
-                <Zap className="w-7 h-7 text-white" />
+              <div className="bg-accent-gradient w-12 h-12 rounded-xl shadow-xl flex items-center justify-center transition-transform group-hover:scale-110">
+                <span className="text-white font-black text-lg leading-none tracking-tighter">LC</span>
               </div>
               <span className="font-headline font-bold text-2xl tracking-tight text-white">
                 Let’s catch up
@@ -83,7 +84,9 @@ export function Footer() {
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Building No.: 3-37, Old RC Puram,<br />
                   Back Side ZPHS School, Mumbai Highway,<br />
-                  Hyderabad, Telangana – 502032
+                  Nearby: Shri Durga Bhawani Steel Work<br />
+                  Ramachandrapuram, Sangareddy<br />
+                  Telangana – 502032
                 </p>
               </div>
               <div className="flex gap-4 items-center group">
