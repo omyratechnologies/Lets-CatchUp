@@ -11,27 +11,47 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle, Sparkles } from "lucide-react";
+import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export default function TestimonialsPage() {
+  const womanAvatar1 = PlaceHolderImages.find(img => img.id === "avatar-woman-1");
+  const manAvatar1 = PlaceHolderImages.find(img => img.id === "avatar-man-1");
+  const womanAvatar2 = PlaceHolderImages.find(img => img.id === "avatar-woman-2");
+  const natureAvatar = PlaceHolderImages.find(img => img.id === "avatar-nature");
+
   const testimonials = [
     {
       name: "Meera Sinha",
       role: "Education Consultant",
       quote: "The platform's focus on meaningful connection has made a huge difference in our student engagement levels. It's truly transformative for the modern classroom.",
       initials: "MS",
+      rating: 5,
+      avatar: womanAvatar1
     },
     {
       name: "Rohan Mehta",
       role: "Startup Founder",
       quote: "As a startup founder, finding a space that balances professional growth with community is rare. LetsCatchUp nailed it perfectly for our engineering team.",
       initials: "RM",
+      rating: 4,
+      avatar: manAvatar1
     },
     {
       name: "Anjali Rao",
       role: "Operations Manager",
       quote: "The collaboration tools are intuitive and powerful. It's truly a unified space that makes teamwork feel natural, productive, and fun.",
       initials: "AR",
+      rating: 5,
+      avatar: womanAvatar2
     },
+    {
+      name: "Eco Learner",
+      role: "Environmental Student",
+      quote: "Being able to connect with nature-focused mentorship groups has accelerated my research goals. The community here is vibrant.",
+      initials: "EL",
+      rating: 4,
+      avatar: natureAvatar
+    }
   ];
 
   const faqs = [
@@ -76,7 +96,7 @@ export default function TestimonialsPage() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 items-stretch">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 items-stretch">
           {testimonials.map((t, i) => (
             <TestimonialCard
               key={i}
@@ -85,6 +105,9 @@ export default function TestimonialsPage() {
               role={t.role}
               quote={t.quote}
               initials={t.initials}
+              rating={t.rating}
+              avatarUrl={t.avatar?.imageUrl}
+              avatarHint={t.avatar?.imageHint}
             />
           ))}
         </div>

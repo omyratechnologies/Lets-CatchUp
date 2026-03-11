@@ -1,4 +1,3 @@
-
 {
   "placeholderImages": [
     {
@@ -42,6 +41,30 @@
       "description": "Diverse team laughing in a modern workspace",
       "imageUrl": "https://picsum.photos/seed/careers-team/1200/600",
       "imageHint": "happy workplace"
+    },
+    {
+      "id": "avatar-woman-1",
+      "description": "Professional woman smiling portrait",
+      "imageUrl": "https://picsum.photos/seed/woman1/200/200",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "avatar-man-1",
+      "description": "Professional man smiling portrait",
+      "imageUrl": "https://picsum.photos/seed/man1/200/200",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "avatar-woman-2",
+      "description": "Creative professional woman portrait",
+      "imageUrl": "https://picsum.photos/seed/woman2/200/200",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "avatar-nature",
+      "description": "Beautiful natural forest landscape",
+      "imageUrl": "https://picsum.photos/seed/nature/200/200",
+      "imageHint": "nature forest"
     }
   ]
 }

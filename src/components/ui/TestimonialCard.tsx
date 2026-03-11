@@ -1,6 +1,6 @@
 import React from 'react';
 import { Quote, Star } from 'lucide-react';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
@@ -11,6 +11,9 @@ interface TestimonialCardProps {
   initials: string;
   className?: string;
   index?: number;
+  rating?: number;
+  avatarUrl?: string;
+  avatarHint?: string;
 }
 
 export function TestimonialCard({
@@ -19,7 +22,10 @@ export function TestimonialCard({
   quote,
   initials,
   className,
-  index = 0
+  index = 0,
+  rating = 5,
+  avatarUrl,
+  avatarHint
 }: TestimonialCardProps) {
   return (
     <motion.div 
@@ -42,7 +48,7 @@ export function TestimonialCard({
         </div>
 
         <div className="space-y-6 relative z-10">
-          {/* Interactive Star Rating */}
+          {/* Golden Star Rating */}
           <div className="flex gap-1.5">
             {[1, 2, 3, 4, 5].map((s) => (
               <motion.div
@@ -50,7 +56,10 @@ export function TestimonialCard({
                 whileHover={{ scale: 1.3, rotate: 15 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <Star className="w-5 h-5 text-accent fill-accent drop-shadow-[0_0_8px_rgba(79,209,197,0.5)]" />
+                <Star className={cn(
+                  "w-5 h-5 drop-shadow-[0_0_8px_rgba(255,215,0,0.4)]",
+                  s <= rating ? "text-golden fill-golden" : "text-white/20 fill-none"
+                )} />
               </motion.div>
             ))}
           </div>
@@ -65,6 +74,14 @@ export function TestimonialCard({
         <div className="flex items-center gap-5 mt-12 pt-8 border-t border-white/5 relative z-10">
           <div className="relative">
             <Avatar className="w-16 h-16 border-2 border-accent/20 group-hover:border-accent/60 transition-colors shadow-lg">
+              {avatarUrl && (
+                <AvatarImage 
+                  src={avatarUrl} 
+                  alt={name} 
+                  className="object-cover"
+                  data-ai-hint={avatarHint}
+                />
+              )}
               <AvatarFallback className="bg-accent/10 text-accent font-bold text-xl uppercase tracking-tighter">
                 {initials}
               </AvatarFallback>

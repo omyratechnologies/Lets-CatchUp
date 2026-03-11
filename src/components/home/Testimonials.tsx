@@ -3,26 +3,37 @@
 import React from "react";
 import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { motion } from "framer-motion";
+import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export function Testimonials() {
+  const womanAvatar1 = PlaceHolderImages.find(img => img.id === "avatar-woman-1");
+  const manAvatar1 = PlaceHolderImages.find(img => img.id === "avatar-man-1");
+  const womanAvatar2 = PlaceHolderImages.find(img => img.id === "avatar-woman-2");
+
   const testimonials = [
     {
       name: "Meera Sinha",
       role: "Education Consultant",
       quote: "The platform's focus on meaningful connection has made a huge difference in our student engagement levels. It's truly transformative.",
       initials: "MS",
+      rating: 5,
+      avatar: womanAvatar1
     },
     {
       name: "Rohan Mehta",
       role: "Startup Founder",
       quote: "As a startup founder, finding a space that balances professional growth with community is rare. LetsCatchUp nailed it perfectly.",
       initials: "RM",
+      rating: 4,
+      avatar: manAvatar1
     },
     {
       name: "Anjali Rao",
       role: "Operations Manager",
       quote: "The collaboration tools are intuitive and powerful. It's truly a unified space that makes teamwork feel natural and fun.",
       initials: "AR",
+      rating: 5,
+      avatar: womanAvatar2
     },
   ];
 
@@ -53,6 +64,9 @@ export function Testimonials() {
               role={t.role}
               quote={t.quote}
               initials={t.initials}
+              rating={t.rating}
+              avatarUrl={t.avatar?.imageUrl}
+              avatarHint={t.avatar?.imageHint}
             />
           ))}
         </div>
