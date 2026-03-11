@@ -1,10 +1,11 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Zap, ChevronDown } from "lucide-react";
+import { Menu, X, Zap, ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -214,8 +215,15 @@ export function Navbar() {
                   if (item.type === "dropdown") {
                     return (
                       <AccordionItem key={item.name} value={item.name} className="border-none">
-                        <AccordionTrigger className="text-lg font-bold py-2 text-gray-300 hover:text-[#2dd4bf] hover:no-underline">
-                          {item.name}
+                        <AccordionTrigger className="text-lg font-bold py-2 text-gray-300 hover:text-[#2dd4bf] hover:no-underline group">
+                          <div className="flex items-center">
+                            <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
+                              <ArrowRight className="w-4 h-4 mr-2" />
+                            </span>
+                            <span className="group-hover:translate-x-1 transition-transform duration-300">
+                              {item.name}
+                            </span>
+                          </div>
                         </AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-2 pl-4 pt-2">
                           {item.items?.map((sub) => (
@@ -223,12 +231,17 @@ export function Navbar() {
                               key={sub.name}
                               href={sub.href}
                               className={cn(
-                                "font-semibold py-2 transition-colors",
+                                "font-semibold py-2 flex items-center group transition-all duration-300",
                                 pathname === sub.href ? "text-[#2dd4bf]" : "text-gray-400 hover:text-[#2dd4bf]"
                               )}
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
-                              {sub.name}
+                              <span className="w-0 group-hover:w-5 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
+                                <ArrowRight className="w-3 h-3 mr-2" />
+                              </span>
+                              <span className="group-hover:translate-x-1 transition-transform duration-300">
+                                {sub.name}
+                              </span>
                             </Link>
                           ))}
                         </AccordionContent>
@@ -240,12 +253,17 @@ export function Navbar() {
                       <Link
                         href={item.href!}
                         className={cn(
-                          "text-lg font-bold block",
+                          "text-lg font-bold flex items-center group transition-all duration-300",
                           pathname === item.href ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
                         )}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {item.name}
+                        <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
+                          <ArrowRight className="w-4 h-4 mr-2" />
+                        </span>
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">
+                          {item.name}
+                        </span>
                       </Link>
                     </div>
                   );
