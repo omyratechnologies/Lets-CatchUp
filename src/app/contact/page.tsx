@@ -300,7 +300,8 @@ export default function ContactPage() {
                 {/* Click Overlay */}
                 <div className="absolute inset-0 bg-black/20 group-hover/map:bg-black/0 transition-all flex flex-col items-center justify-center opacity-0 group-hover/map:opacity-100">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-full shadow-2xl scale-90 group-hover/map:scale-100 transition-transform">
-                    <ExternalLink className="text-white w-8 h-8" />
+                    {/* Updated Redirect Icon Color to rgb(56, 190, 199) */}
+                    <ExternalLink className="w-8 h-8 text-[#38bec7]" />
                   </div>
                   <span className="mt-4 text-white font-black uppercase tracking-widest text-xs">Open in Google Maps</span>
                 </div>
