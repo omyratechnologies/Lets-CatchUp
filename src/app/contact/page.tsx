@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Send, Sparkles } from "lucide-react";
+import { Mail, MapPin, Send, Sparkles, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -97,6 +97,8 @@ export default function ContactPage() {
       setLoading(false);
     }
   };
+
+  const mapUrl = "https://www.google.com/maps/place/37,+St+3,+Maruthi+Nagar,+Raghavendra+Colony,+Ramachandrapuram,+Hyderabad,+Telangana+502032/@17.5253292,78.3004977,17z/data=!3m1!4b1!4m5!3m4!1s0x3bcb8d4ef2e42533:0x9699911809f80cd5!8m2!3d17.5253292!4d78.3004977?hl=en&entry=ttu&g_ep=EgoyMDI2MDMwOS4wIKXMDSoASAFQAw%3D%3D";
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
@@ -278,23 +280,37 @@ export default function ContactPage() {
             <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[40px] bg-accent-gradient opacity-10 -z-10" />
 
             <div className="glass-card border-white/10 overflow-hidden shadow-2xl bg-[#0f172a]">
-              <div className="aspect-video w-full relative">
-                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.348480306161!2d78.29548457584167!3d17.49079549887856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8d68965839b1%3A0xc3f5b7a126830588!2s3-37%2C%20BHEL%20Enclave%2C%20Akbar%20Road%2C%20Tarun%20Nagar%2C%20Ramachandrapuram%2C%20Telangana%20502032!5e0!3m2!1sen!2sin!4v1709456000000!5m2!1sen!2sin"
+              <a 
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="aspect-video w-full relative block cursor-pointer group/map"
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.2891!2d78.3004977!3d17.5253292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDMxJzMxLjIiTiA3OMKwMTgnMDEuOCJF!5e0!3m2!1sen!2sin!4v1709456000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="filter grayscale-[0.2] contrast-[1.1] transition-all group-hover:grayscale-0"
+                  className="filter grayscale-[0.2] contrast-[1.1] transition-all group-hover/map:grayscale-0 pointer-events-none"
                 ></iframe>
-              </div>
+                
+                {/* Click Overlay */}
+                <div className="absolute inset-0 bg-black/20 group-hover/map:bg-black/0 transition-all flex flex-col items-center justify-center opacity-0 group-hover/map:opacity-100">
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-full shadow-2xl scale-90 group-hover/map:scale-100 transition-transform">
+                    <ExternalLink className="text-white w-8 h-8" />
+                  </div>
+                  <span className="mt-4 text-white font-black uppercase tracking-widest text-xs">Open in Google Maps</span>
+                </div>
+              </a>
+              
               <div className="p-8 bg-white/5 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-4 text-center">
                 <div className="flex items-center gap-3">
                   <MapPin className="text-accent w-6 h-6 glow-icon" />
                   <span className="text-gray-300 font-bold text-base md:text-lg">
-                    3–37 RC Puram, behind SR chambers, Hyderabad, 502032, Telangana
+                    37, St 3, Maruthi Nagar, Raghavendra Colony, Ramachandrapuram, Hyderabad, 502032
                   </span>
                 </div>
               </div>
