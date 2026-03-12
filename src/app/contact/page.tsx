@@ -16,8 +16,8 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Message Sent Successfully!",
+      description: "Thank you for reaching out. We'll get back to you within 24 hours.",
     });
   };
 
