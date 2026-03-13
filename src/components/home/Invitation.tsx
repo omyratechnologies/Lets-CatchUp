@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from "react";
@@ -17,7 +18,7 @@ export function Invitation() {
   const invitations = [
     {
       title: "The 34-Day Immersion",
-      desc: "Experience the full operational impact of our ecosystem with a 34-day, risk-free journey. This is a zero-commitment window designed for you to witness the seamless transition from traditional management to high-utility connectivity.",
+      desc: "Experience the full operational impact of our ecosystem with a 34-day, risk-free journey. This is a zero-commitment window designed for you to witness the seamless transition.",
       icon: Target,
       color: "text-amber-400",
       accentBorder: "border-l-amber-400/40",
@@ -28,7 +29,7 @@ export function Invitation() {
     },
     {
       title: "The Collaborative Future",
-      desc: "We are actively seeking visionary institutions and community builders to help us scale this infrastructure. We don't just want users; we want strategic partners ready to architect the next standard of academic and social synergy.",
+      desc: "We are actively seeking visionary institutions and community builders to help us scale this infrastructure. We want strategic partners to architect the next standard.",
       icon: Rocket,
       color: "text-emerald-400",
       accentBorder: "border-l-emerald-400/40",
@@ -69,7 +70,7 @@ export function Invitation() {
               Join the <span className="text-gradient">Movement</span>
             </h2>
             <p className="text-sm md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
-              We are building the architecture of the next decade. Be part of a transition that prioritizes utility, safety, and human growth over engagement metrics.
+              We are building the architecture of the next decade. Be part of a transition that prioritizes utility, safety, and human growth.
             </p>
           </motion.div>
         </div>
@@ -86,10 +87,7 @@ export function Invitation() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <AccordionItem 
-                    value={`invitation-${i}`}
-                    className="border-none group"
-                  >
+                  <AccordionItem value={`invitation-${i}`} className="border-none group">
                     <div className="relative">
                       <div className={cn(
                         "absolute -bottom-2 -right-2 w-full h-full rounded-[24px] md:rounded-[32px] bg-white/5 opacity-0 lg:group-hover:opacity-100 transition-all duration-500 -z-10 group-data-[state=open]:-bottom-3 md:group-data-[state=open]:-bottom-4 group-data-[state=open]:-right-3 md:group-data-[state=open]:-right-4 group-data-[state=open]:bg-accent/10 group-data-[state=open]:opacity-100"
@@ -109,11 +107,9 @@ export function Invitation() {
                               <Icon className={cn("w-6 h-6 md:w-7 md:h-7 text-gray-400 transition-colors duration-500", inv.hoverText)} />
                             </div>
                             <div className="space-y-1 flex-1">
-                              <div className="flex items-center gap-3">
-                                <Badge variant="outline" className="border-white/10 text-[7px] md:text-[8px] font-black uppercase tracking-[0.2em] text-gray-500">
-                                  {inv.label}
-                                </Badge>
-                              </div>
+                              <Badge variant="outline" className="border-white/10 text-[7px] md:text-[8px] font-black uppercase tracking-[0.2em] text-gray-500">
+                                {inv.label}
+                              </Badge>
                               <h3 className={cn(
                                 "text-lg md:text-3xl font-headline font-bold text-white transition-colors duration-500 tracking-tight",
                                 inv.hoverText
@@ -133,10 +129,7 @@ export function Invitation() {
                             "relative bg-white/[0.03] border border-white/5 border-l-2 p-4 md:p-10 rounded-xl md:rounded-[2rem] shadow-inner backdrop-blur-sm transition-all duration-500 group-data-[state=open]:translate-y-0 translate-y-4 opacity-0 group-data-[state=open]:opacity-100 overflow-hidden",
                             inv.accentBorder
                           )}>
-                            <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 opacity-5 pointer-events-none -z-10">
-                                <Icon size={160} strokeWidth={0.5} className={inv.hoverText} />
-                            </div>
-                            <p className="text-[10px] md:text-xl text-gray-400 leading-relaxed font-medium relative z-10">
+                            <p className="text-[11px] md:text-xl text-gray-400 leading-relaxed font-medium relative z-10">
                               {inv.desc}
                             </p>
                           </div>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { LucideIcon, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -34,14 +35,12 @@ export function FeatureCard({
 
   return (
     <div className={cn("relative group pt-10 md:pt-14 h-full", className)}>
-      {/* Tilted card behind */}
       <div className={cn(
         "absolute bottom-0 right-0 w-[92%] md:w-[95%] h-[60px] md:h-[120px] bg-gradient-to-r rounded-[24px] md:rounded-[32px] rotate-[3deg] md:rotate-[6deg] -translate-x-1 translate-y-2 md:translate-y-4 z-0 opacity-60 md:opacity-70 transition-all duration-700 group-hover:rotate-[5deg] md:group-hover:rotate-[8deg] group-hover:translate-y-4 md:group-hover:translate-y-6 group-hover:opacity-100",
         gradientFrom,
         gradientTo
       )}></div>
 
-      {/* Card Container */}
       <div className="relative w-full h-full transition-all duration-500 group-hover:-translate-y-2 z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] rounded-[24px] md:rounded-[32px] shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/10 overflow-hidden group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.7)] transition-all duration-500">
           <div className="absolute top-0 right-0 w-12 h-12 md:w-16 md:h-16 pointer-events-none">

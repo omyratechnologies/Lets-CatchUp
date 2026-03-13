@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -15,7 +16,7 @@ import {
   LayoutGrid,
   HelpCircle,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -198,9 +199,7 @@ export function Navbar() {
                       <div className="relative w-10 h-10 overflow-hidden">
                         <Image src="/favicon-v2.ico" alt="Logo" fill className="object-contain" />
                       </div>
-                      <div className="flex flex-col">
-                        <span className="text-lg">Menu</span>
-                      </div>
+                      <span className="text-lg">Menu</span>
                     </SheetTitle>
                   </SheetHeader>
                   
@@ -229,12 +228,6 @@ export function Navbar() {
                               isActive ? "text-white" : "text-white/80"
                             )} />
                             <span className="font-bold text-base tracking-tight">{item.name}</span>
-                            {isActive && (
-                              <motion.div 
-                                layoutId="mobileNavActive"
-                                className="absolute left-0 top-0 w-1 h-full bg-white/40"
-                              />
-                            )}
                           </motion.div>
                         </Link>
                       );
@@ -242,33 +235,16 @@ export function Navbar() {
                   </nav>
 
                   <div className="mt-auto pt-6 border-t border-white/20 flex flex-col gap-3 relative z-10">
-                    <Link 
-                      href="https://app.letscatchup-kcs.com/"
-                      onClick={() => setIsOpen(false)}
-                      className="w-full"
-                    >
-                      <Button 
-                        className="w-full h-12 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-[10px] gap-3 shadow-[0_10px_30px_rgba(45,212,191,0.2)] hover:shadow-[0_15px_40px_rgba(45,212,191,0.4)] transition-all active:scale-95 border-none flex items-center justify-center"
-                      >
-                        <LogIn className="w-4 h-4" />
-                        Sign In to Platform
+                    <Link href="https://app.letscatchup-kcs.com/" onClick={() => setIsOpen(false)} className="w-full">
+                      <Button className="w-full h-12 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-[10px] gap-3 shadow-xl border-none">
+                        <LogIn className="w-4 h-4" /> Sign In
                       </Button>
                     </Link>
-                    
-                    <Link 
-                      href="/#contact"
-                      onClick={() => setIsOpen(false)}
-                      className="w-full"
-                    >
-                      <Button variant="outline" className="w-full h-12 rounded-2xl border-white/20 bg-white/10 text-white font-bold gap-3 hover:bg-white/20 hover:text-accent hover:border-accent/40 transition-all">
-                        <Phone className="w-4 h-4 text-accent" />
-                        Get in touch
+                    <Link href="/#contact" onClick={() => setIsOpen(false)} className="w-full">
+                      <Button variant="outline" className="w-full h-12 rounded-2xl border-white/20 bg-white/10 text-white font-bold gap-3">
+                        <Phone className="w-4 h-4 text-accent" /> Get in touch
                       </Button>
                     </Link>
-                    
-                    <p className="text-center text-[8px] text-white/50 uppercase tracking-[0.3em] font-black mt-2">
-                      Lets Catch Up v2.0
-                    </p>
                   </div>
                 </div>
               </SheetContent>
