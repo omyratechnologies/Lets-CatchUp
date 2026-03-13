@@ -9,17 +9,14 @@ import {
   Info, 
   Layers, 
   CreditCard, 
-  MessageCircle, 
-  ChevronDown,
+  MessageCircle,
   User
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const pathname = usePathname();
@@ -39,7 +36,7 @@ export function Navbar() {
 
     const observerOptions = {
       root: null,
-      rootMargin: "-40% 0px -40% 0px", // Trigger when section is in the middle 20% of viewport
+      rootMargin: "-40% 0px -40% 0px",
       threshold: 0
     };
 
@@ -63,32 +60,20 @@ export function Navbar() {
   }, [mounted, pathname]);
 
   const navItems = [
-    { name: "Home", href: pathname === "/" ? "#home" : "/#home", icon: Home, type: "link" },
-    { name: "About", href: pathname === "/" ? "#about" : "/#about", icon: Info, type: "link" },
-    { 
-      name: "Services", 
-      icon: Layers,
-      href: "/services",
-      type: "dropdown",
-      items: [
-        { name: "Academic Operations", href: "/services/educational-institutions" },
-        { name: "Professional Collaboration", href: "/services/startups-organizations" },
-        { name: "Healthy Social Spaces", href: "/services/healthy-social-spaces" },
-      ]
-    },
-    { name: "Pricing", href: pathname === "/" ? "#pricing" : "/#pricing", icon: CreditCard, type: "link" },
-    { name: "Contact", href: pathname === "/" ? "#contact" : "/#contact", icon: MessageCircle, type: "link" },
+    { name: "Home", href: pathname === "/" ? "#home" : "/#home", icon: Home },
+    { name: "About", href: pathname === "/" ? "#about" : "/#about", icon: Info },
+    { name: "Services", href: "/services", icon: Layers },
+    { name: "Pricing", href: pathname === "/" ? "#pricing" : "/#pricing", icon: CreditCard },
+    { name: "Contact", href: pathname === "/" ? "#contact" : "/#contact", icon: MessageCircle },
   ];
 
   const getIsActive = (item: any) => {
     if (!mounted || !pathname) return false;
     
-    // Services highlight: If we are on any /services path
-    if (item.type === "dropdown") {
+    if (item.name === "Services") {
       return pathname.startsWith("/services");
     }
 
-    // ScrollSpy highlight: Only on the home page
     if (pathname === "/") {
       if (item.name === "Home") return activeSection === "home";
       if (item.name === "About") return activeSection === "about";
@@ -144,38 +129,22 @@ export function Navbar() {
               {navItems.map((item) => {
                 const isActive = getIsActive(item);
                 return (
-                  <div key={item.name} className="relative group py-4" onMouseEnter={() => setHoveredItem(item.name)} onMouseLeave={() => setHoveredItem(null)}>
-                    <div className="flex items-center">
-                      {item.type === "link" ? (
-                        <Link href={item.href!}>
-                          <motion.span className={cn("inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative", isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]")}>
-                            {item.name}
-                            {isActive && mounted && <motion.div layoutId="activeNav" className="absolute inset-0 bg-white/10 rounded-full -z-10" transition={{ type: "spring", stiffness: 380, damping: 30 }} />}
-                          </motion.span>
-                        </Link>
-                      ) : (
-                        <div className={cn("inline-flex items-center gap-1 text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative", isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]")}>
-                          {item.name}
-                          <ChevronDown className={cn("w-3 h-3 opacity-50 transition-transform duration-300", hoveredItem === item.name && "rotate-180")} />
-                          {isActive && mounted && <motion.div layoutId="activeNav" className="absolute inset-0 bg-white/10 rounded-full -z-10" transition={{ type: "spring", stiffness: 380, damping: 30 }} />}
-                        </div>
-                      )}
-                    </div>
-                    {item.type === "dropdown" && (
-                      <AnimatePresence>
-                        {hoveredItem === item.name && (
-                          <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} className="absolute top-full left-1/2 -translate-x-1/2 mt-0 pt-2 w-max min-w-[220px] z-50">
-                            <div className="bg-[#141d4b]/95 backdrop-blur-xl border border-white/10 rounded-[24px] p-2 shadow-2xl">
-                              {item.items?.map((sub) => (
-                                <Link key={sub.name} href={sub.href} className={cn("block px-5 py-3 rounded-xl text-sm font-bold transition-all", pathname === sub.href ? "text-[#2dd4bf] bg-white/10" : "text-gray-300 hover:bg-white/5 hover:text-[#2dd4bf]")}>
-                                  {sub.name}
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
+                  <div key={item.name} className="relative group py-4">
+                    <Link href={item.href}>
+                      <motion.span className={cn(
+                        "inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative",
+                        isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
+                      )}>
+                        {item.name}
+                        {isActive && mounted && (
+                          <motion.div 
+                            layoutId="activeNav" 
+                            className="absolute inset-0 bg-white/10 rounded-full -z-10" 
+                            transition={{ type: "spring", stiffness: 380, damping: 30 }} 
+                          />
                         )}
-                      </AnimatePresence>
-                    )}
+                      </motion.span>
+                    </Link>
                   </div>
                 );
               })}
@@ -185,7 +154,7 @@ export function Navbar() {
           <div className="flex items-center gap-4 relative z-10">
             <Link href="https://app.letscatchup-kcs.com/">
               <Button variant="ghost" className="text-gray-300 hover:text-[#2dd4bf] hover:bg-white/5 text-xs sm:text-sm font-bold rounded-full px-4 sm:px-6 h-10 sm:h-11 transition-all">
-                <User className="w-4 h-4 lg:hidden" />
+                <span className="lg:hidden"><User className="w-4 h-4" /></span>
                 <span className="hidden lg:inline">Sign In</span>
               </Button>
             </Link>
@@ -201,36 +170,20 @@ export function Navbar() {
         <div className="glass h-20 rounded-[2rem] flex items-center justify-around px-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-white/10">
           {navItems.map((item) => {
             const isActive = getIsActive(item);
-            if (item.type === "dropdown") {
-              return (
-                <div key={item.name} className="flex flex-col items-center justify-center flex-1 h-full relative">
-                  <button onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)} className={cn("flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300", isActive ? "text-[#2dd4bf]" : "text-gray-400")}>
-                    <div className={cn("p-2 rounded-2xl transition-all duration-300", isActive ? "bg-accent-gradient text-white shadow-lg" : "text-gray-400")}>
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span className={cn("text-[10px] font-black uppercase tracking-widest", isActive ? "text-accent" : "text-gray-500")}>{item.name}</span>
-                      <ChevronDown className={cn("w-2 h-2 transition-transform", isMobileServicesOpen && "rotate-180")} />
-                    </div>
-                  </button>
-                  <AnimatePresence>
-                    {isMobileServicesOpen && (
-                      <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} className="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 w-48 bg-[#141d4b]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl overflow-hidden">
-                        {item.items?.map((sub) => (
-                          <Link key={sub.name} href={sub.href} onClick={() => setIsMobileServicesOpen(false)} className={cn("block px-4 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-center transition-all", pathname === sub.href ? "text-accent bg-white/10" : "text-gray-400")}>{sub.name}</Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            }
             return (
-              <Link key={item.name} href={item.href || "/"} className="flex flex-col items-center justify-center flex-1 h-full gap-1">
-                <div className={cn("p-2 rounded-2xl transition-all duration-300", isActive ? "bg-accent-gradient text-white shadow-lg" : "text-gray-400")}>
+              <Link key={item.name} href={item.href} className="flex flex-col items-center justify-center flex-1 h-full gap-1">
+                <div className={cn(
+                  "p-2 rounded-2xl transition-all duration-300",
+                  isActive ? "bg-accent-gradient text-white shadow-lg" : "text-gray-400"
+                )}>
                   <item.icon className="w-6 h-6" />
                 </div>
-                <span className={cn("text-[10px] font-black uppercase tracking-widest transition-colors duration-300", isActive ? "text-accent" : "text-gray-500")}>{item.name}</span>
+                <span className={cn(
+                  "text-[10px] font-black uppercase tracking-widest transition-colors duration-300",
+                  isActive ? "text-accent" : "text-gray-500"
+                )}>
+                  {item.name}
+                </span>
               </Link>
             );
           })}
