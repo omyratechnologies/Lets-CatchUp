@@ -58,11 +58,25 @@ export function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mx-auto mb-20 space-y-4"
+          className="text-center max-w-4xl mx-auto mb-20 space-y-8"
         >
-          <h3 className="text-3xl md:text-5xl font-headline font-bold leading-tight">
-            Core capabilities for every community
-          </h3>
+          <div className="space-y-4">
+            <h3 className="text-3xl md:text-5xl font-headline font-bold leading-tight">
+              Core capabilities for every community
+            </h3>
+            <h4 className="text-xl md:text-2xl font-headline font-bold text-accent tracking-tight uppercase">
+              The Unified Institutional Command Center
+            </h4>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4 text-gray-400 text-base md:text-lg font-medium leading-relaxed">
+            <p>
+              <span className="text-white font-bold">Our Philosophy:</span> Shifting the paradigm from superficial engagement to high-impact functional utility.
+            </p>
+            <p>
+              <span className="text-white font-bold">The Infrastructure:</span> Three foundational pillars seamlessly integrated within a secure, all-encompassing digital ecosystem.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div 
