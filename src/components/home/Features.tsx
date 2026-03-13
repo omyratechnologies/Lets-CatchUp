@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -62,7 +63,6 @@ export function Features() {
           transition={{ duration: 0.8 }}
           className="text-center max-w-3xl mx-auto mb-20 space-y-4"
         >
-          <h2 className="text-accent font-bold tracking-widest text-xs uppercase">Core Capabilities</h2>
           <h3 className="text-3xl md:text-5xl font-headline font-bold leading-tight">
             Features built for growth
           </h3>

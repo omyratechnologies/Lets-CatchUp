@@ -1,9 +1,9 @@
+
 "use client";
 
 import React, { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle2, BarChart3, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import gsap from "gsap";
 import { motion } from "framer-motion";
@@ -63,12 +63,6 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="space-y-8 text-center lg:text-left"
         >
-          <div className="flex justify-center lg:justify-start">
-            <Badge variant="secondary" className="bg-white/5 border-white/10 text-accent px-5 py-2 rounded-full backdrop-blur-md">
-              🚀 Accelerate Your Growth
-            </Badge>
-          </div>
-          
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-headline font-bold leading-tight tracking-tight">
             Unlock potential and <br className="hidden md:block" />
             <span className="text-gradient">build connections</span>

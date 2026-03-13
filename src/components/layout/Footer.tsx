@@ -20,7 +20,6 @@ export function Footer() {
       { name: "Home", href: "/" },
       { name: "About Us", href: "/about" },
       { name: "Pricing", href: "/pricing" },
-      { name: "Testimonials", href: "/testimonials" },
       { name: "FAQ", href: "/faq" },
     ],
     services: [
@@ -79,7 +78,6 @@ export function Footer() {
     setIsSubmitting(true);
     
     try {
-      // Simulate sending data to support@letscatchup.com
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       toast({
@@ -100,13 +98,10 @@ export function Footer() {
 
   return (
     <footer className="relative pt-32 pb-12 bg-[#0b0f2f] overflow-hidden">
-      {/* Background Glows */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Top Newsletter Section */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -143,10 +138,7 @@ export function Footer() {
           </div>
         </motion.div>
 
-        {/* Main Footer Grid */}
         <div className="pt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 border-t border-white/5">
-          
-          {/* Brand Info */}
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="bg-accent-gradient w-12 h-12 rounded-xl shadow-xl flex items-center justify-center transition-transform">
@@ -165,7 +157,6 @@ export function Footer() {
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Building No.: 3-37, Old RC Puram,<br />
                   Back Side ZPHS School, Mumbai Highway,<br />
-                  Nearby: Shri Durga Bhawani Steel Work<br />
                   Ramachandrapuram, Sangareddy<br />
                   Telangana – 502032
                 </p>
@@ -195,7 +186,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links Sections */}
           <div className="lg:col-span-2 space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Platform</h5>
             <ul className="space-y-4">
@@ -212,7 +202,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Links Sections */}
           <div className="lg:col-span-3 space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Services</h5>
             <ul className="space-y-4">
@@ -229,7 +218,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Support Sections */}
           <div className="lg:col-span-3 space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Support</h5>
             <ul className="space-y-4">
@@ -247,7 +235,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-500 text-[10px] uppercase tracking-widest font-bold">
             © {currentYear} Let’s catch up. All rights reserved.

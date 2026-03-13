@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,6 @@ export function Navbar() {
         { name: "Startups & Organizations", href: "/services/startups-organizations" },
       ]
     },
-    { name: "Testimonials", href: "/testimonials", type: "link" },
     { name: "Pricing", href: "/pricing", type: "link" },
   ];
 
@@ -176,7 +175,7 @@ export function Navbar() {
         </div>
 
         <div className="hidden lg:flex items-center gap-4 relative z-10">
-          <Link href="/login">
+          <Link href="https://app.letscatchup-kcs.com/">
             <Button variant="ghost" className="text-gray-300 hover:text-[#2dd4bf] hover:bg-white/5 text-sm font-bold rounded-full px-6 h-11 transition-all">
               Sign In
             </Button>
@@ -189,13 +188,13 @@ export function Navbar() {
         </div>
 
         <button
-          className="lg:hidden p-2 text-gray-300 hover:text-accent hover:bg-white/5 rounded-full relative z-10 transition-all duration-300 group/ham"
+          className="lg:hidden p-2 text-gray-300 rounded-full relative z-10 transition-all duration-300 group/ham"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <X className="w-6 h-6 transition-all group-hover/ham:drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
+            <X className="w-6 h-6" />
           ) : (
-            <Menu className="w-6 h-6 transition-all group-hover/ham:drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
+            <Menu className="w-6 h-6" />
           )}
         </button>
       </div>
@@ -281,7 +280,7 @@ export function Navbar() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10 justify-start items-start">
-                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full sm:w-auto">
+                <Link href="https://app.letscatchup-kcs.com/" onClick={() => setIsMobileMenuOpen(false)} className="w-full sm:w-auto">
                   <Button variant="outline" className="w-full sm:w-48 glass border-white/10 rounded-full h-14 text-lg font-bold">
                     Sign In
                   </Button>
