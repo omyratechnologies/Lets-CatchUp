@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, MapPin, Mail, ArrowRight, Send, ShieldCheck } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, MapPin, Mail, ArrowRight, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -154,7 +154,7 @@ export function Footer() {
           </div>
 
           {/* Links Sections */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-3 space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Services</h5>
             <ul className="space-y-4">
               {footerLinks.services.map((link) => (
@@ -171,7 +171,7 @@ export function Footer() {
           </div>
 
           {/* Support Sections */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-3 space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Support</h5>
             <ul className="space-y-4">
               {footerLinks.legal.map((link) => (
@@ -186,22 +186,6 @@ export function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Status Badge */}
-          <div className="lg:col-span-2 flex flex-col items-center lg:items-end justify-start">
-            <div className="glass px-4 py-2 rounded-full border-white/5 flex items-center gap-3">
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2dd4bf] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2dd4bf]"></span>
-              </div>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-300">System Online</span>
-            </div>
-            <div className="mt-4 flex items-center gap-2 text-gray-500 text-[10px] uppercase font-bold tracking-widest">
-              <ShieldCheck className="w-3 h-3" />
-              <span>Secure Site</span>
-            </div>
-          </div>
-
         </div>
 
         {/* Bottom Bar */}
