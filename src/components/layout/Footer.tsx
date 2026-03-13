@@ -188,7 +188,7 @@ export function Footer() {
           </div>
 
           {/* Status Badge */}
-          <div className="lg:col-span-2 flex flex-col items-center lg:items-end justify-center">
+          <div className="lg:col-span-2 flex flex-col items-center lg:items-end justify-start">
             <div className="glass px-4 py-2 rounded-full border-white/5 flex items-center gap-3">
               <div className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2dd4bf] opacity-75"></span>
