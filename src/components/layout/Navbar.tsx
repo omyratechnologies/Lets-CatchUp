@@ -21,6 +21,9 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 
 export function Navbar() {
@@ -181,12 +184,16 @@ export function Navbar() {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="text-white hover:bg-white/10 rounded-xl w-10 h-10 border border-white/10 transition-all hover:shadow-[0_0_20px_hsla(var(--accent)/0.3)] hover:border-accent/50 group"
+                  className="text-white hover:bg-white/10 rounded-xl w-10 h-10 border border-white/10 transition-all"
                 >
-                  <MenuIcon className="w-5 h-5 transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_10px_hsla(var(--accent)/1)]" />
+                  <MenuIcon className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="bg-[rgb(15,21,61)]/98 border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>Navigation Menu</SheetTitle>
+                  <SheetDescription>Main navigation links for the Let's Catch Up platform.</SheetDescription>
+                </SheetHeader>
                 <div className="flex flex-col h-full p-0 relative overflow-hidden">
                   <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
                   <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
@@ -198,6 +205,7 @@ export function Navbar() {
                       </div>
                       <span className="text-white font-headline font-bold text-xl tracking-tight">Let's Catch Up</span>
                     </div>
+                    <div className="h-[1px] w-full bg-white/10 mb-6" />
                   </div>
                   
                   <nav className="flex flex-col gap-2 relative z-10 flex-1 px-6">
