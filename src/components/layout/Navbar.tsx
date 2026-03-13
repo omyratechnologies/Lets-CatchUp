@@ -120,52 +120,16 @@ export function Navbar() {
       className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
-        {/* Brand */}
-        <Link href="/#home" className="flex items-center gap-3 shrink-0 relative z-10">
-          <motion.div whileHover={{ scale: 1.05 }} className="bg-accent-gradient w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
-            <span className="text-white font-black text-lg leading-none tracking-tighter">LC</span>
-          </motion.div>
-          <span className="font-headline font-bold text-lg md:text-xl tracking-tight text-white block">Let's Catch Up</span>
-        </Link>
-
-        {/* Desktop Navigation (Center) */}
-        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
-          <div className="flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = getIsActive(item);
-              return (
-                <div key={item.name} className="relative group">
-                  <Link href={item.href}>
-                    <motion.span className={cn(
-                      "inline-block text-sm font-bold transition-all cursor-pointer whitespace-nowrap px-5 py-2.5 rounded-full relative",
-                      isActive ? "text-accent bg-white/5" : "text-gray-300 hover:text-white"
-                    )}>
-                      {item.name}
-                      {isActive && mounted && (
-                        <motion.div 
-                          layoutId="activeNav" 
-                          className="absolute inset-0 bg-white/10 rounded-full -z-10" 
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }} 
-                        />
-                      )}
-                    </motion.span>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Right Section: Hamburger Menu for all but Desktop */}
-        <div className="flex items-center gap-4 relative z-10">
+        {/* Left Side: Hamburger (mobile) and Brand (all) */}
+        <div className="flex items-center gap-2 md:gap-4 relative z-10">
           <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-xl w-12 h-12">
-                  <Menu className="w-6 h-6" />
+                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-xl w-10 h-10 md:w-12 md:h-12">
+                  <Menu className="w-5 h-5 md:w-6 h-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-[#0b0f2f]/95 border-white/10 backdrop-blur-2xl w-[300px] sm:w-[400px] p-0">
+              <SheetContent side="left" className="bg-[#0b0f2f]/95 border-white/10 backdrop-blur-2xl w-[300px] sm:w-[400px] p-0">
                 <div className="flex flex-col h-full p-8">
                   <SheetHeader className="text-left mb-8">
                     <SheetTitle className="text-white font-headline font-bold text-2xl flex items-center gap-3">
@@ -225,6 +189,44 @@ export function Navbar() {
             </Sheet>
           </div>
 
+          <Link href="/#home" className="flex items-center gap-3 shrink-0 relative z-10">
+            <motion.div whileHover={{ scale: 1.05 }} className="bg-accent-gradient w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
+              <span className="text-white font-black text-lg leading-none tracking-tighter">LC</span>
+            </motion.div>
+            <span className="font-headline font-bold text-lg md:text-xl tracking-tight text-white block">Let's Catch Up</span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation (Center) */}
+        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
+          <div className="flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = getIsActive(item);
+              return (
+                <div key={item.name} className="relative group">
+                  <Link href={item.href}>
+                    <motion.span className={cn(
+                      "inline-block text-sm font-bold transition-all cursor-pointer whitespace-nowrap px-5 py-2.5 rounded-full relative",
+                      isActive ? "text-accent bg-white/5" : "text-gray-300 hover:text-white"
+                    )}>
+                      {item.name}
+                      {isActive && mounted && (
+                        <motion.div 
+                          layoutId="activeNav" 
+                          className="absolute inset-0 bg-white/10 rounded-full -z-10" 
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }} 
+                        />
+                      )}
+                    </motion.span>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right Section: Desktop Actions */}
+        <div className="flex items-center gap-4 relative z-10">
           {/* Desktop Only Buttons */}
           <div className="hidden lg:flex items-center gap-4">
             <Link href="https://app.letscatchup-kcs.com/">
