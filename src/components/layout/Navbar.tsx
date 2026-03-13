@@ -11,9 +11,10 @@ import {
   Menu,
   LogIn,
   Phone,
-  LayoutGrid
+  LayoutGrid,
+  X
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -120,12 +121,69 @@ export function Navbar() {
       className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
-        {/* Left Side: Hamburger (mobile) and Brand (all) */}
-        <div className="flex items-center gap-2 md:gap-4 relative z-10">
+        {/* Left Side: Brand */}
+        <div className="flex items-center gap-3 shrink-0 relative z-10">
+          <Link href="/#home" className="flex items-center gap-3">
+            <motion.div whileHover={{ scale: 1.05 }} className="bg-accent-gradient w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
+              <span className="text-white font-black text-lg leading-none tracking-tighter">LC</span>
+            </motion.div>
+            <span className="font-headline font-bold text-lg md:text-xl tracking-tight text-white block">Let's Catch Up</span>
+          </Link>
+        </div>
+
+        {/* Desktop Navigation (Center) */}
+        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
+          <div className="flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = getIsActive(item);
+              return (
+                <div key={item.name} className="relative group">
+                  <Link href={item.href}>
+                    <motion.span className={cn(
+                      "inline-block text-sm font-bold transition-all cursor-pointer whitespace-nowrap px-5 py-2.5 rounded-full relative",
+                      isActive ? "text-accent bg-white/5" : "text-gray-300 hover:text-white"
+                    )}>
+                      {item.name}
+                      {isActive && mounted && (
+                        <motion.div 
+                          layoutId="activeNav" 
+                          className="absolute inset-0 bg-white/10 rounded-full -z-10" 
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }} 
+                        />
+                      )}
+                    </motion.span>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right Section: Mobile Hamburger + Desktop Actions */}
+        <div className="flex items-center gap-4 relative z-10">
+          {/* Desktop Only Buttons */}
+          <div className="hidden lg:flex items-center gap-4">
+            <Link href="https://app.letscatchup-kcs.com/">
+              <Button 
+                variant="ghost" 
+                className="text-white hover:text-accent hover:bg-white/5 border border-white/10 hover:border-accent/40 text-sm font-bold rounded-full px-6 transition-all h-12 flex items-center gap-2 group/desktop-signin"
+              >
+                <LogIn className="w-4 h-4 text-accent/70 group-hover/desktop-signin:text-accent transition-colors" />
+                Sign In
+              </Button>
+            </Link>
+            <Link href="/#contact">
+              <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-black rounded-full px-10 shadow-xl border-none h-12 transition-all active:scale-95">
+                Contact Us
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile Hamburger (Right Side) */}
           <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-xl w-10 h-10 md:w-12 md:h-12">
+                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-xl w-10 h-10 md:w-12 md:h-12 border border-white/10">
                   <Menu className="w-5 h-5 md:w-6 h-6" />
                 </Button>
               </SheetTrigger>
@@ -187,62 +245,6 @@ export function Navbar() {
                 </div>
               </SheetContent>
             </Sheet>
-          </div>
-
-          <Link href="/#home" className="flex items-center gap-3 shrink-0 relative z-10">
-            <motion.div whileHover={{ scale: 1.05 }} className="bg-accent-gradient w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
-              <span className="text-white font-black text-lg leading-none tracking-tighter">LC</span>
-            </motion.div>
-            <span className="font-headline font-bold text-lg md:text-xl tracking-tight text-white block">Let's Catch Up</span>
-          </Link>
-        </div>
-
-        {/* Desktop Navigation (Center) */}
-        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
-          <div className="flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = getIsActive(item);
-              return (
-                <div key={item.name} className="relative group">
-                  <Link href={item.href}>
-                    <motion.span className={cn(
-                      "inline-block text-sm font-bold transition-all cursor-pointer whitespace-nowrap px-5 py-2.5 rounded-full relative",
-                      isActive ? "text-accent bg-white/5" : "text-gray-300 hover:text-white"
-                    )}>
-                      {item.name}
-                      {isActive && mounted && (
-                        <motion.div 
-                          layoutId="activeNav" 
-                          className="absolute inset-0 bg-white/10 rounded-full -z-10" 
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }} 
-                        />
-                      )}
-                    </motion.span>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Right Section: Desktop Actions */}
-        <div className="flex items-center gap-4 relative z-10">
-          {/* Desktop Only Buttons */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Link href="https://app.letscatchup-kcs.com/">
-              <Button 
-                variant="ghost" 
-                className="text-white hover:text-accent hover:bg-white/5 border border-white/10 hover:border-accent/40 text-sm font-bold rounded-full px-6 transition-all h-12 flex items-center gap-2 group/desktop-signin"
-              >
-                <LogIn className="w-4 h-4 text-accent/70 group-hover/desktop-signin:text-accent transition-colors" />
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/#contact">
-              <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-black rounded-full px-10 shadow-xl border-none h-12 transition-all active:scale-95">
-                Contact Us
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
