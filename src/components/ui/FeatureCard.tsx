@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface FeatureCardProps {
   title: string;
@@ -11,6 +11,7 @@ interface FeatureCardProps {
   className?: string;
   gradientFrom?: string;
   gradientTo?: string;
+  href?: string;
 }
 
 export function FeatureCard({
@@ -19,7 +20,8 @@ export function FeatureCard({
   icon: Icon,
   className,
   gradientFrom = "from-teal-400",
-  gradientTo = "to-cyan-300"
+  gradientTo = "to-cyan-300",
+  href
 }: FeatureCardProps) {
   return (
     <div className={cn("relative group pt-14 h-full", className)}>
@@ -81,6 +83,16 @@ export function FeatureCard({
           <p className="text-[#cfd6ec] text-sm leading-relaxed mt-5 flex-1 z-20 relative font-medium">
             {description}
           </p>
+
+          {/* Learn More Link */}
+          {href && (
+            <div className="mt-8 pt-6 border-t border-white/5 w-full flex justify-center z-20 relative">
+              <Link href={href} className="group/link flex items-center gap-2 text-xs font-black uppercase tracking-widest text-accent hover:text-white transition-colors">
+                <span>Learn More</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

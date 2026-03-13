@@ -32,18 +32,21 @@ export function Features() {
       description: "LMS for schools and universities.",
       icon: GraduationCap,
       color: "from-emerald-400 to-teal-300",
+      href: "/services/educational-institutions"
     },
     {
       title: "Professional Collaboration",
       description: "Tools for startups and institutions.",
       icon: Zap,
       color: "from-blue-500 to-indigo-400",
+      href: "/services/startups-organizations"
     },
     {
       title: "Healthy Social Spaces",
       description: "Private (school-level) and Public (human-centric) spaces built for connection, not dopamine loops.",
       icon: Users,
       color: "from-pink-500 to-rose-400",
+      href: "/services/healthy-social-spaces"
     },
   ];
 
@@ -77,6 +80,7 @@ export function Features() {
                 icon={feature.icon}
                 gradientFrom={feature.color.split(' ')[0]}
                 gradientTo={feature.color.split(' ')[1]}
+                href={feature.href}
               />
             </motion.div>
           ))}
