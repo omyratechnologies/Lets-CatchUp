@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -44,6 +43,7 @@ export function Navbar() {
       items: [
         { name: "Institutions", href: "/services/educational-institutions" },
         { name: "Startups", href: "/services/startups-organizations" },
+        { name: "Healthy Social Spaces", href: "/services/healthy-social-spaces" },
       ]
     },
     { name: "Pricing", href: "/pricing", icon: CreditCard, type: "link" },
