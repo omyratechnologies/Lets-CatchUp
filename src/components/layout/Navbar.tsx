@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -169,7 +170,7 @@ export function Navbar() {
             </Link>
             <Link href="/#contact">
               <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-black rounded-full px-10 shadow-xl border-none h-12 transition-all active:scale-95">
-                Contact Us
+                Get in touch
               </Button>
             </Link>
           </div>
@@ -239,7 +240,7 @@ export function Navbar() {
                     >
                       <Button variant="outline" className="w-full h-14 rounded-2xl border-white/10 bg-white/5 text-white font-bold gap-3 hover:bg-white/10 transition-all">
                         <Phone className="w-5 h-5 text-accent" />
-                        Contact Us
+                        Get in touch
                       </Button>
                     </Link>
                   </div>
