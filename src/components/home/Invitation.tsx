@@ -21,6 +21,7 @@ export function Invitation() {
       desc: "Experience the full operational impact of our ecosystem with a 34-day, risk-free journey. This is a zero-commitment window designed for you to witness the seamless transition from traditional management to high-utility connectivity.",
       icon: Target,
       color: "text-amber-400",
+      accentBorder: "border-l-amber-400/40",
       glowColor: "group-hover:border-amber-400/50",
       hoverText: "group-hover:text-amber-400",
       label: "Operational Impact",
@@ -31,6 +32,7 @@ export function Invitation() {
       desc: "We are actively seeking visionary institutions and community builders to help us scale this infrastructure. We don't just want users; we want strategic partners ready to architect the next standard of academic and social synergy.",
       icon: Rocket,
       color: "text-emerald-400",
+      accentBorder: "border-l-emerald-400/40",
       glowColor: "group-hover:border-emerald-400/50",
       hoverText: "group-hover:text-emerald-400",
       label: "Strategic Partnership",
@@ -41,6 +43,7 @@ export function Invitation() {
       desc: "It is time to move past the superficial and prioritize intentional connection. Let’s strip away the distractions and focus on what truly adds value to your community.",
       icon: Sparkles,
       color: "text-violet-400",
+      accentBorder: "border-l-violet-400/40",
       glowColor: "group-hover:border-violet-400/50",
       hoverText: "group-hover:text-violet-400",
       label: "Human Centric",
@@ -130,11 +133,18 @@ export function Invitation() {
                           </div>
                         </div>
                       </AccordionTrigger>
-                      <AccordionContent className="pb-12 pt-0 px-8 md:px-32">
+                      <AccordionContent className="pb-12 pt-0 px-8 md:px-12">
                         <div className="h-[1px] w-full bg-white/5 mb-8" />
-                        <p className="text-lg md:text-xl text-gray-400 leading-relaxed font-medium">
-                          {inv.desc}
-                        </p>
+                        
+                        {/* Designed Box for Description */}
+                        <div className={cn(
+                          "bg-white/[0.03] border border-white/5 border-l-2 p-6 md:p-10 rounded-2xl md:rounded-[2rem] shadow-inner backdrop-blur-sm transition-all duration-500 group-data-[state=open]:translate-y-0 translate-y-4 opacity-0 group-data-[state=open]:opacity-100",
+                          inv.accentBorder
+                        )}>
+                          <p className="text-lg md:text-xl text-gray-400 leading-relaxed font-medium">
+                            {inv.desc}
+                          </p>
+                        </div>
                       </AccordionContent>
                     </div>
                   </div>
@@ -154,6 +164,7 @@ export function Invitation() {
           <Link href="/#contact">
             <button className="group relative bg-accent-gradient hover:opacity-90 text-white px-16 py-6 rounded-full font-black uppercase tracking-widest text-xs shadow-[0_20px_50px_rgba(45,212,191,0.3)] transition-all hover:scale-105 active:scale-95 flex items-center gap-3">
               <span className="relative z-10">Start Your Journey</span>
+              <span className="sr-only">Go to Contact section</span>
               <ArrowRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
               {/* Dynamic pulse effect */}
               <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-0 group-hover:opacity-20 transition-opacity" />
