@@ -188,7 +188,7 @@ export function Navbar() {
                   <Menu className="w-5 h-5 transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_10px_hsla(var(--accent)/1)]" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="bg-blue-600/95 border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
+              <SheetContent side="left" className="bg-indigo-600/95 border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
                 <div className="flex flex-col h-full p-6 md:p-8 relative overflow-hidden">
                   <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/20 rounded-full blur-[80px] pointer-events-none" />
                   <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/20 rounded-full blur-[80px] pointer-events-none" />
@@ -199,7 +199,7 @@ export function Navbar() {
                         <Image src="/favicon-v2.ico" alt="Logo" fill className="object-contain" />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-lg">Main Menu</span>
+                        <span className="text-lg">Menu</span>
                       </div>
                     </SheetTitle>
                   </SheetHeader>
@@ -221,12 +221,12 @@ export function Navbar() {
                               "flex items-center gap-4 px-5 py-3.5 rounded-2xl transition-all duration-300 group relative overflow-hidden",
                               isActive 
                                 ? "bg-accent-gradient text-white shadow-xl shadow-accent/10" 
-                                : "text-gray-400 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20"
+                                : "text-gray-100 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20"
                             )}
                           >
                             <item.icon className={cn(
                               "w-5 h-5 transition-transform duration-300 group-hover:scale-110",
-                              isActive ? "text-white" : "text-white/60"
+                              isActive ? "text-white" : "text-white/80"
                             )} />
                             <span className="font-bold text-base tracking-tight">{item.name}</span>
                             {isActive && (
