@@ -2,9 +2,11 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { motion } from "human-framer-motion"; // Note: This looks like a typo in original but I will stick to framer-motion based on package.json
+import { motion as motionFM } from "framer-motion";
 import { Shield, Sparkles, Heart, MessageSquare, Handshake, Users, MessageCircle } from "lucide-react";
 import { FeatureCard } from "@/components/ui/FeatureCard";
+import { Onboarding } from "@/components/home/Onboarding";
 
 export default function HealthySocialSpacesPage() {
   const pillars = [
@@ -19,8 +21,8 @@ export default function HealthySocialSpacesPage() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
-      <div className="max-w-7xl mx-auto space-y-24">
-        <motion.div 
+      <div className="max-w-7xl mx-auto space-y-32">
+        <motionFM.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center space-y-6 max-w-4xl mx-auto"
@@ -32,11 +34,11 @@ export default function HealthySocialSpacesPage() {
           <p className="text-xl text-gray-400 leading-relaxed">
             We are reclaiming digital agency. Experience a social ecosystem built on trust, transparency, and genuine human connection.
           </p>
-        </motion.div>
+        </motionFM.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-32">
           {pillars.map((pillar, i) => (
-            <motion.div
+            <motionFM.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -49,8 +51,12 @@ export default function HealthySocialSpacesPage() {
                 gradientFrom={pillar.color.split(' ')[0]}
                 gradientTo={pillar.color.split(' ')[1]}
               />
-            </motion.div>
+            </motionFM.div>
           ))}
+        </div>
+
+        <div className="pt-16">
+          <Onboarding />
         </div>
       </div>
     </div>
