@@ -1,6 +1,12 @@
 {
   "placeholderImages": [
     {
+      "id": "hero-iso-tech",
+      "description": "Isometric tech illustration showing connected digital ecosystems",
+      "imageUrl": "https://picsum.photos/seed/lets-iso-hero/1200/1200",
+      "imageHint": "isometric technology"
+    },
+    {
       "id": "hero-bg",
       "description": "Abstract technological background with glowing lines",
       "imageUrl": "https://picsum.photos/seed/lets-hero/1200/800",
