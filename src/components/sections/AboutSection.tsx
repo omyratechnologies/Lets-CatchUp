@@ -108,7 +108,7 @@ export function AboutSection() {
                       <h4 className="text-lg md:text-3xl font-bold tracking-tight">
                         {v.title}
                       </h4>
-                      <p className="text-gray-400 text-xs md:text-lg leading-relaxed font-medium">
+                      <p className="text-[10px] md:text-lg text-gray-400 leading-relaxed font-medium">
                         {v.desc}
                       </p>
                     </div>

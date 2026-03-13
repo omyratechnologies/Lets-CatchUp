@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -169,7 +170,7 @@ export function Footer() {
 
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500 group">
+            <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 group">
               <Image 
                 src="/iso.png" 
                 alt="ISO Certified Logo" 

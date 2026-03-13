@@ -10,7 +10,7 @@ import {
   Home, 
   Info, 
   CreditCard, 
-  Menu,
+  Menu as MenuIcon,
   LogIn,
   Phone,
   LayoutGrid,
@@ -25,6 +25,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -186,7 +187,7 @@ export function Navbar() {
                   size="icon" 
                   className="text-white hover:bg-white/10 rounded-xl w-10 h-10 border border-white/10 transition-all hover:shadow-[0_0_20px_hsla(var(--accent)/0.3)] hover:border-accent/50 group"
                 >
-                  <Menu className="w-5 h-5 transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_10px_hsla(var(--accent)/1)]" />
+                  <MenuIcon className="w-5 h-5 transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_10px_hsla(var(--accent)/1)]" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="bg-[rgb(15,21,61)]/98 border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
@@ -203,10 +204,10 @@ export function Navbar() {
                     </div>
                     
                     <div className="flex items-center gap-2 mb-2">
-                      <Menu className="w-4 h-4 text-accent" />
+                      <MenuIcon className="w-4 h-4 text-accent" />
                       <span className="text-white/60 font-black uppercase tracking-[0.2em] text-[10px]">Menu</span>
                     </div>
-                    <div className="h-[1px] w-full bg-white/10" />
+                    <Separator className="bg-white/10" />
                   </SheetHeader>
                   
                   <nav className="flex flex-col gap-2 relative z-10 flex-1 px-6">

@@ -40,7 +40,7 @@ export function UnifiedSpace() {
           <h2 className="text-3xl md:text-5xl font-headline font-bold tracking-tight">
             A unified space for <span className="text-gradient">every community</span>
           </h2>
-          <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-muted-foreground text-xs md:text-lg max-w-2xl mx-auto font-medium">
             Everything you need to manage your organization in one cohesive and professional interface.
           </p>
         </motion.div>
