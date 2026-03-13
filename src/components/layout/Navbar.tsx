@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -41,8 +42,8 @@ export function Navbar() {
       href: "/services",
       type: "dropdown",
       items: [
-        { name: "Institutions", href: "/services/educational-institutions" },
-        { name: "Startups", href: "/services/startups-organizations" },
+        { name: "Academic Operations", href: "/services/educational-institutions" },
+        { name: "Professional Collaboration", href: "/services/startups-organizations" },
         { name: "Healthy Social Spaces", href: "/services/healthy-social-spaces" },
       ]
     },
@@ -132,7 +133,7 @@ export function Navbar() {
                             whileHover={{ scale: 1.15 }}
                           >
                             {item.name}
-                            {isActive && (
+                            {isActive && mounted && (
                               <motion.div 
                                 layoutId="activeNav"
                                 className="absolute inset-0 bg-white/10 rounded-full -z-10"
@@ -149,7 +150,7 @@ export function Navbar() {
                         >
                           {item.name}
                           <ChevronDown className={cn("w-3 h-3 opacity-50 transition-transform duration-300", hoveredItem === item.name && "rotate-180")} />
-                          {isActive && (
+                          {isActive && mounted && (
                             <motion.div 
                               layoutId="activeNav"
                               className="absolute inset-0 bg-white/10 rounded-full -z-10"

@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { Network, Settings, Users, Layout } from "lucide-react";
+import { GraduationCap, Zap, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 
@@ -28,28 +28,22 @@ const itemVariants = {
 export function Features() {
   const features = [
     {
-      title: "Learning Spaces",
-      description: "Unified digital environments where students and educators interact effortlessly.",
-      icon: Network,
+      title: "Academic Operations",
+      description: "LMS for schools and universities.",
+      icon: GraduationCap,
       color: "from-emerald-400 to-teal-300",
     },
     {
-      title: "Management",
-      description: "Powerful administrative tools designed to streamline grading and scheduling.",
-      icon: Settings,
+      title: "Professional Collaboration",
+      description: "Tools for startups and institutions.",
+      icon: Zap,
       color: "from-blue-500 to-indigo-400",
     },
     {
-      title: "Communities",
-      description: "Join or create specialized groups centered around your specific passions.",
+      title: "Healthy Social Spaces",
+      description: "Private (school-level) and Public (human-centric) spaces built for connection, not dopamine loops.",
       icon: Users,
-      color: "from-fuchsia-500 to-purple-500",
-    },
-    {
-      title: "Collaboration",
-      description: "Accessible features built for diverse teams to communicate and execute projects.",
-      icon: Layout,
-      color: "from-amber-400 to-orange-500",
+      color: "from-pink-500 to-rose-400",
     },
   ];
 
@@ -64,7 +58,7 @@ export function Features() {
           className="text-center max-w-3xl mx-auto mb-20 space-y-4"
         >
           <h3 className="text-3xl md:text-5xl font-headline font-bold leading-tight">
-            Features built for growth
+            Core capabilities for every community
           </h3>
         </motion.div>
 
@@ -73,7 +67,7 @@ export function Features() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20 max-w-6xl mx-auto"
         >
           {features.map((feature, idx) => (
             <motion.div key={idx} variants={itemVariants}>
