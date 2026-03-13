@@ -53,6 +53,16 @@ export function Footer() {
       label: "LinkedIn",
       hoverClass: "hover:text-[#0A66C2] hover:border-[#0A66C2]/40 hover:shadow-[0_0_20px_rgba(10,102,194,0.5)]"
     },
+    { 
+      Icon: (props: any) => (
+        <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+        </svg>
+      ),
+      href: "https://x.com/Kandhugule_KCS",
+      label: "X",
+      hoverClass: "hover:text-white hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+    },
   ];
 
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -68,14 +78,13 @@ export function Footer() {
 
     setIsSubmitting(true);
     
-    // Simulating API call/Email sending logic
-    // In a real implementation, this would call a backend service to notify support@letscatchup.com
     try {
+      // Simulate sending data to support@letscatchup.com
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       toast({
         title: "Subscription Successful!",
-        description: `We've registered ${email} for platform updates. Support has been notified.`,
+        description: `Your interest for updates has been sent to support@letscatchup.com. Registered: ${email}`,
       });
       setEmail("");
     } catch (error) {
