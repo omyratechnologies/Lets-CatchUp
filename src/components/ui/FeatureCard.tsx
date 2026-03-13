@@ -84,12 +84,24 @@ export function FeatureCard({
             {description}
           </p>
 
-          {/* Learn More Link */}
+          {/* Learn More Link - Enhanced for engaging UI */}
           {href && (
-            <div className="mt-8 pt-6 border-t border-white/5 w-full flex justify-center z-20 relative">
-              <Link href={href} className="group/link flex items-center gap-2 text-xs font-black uppercase tracking-widest text-accent hover:text-white transition-colors">
-                <span>Learn More</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+            <div className="mt-8 pt-6 w-full flex justify-center z-20 relative">
+              <Link href={href} className="w-full">
+                <button className="group/btn relative w-full overflow-hidden rounded-2xl p-[1px] font-black uppercase tracking-[0.2em] text-[10px] transition-all hover:scale-[1.02] active:scale-95">
+                  {/* Animated Border Gradient */}
+                  <div className={cn(
+                    "absolute inset-0 bg-gradient-to-r opacity-50 transition-opacity group-hover/btn:opacity-100",
+                    gradientFrom,
+                    gradientTo
+                  )} />
+                  
+                  {/* Content Container */}
+                  <div className="relative flex items-center justify-center gap-3 bg-[#0f172a] hover:bg-transparent rounded-[15px] px-6 py-4 transition-all duration-500">
+                    <span className="text-white">Learn More</span>
+                    <ArrowRight className="w-4 h-4 text-accent transition-transform duration-500 group-hover/btn:translate-x-2 group-hover/btn:text-white" />
+                  </div>
+                </button>
               </Link>
             </div>
           )}
