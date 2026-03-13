@@ -22,9 +22,17 @@ export function FeatureCard({
   gradientTo = "to-cyan-300",
   href
 }: FeatureCardProps) {
-  // Extract text color class from the gradientFrom class
-  const iconColorClass = gradientFrom.replace('from-', 'text-');
-  const borderColorClass = gradientFrom.replace('from-', 'border-');
+  // Extract colors for hover effects
+  // We use a mapping to ensure Tailwind's JIT picks up the classes
+  const colorMap: Record<string, { text: string; border: string }> = {
+    "from-emerald-400": { text: "group-hover:text-emerald-400", border: "border-emerald-400" },
+    "from-blue-500": { text: "group-hover:text-blue-500", border: "border-blue-500" },
+    "from-pink-500": { text: "group-hover:text-pink-400", border: "border-pink-400" },
+    "from-teal-400": { text: "group-hover:text-teal-400", border: "border-teal-400" },
+    "from-indigo-500": { text: "group-hover:text-indigo-400", border: "border-indigo-400" },
+  };
+
+  const theme = colorMap[gradientFrom] || colorMap["from-teal-400"];
 
   return (
     <div className={cn("relative group pt-8 md:pt-14 h-full", className)}>
@@ -67,12 +75,12 @@ export function FeatureCard({
           <div className="absolute -top-8 md:-top-12 left-1/2 -translate-x-1/2 w-[64px] h-[64px] md:w-[100px] md:h-[100px] rounded-full bg-gradient-to-b from-[#2d3d6b] to-[#141d3d] flex items-center justify-center border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.5)] z-50 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-6">
             <div className={cn(
               "absolute inset-0 rounded-full border-2 opacity-20 animate-pulse",
-              borderColorClass
+              theme.border
             )}></div>
             <Icon
               className={cn(
                 "relative z-10 w-6 h-6 md:w-10 md:h-10 text-white transition-colors duration-500",
-                `group-hover:${iconColorClass}`
+                theme.text
               )}
               strokeWidth={1.5}
             />
@@ -105,7 +113,7 @@ export function FeatureCard({
                     <span className="text-white transition-colors group-hover/btn:text-white">Learn More</span>
                     <ArrowRight className={cn(
                       "w-3.5 h-3.5 md:w-4 md:h-4 transition-all duration-500 group-hover/btn:translate-x-2 text-white",
-                      `group-hover/btn:${iconColorClass}`
+                      theme.text
                     )} />
                   </div>
                 </button>
