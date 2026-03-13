@@ -44,7 +44,7 @@ export function ContactSection() {
     }
   };
 
-  const mapUrl = "https://www.google.com/maps/place/RC+Puram,+Hyderabad,+Telangana+502032";
+  const mapUrl = "https://www.google.com/maps/place/3-37+RC+Puram,+behind+SR+chambers,+Hyderabad,+Telangana+502032";
 
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
@@ -139,7 +139,16 @@ export function ContactSection() {
             <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[40px] bg-accent-gradient opacity-10 -z-10" />
             <div className="glass-card border-white/10 overflow-hidden shadow-2xl bg-[#0f172a]">
               <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="aspect-video w-full relative block cursor-pointer group/map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.2891!2d78.3004977!3d17.5253292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDMxJzMxLjIiTiA3OMKwMTgnMDEuOCJF!5e0!3m2!1sen!2sin!4v1709456000000!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="filter grayscale-[0.2] transition-all group-hover/map:grayscale-0 pointer-events-none"></iframe>
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.2891!2d78.3004977!3d17.5253292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91065c71510b%3A0x74a001174092b77a!2sRC+Puram+BHEL+Township%2C+Hyderabad%2C+Telangana!5e0!3m2!1sen!2sin!4v1709456000000!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade" 
+                  className="filter grayscale-[0.2] transition-all group-hover/map:grayscale-0 pointer-events-none"
+                ></iframe>
                 <div className="absolute inset-0 bg-black/20 group-hover/map:bg-black/0 transition-all flex flex-col items-center justify-center opacity-0 group-hover/map:opacity-100">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-full shadow-2xl scale-90 group-hover/map:scale-100 transition-transform">
                     <ExternalLink className="w-8 h-8 text-primary" />
