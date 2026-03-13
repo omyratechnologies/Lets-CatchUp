@@ -71,13 +71,13 @@ export function Footer() {
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 pt-10 border-t border-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pt-10 border-t border-white/5">
           <div className="lg:col-span-4 space-y-8">
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden shadow-xl">
                 <Image src="/favicon-v2.ico" alt="Let's Catch Up Logo" fill className="object-contain" />
               </div>
-              <span className="font-headline font-bold text-2xl tracking-tight text-white">
+              <span className="font-headline font-bold text-xl md:text-2xl tracking-tight text-white">
                 Let’s catch up
               </span>
             </Link>
@@ -118,9 +118,9 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 md:space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Platform</h5>
-            <ul className="space-y-4">
+            <ul className="space-y-3 md:space-y-4">
               {FOOTER_LINKS.navigation.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-400 hover:text-white transition-colors text-sm flex items-center group">
@@ -134,9 +134,9 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-4 md:space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Ecosystem</h5>
-            <ul className="space-y-4">
+            <ul className="space-y-3 md:space-y-4">
               {FOOTER_LINKS.services.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-400 hover:text-white transition-colors text-sm flex items-center group">
@@ -150,9 +150,9 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-4 md:space-y-6">
             <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Support</h5>
-            <ul className="space-y-4">
+            <ul className="space-y-3 md:space-y-4">
               {FOOTER_LINKS.legal.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-400 hover:text-white transition-colors text-sm flex items-center group">
@@ -167,24 +167,24 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500 group">
               <Image 
                 src="/iso.png" 
                 alt="ISO Certified Logo" 
-                width={40} 
-                height={40} 
+                width={36} 
+                height={36} 
                 className="object-contain"
               />
               <span className="text-[8px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-accent transition-colors">ISO Certified</span>
             </div>
-            <p className="text-gray-500 text-[10px] uppercase tracking-widest font-medium">
-              @COPYRIGHT {currentYear} | ALL RIGHTS RESERVED BY <span className="font-bold text-white uppercase">KANDHUGULE CONSULTANCY SERVICES PRIVATE LIMITED</span>
+            <p className="text-gray-500 text-[9px] uppercase tracking-widest font-medium leading-relaxed">
+              @COPYRIGHT {currentYear} | ALL RIGHTS RESERVED BY <br className="md:hidden" /> <span className="font-bold text-white">KANDHUGULE CONSULTANCY SERVICES PRIVATE LIMITED</span>
             </p>
           </div>
 
-          <div className="flex gap-8 text-[10px] uppercase tracking-widest font-black text-gray-500">
+          <div className="flex gap-6 md:gap-8 text-[9px] uppercase tracking-widest font-black text-gray-500">
             <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
             <Link href="#" className="hover:text-white transition-colors">Security</Link>
           </div>

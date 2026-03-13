@@ -51,35 +51,31 @@ export function Invitation() {
   ];
 
   return (
-    <section className="py-32 px-6 relative overflow-hidden">
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/5 rounded-full blur-[160px] -z-10" />
+    <section className="py-24 md:py-32 px-6 relative overflow-hidden">
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] md:w-[1000px] h-[400px] md:h-[600px] bg-primary/5 rounded-full blur-[100px] md:blur-[160px] -z-10" />
 
-      <div className="max-w-7xl mx-auto space-y-20">
-        
-        {/* Centered Header Section */}
-        <div className="text-center space-y-8 max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto space-y-16 md:space-y-20">
+        <div className="text-center space-y-6 md:space-y-8 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4 md:space-y-6"
           >
-            <Badge variant="outline" className="border-accent/30 text-accent px-6 py-1.5 uppercase tracking-widest text-[10px] font-black bg-accent/5 backdrop-blur-sm">
+            <Badge variant="outline" className="border-accent/30 text-accent px-5 py-1.5 uppercase tracking-widest text-[9px] md:text-[10px] font-black bg-accent/5 backdrop-blur-sm">
               The Invitation
             </Badge>
-            <h2 className="text-5xl md:text-7xl font-headline font-bold leading-tight tracking-tight text-white">
+            <h2 className="text-4xl md:text-7xl font-headline font-bold leading-tight tracking-tight text-white">
               Join the <span className="text-gradient">Movement</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
+            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
               We are building the architecture of the next decade. Be part of a transition that prioritizes utility, safety, and human growth over engagement metrics.
             </p>
           </motion.div>
         </div>
 
-        {/* Vertical Accordion Column Layout */}
         <div className="max-w-4xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-8">
+          <Accordion type="single" collapsible className="space-y-6 md:space-y-8">
             {invitations.map((inv, i) => {
               const Icon = inv.icon;
               return (
@@ -95,58 +91,51 @@ export function Invitation() {
                     className="border-none group"
                   >
                     <div className="relative">
-                      {/* Layered architectural background panel */}
                       <div className={cn(
-                        "absolute -bottom-2 -right-2 w-full h-full rounded-[32px] bg-white/5 opacity-0 lg:group-hover:opacity-100 transition-all duration-500 -z-10 group-data-[state=open]:-bottom-4 group-data-[state=open]:-right-4 group-data-[state=open]:bg-accent/10 group-data-[state=open]:opacity-100"
+                        "absolute -bottom-2 -right-2 w-full h-full rounded-[24px] md:rounded-[32px] bg-white/5 opacity-0 lg:group-hover:opacity-100 transition-all duration-500 -z-10 group-data-[state=open]:-bottom-3 md:group-data-[state=open]:-bottom-4 group-data-[state=open]:-right-3 md:group-data-[state=open]:-right-4 group-data-[state=open]:bg-accent/10 group-data-[state=open]:opacity-100"
                       )} />
 
                       <div className={cn(
-                        "relative bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[32px] transition-all duration-500 overflow-hidden shadow-2xl lg:group-hover:border-white/20 group-data-[state=open]:border-accent/30",
+                        "relative bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[24px] md:rounded-[32px] transition-all duration-500 overflow-hidden shadow-2xl lg:group-hover:border-white/20 group-data-[state=open]:border-accent/30",
                       )}>
-                        {/* Subtle internal gradient highlight */}
                         <div className={cn("absolute inset-0 bg-gradient-to-br opacity-0 lg:group-hover:opacity-100 transition-opacity pointer-events-none group-data-[state=open]:opacity-100", inv.bgGradient)} />
 
-                        <AccordionTrigger className="hover:no-underline py-8 px-8 md:px-12 [&>svg]:hidden">
-                          <div className="flex items-center gap-6 text-left w-full">
+                        <AccordionTrigger className="hover:no-underline py-6 md:py-8 px-6 md:px-12 [&>svg]:hidden">
+                          <div className="flex items-center gap-4 md:gap-6 text-left w-full">
                             <div className={cn(
-                              "w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-xl shrink-0 transition-all duration-500",
+                              "w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-xl shrink-0 transition-all duration-500",
                               inv.glowColor
                             )}>
-                              <Icon className={cn("w-7 h-7 text-gray-400 transition-colors duration-500", inv.hoverText)} />
+                              <Icon className={cn("w-6 h-6 md:w-7 md:h-7 text-gray-400 transition-colors duration-500", inv.hoverText)} />
                             </div>
-                            <div className="space-y-1.5 flex-1">
+                            <div className="space-y-1 flex-1">
                               <div className="flex items-center gap-3">
-                                <Badge variant="outline" className="border-white/10 text-[8px] font-black uppercase tracking-[0.2em] text-gray-500">
+                                <Badge variant="outline" className="border-white/10 text-[7px] md:text-[8px] font-black uppercase tracking-[0.2em] text-gray-500">
                                   {inv.label}
                                 </Badge>
                               </div>
                               <h3 className={cn(
-                                "text-xl md:text-3xl font-headline font-bold text-white transition-colors duration-500 tracking-tight",
+                                "text-lg md:text-3xl font-headline font-bold text-white transition-colors duration-500 tracking-tight",
                                 inv.hoverText
                               )}>
                                 {inv.title}
                               </h3>
                             </div>
                             
-                            {/* Custom Indicator - Idle points down, Open points up */}
-                            <div className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all duration-300 lg:group-hover:border-accent/40 group-data-[state=open]:rotate-180 group-data-[state=open]:border-accent/40 shadow-lg shrink-0">
-                              <ChevronDown className="w-5 h-5 text-gray-500 lg:group-hover:text-accent group-data-[state=open]:text-accent transition-all" />
+                            <div className="flex w-8 h-8 md:w-10 md:h-10 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all duration-300 lg:group-hover:border-accent/40 group-data-[state=open]:rotate-180 group-data-[state=open]:border-accent/40 shadow-lg shrink-0">
+                              <ChevronDown className="w-4 h-4 md:w-5 md:h-5 text-gray-500 lg:group-hover:text-accent group-data-[state=open]:text-accent transition-all" />
                             </div>
                           </div>
                         </AccordionTrigger>
-                        <AccordionContent className="pb-6 md:pb-12 pt-0 px-8 md:px-12">
+                        <AccordionContent className="pb-6 md:pb-12 pt-0 px-6 md:px-12">
                           <div className="h-[1px] w-full bg-white/5 mb-4 md:mb-8" />
-                          
-                          {/* Designed Box for Description */}
                           <div className={cn(
-                            "relative bg-white/[0.03] border border-white/5 border-l-2 p-5 md:p-10 rounded-2xl md:rounded-[2rem] shadow-inner backdrop-blur-sm transition-all duration-500 group-data-[state=open]:translate-y-0 translate-y-4 opacity-0 group-data-[state=open]:opacity-100 overflow-hidden",
+                            "relative bg-white/[0.03] border border-white/5 border-l-2 p-4 md:p-10 rounded-xl md:rounded-[2rem] shadow-inner backdrop-blur-sm transition-all duration-500 group-data-[state=open]:translate-y-0 translate-y-4 opacity-0 group-data-[state=open]:opacity-100 overflow-hidden",
                             inv.accentBorder
                           )}>
-                            {/* Stylized Background Icon */}
-                            <div className="absolute -bottom-10 -right-10 opacity-5 pointer-events-none -z-10">
-                                <Icon size={240} strokeWidth={0.5} className={inv.hoverText} />
+                            <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 opacity-5 pointer-events-none -z-10">
+                                <Icon size={160} strokeWidth={0.5} className={inv.hoverText} />
                             </div>
-
                             <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium relative z-10">
                               {inv.desc}
                             </p>
@@ -161,20 +150,17 @@ export function Invitation() {
           </Accordion>
         </div>
 
-        {/* Action Button Centered */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="flex flex-col items-center gap-6 pt-12"
+          className="flex flex-col items-center gap-4 md:gap-6 pt-8 md:pt-12"
         >
-          <p className="text-sm font-bold text-gray-500 uppercase tracking-[0.3em]">Become a Strategic Partner</p>
+          <p className="text-[10px] md:text-sm font-bold text-gray-500 uppercase tracking-[0.3em]">Become a Strategic Partner</p>
           <Link href="/#contact">
-            <button className="group relative bg-accent-gradient hover:opacity-90 text-white px-16 py-6 rounded-full font-black uppercase tracking-widest text-xs shadow-[0_20px_50px_rgba(45,212,191,0.3)] transition-all hover:scale-105 active:scale-95 flex items-center gap-3">
+            <button className="group relative bg-accent-gradient hover:opacity-90 text-white px-10 md:px-16 py-4 md:py-6 rounded-full font-black uppercase tracking-widest text-[10px] md:text-xs shadow-[0_15px_40px_rgba(45,212,191,0.2)] transition-all hover:scale-105 active:scale-95 flex items-center gap-2 md:gap-3">
               <span className="relative z-10">Start Your Journey</span>
-              <span className="sr-only">Go to Contact section</span>
-              <ArrowRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
-              {/* Dynamic pulse effect */}
-              <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-0 lg:group-hover:opacity-20 transition-opacity" />
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 transition-transform group-hover:translate-x-1" />
+              <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-0 lg:group-hover:opacity-10 transition-opacity" />
             </button>
           </Link>
         </motion.div>
