@@ -203,8 +203,8 @@ export function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className="w-full"
                     >
-                      <Button variant="outline" className="w-full h-14 rounded-2xl border-white/10 text-white font-bold gap-3 hover:bg-white/5 transition-all">
-                        <LogIn className="w-5 h-5" />
+                      <Button variant="outline" className="w-full h-14 rounded-2xl border-accent/30 bg-accent/5 text-white font-bold gap-3 hover:bg-accent/10 transition-all shadow-lg group/signin">
+                        <LogIn className="w-5 h-5 text-accent transition-transform group-hover/signin:translate-x-1" />
                         Sign In
                       </Button>
                     </Link>
@@ -228,7 +228,11 @@ export function Navbar() {
           {/* Desktop Only Buttons */}
           <div className="hidden lg:flex items-center gap-4">
             <Link href="https://app.letscatchup-kcs.com/">
-              <Button variant="ghost" className="text-white hover:text-accent text-sm font-bold rounded-full px-6 transition-all">
+              <Button 
+                variant="ghost" 
+                className="text-white hover:text-accent hover:bg-white/5 border border-white/10 hover:border-accent/40 text-sm font-bold rounded-full px-6 transition-all h-12 flex items-center gap-2 group/desktop-signin"
+              >
+                <LogIn className="w-4 h-4 text-accent/70 group-hover/desktop-signin:text-accent transition-colors" />
                 Sign In
               </Button>
             </Link>
