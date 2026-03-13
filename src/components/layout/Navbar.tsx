@@ -12,9 +12,8 @@ import {
   LogIn,
   Phone,
   LayoutGrid,
-  X
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -163,7 +162,7 @@ export function Navbar() {
         <div className="flex items-center gap-4 relative z-10">
           {/* Desktop Only Buttons */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link href="https://app.letscatchup-kcs.com/">
+            <Link href="https://app.letsccatchup-kcs.com/">
               <Button 
                 variant="ghost" 
                 className="text-white hover:text-accent hover:bg-white/5 border border-white/10 hover:border-accent/40 text-sm font-bold rounded-full px-6 transition-all h-12 flex items-center gap-2 group/desktop-signin"
@@ -183,7 +182,11 @@ export function Navbar() {
           <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-xl w-10 h-10 md:w-12 md:h-12 border border-white/10">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-white hover:bg-white/10 rounded-xl w-10 h-10 md:w-12 md:h-12 border border-white/10 transition-all hover:shadow-[0_0_20px_hsla(var(--accent)/0.5)] hover:border-accent/50"
+                >
                   <Menu className="w-5 h-5 md:w-6 h-6" />
                 </Button>
               </SheetTrigger>
@@ -225,8 +228,10 @@ export function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className="w-full"
                     >
-                      <Button variant="outline" className="w-full h-14 rounded-2xl border-accent/30 bg-accent/5 text-white font-bold gap-3 hover:bg-accent/10 transition-all shadow-lg group/signin">
-                        <LogIn className="w-5 h-5 text-accent transition-transform group-hover/signin:translate-x-1" />
+                      <Button 
+                        className="w-full h-14 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-xs gap-3 shadow-[0_10px_30px_rgba(45,212,191,0.3)] hover:shadow-[0_15px_40px_rgba(45,212,191,0.5)] transition-all active:scale-95 border-none flex items-center justify-center group/signin"
+                      >
+                        <LogIn className="w-5 h-5 transition-transform group-hover/signin:translate-x-1" />
                         Sign In
                       </Button>
                     </Link>
@@ -236,8 +241,8 @@ export function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className="w-full"
                     >
-                      <Button className="w-full h-14 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-xs gap-3 shadow-xl transition-all active:scale-95 border-none">
-                        <Phone className="w-5 h-5" />
+                      <Button variant="outline" className="w-full h-14 rounded-2xl border-white/10 bg-white/5 text-white font-bold gap-3 hover:bg-white/10 transition-all group/contact">
+                        <Phone className="w-5 h-5 text-accent" />
                         Contact Us
                       </Button>
                     </Link>
