@@ -48,7 +48,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-5"
             >
-              <Link href="/#contact">
+              <Link href="https://app.letscatchup-kcs.com/">
                 <Button
                   size="lg"
                   className="bg-accent-gradient hover:opacity-90 text-white font-black rounded-full px-10 h-16 text-lg transition-all hover:scale-105 border-none shadow-2xl"

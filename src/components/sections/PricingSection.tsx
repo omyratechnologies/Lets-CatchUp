@@ -1,7 +1,7 @@
-
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, ArrowRight, Minus, MoveRight } from "lucide-react";
@@ -37,6 +37,7 @@ export function PricingSection() {
       cta: "Get Started",
       popular: false,
       color: "from-teal-400 to-cyan-300",
+      href: "https://app.letscatchup-kcs.com/"
     },
     {
       name: "Growing School",
@@ -56,6 +57,7 @@ export function PricingSection() {
       cta: "Contact Sales",
       popular: true,
       color: "from-indigo-500 to-purple-500",
+      href: "/#contact"
     },
     {
       name: "International School",
@@ -76,6 +78,7 @@ export function PricingSection() {
       cta: "Talk to Expert",
       popular: false,
       color: "from-pink-500 to-rose-500",
+      href: "/#contact"
     },
   ];
 
@@ -150,13 +153,15 @@ export function PricingSection() {
                 </div>
 
                 <div className="mt-auto">
-                  <Button className={cn(
-                    "w-full rounded-full h-16 text-lg font-black border-none transition-all group/btn shadow-xl",
-                    plan.popular ? 'bg-accent-gradient hover:opacity-90' : 'glass hover:bg-white/10'
-                  )}>
-                    {plan.cta} 
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover/btn:translate-x-2" />
-                  </Button>
+                  <Link href={plan.href} className="w-full">
+                    <Button className={cn(
+                      "w-full rounded-full h-16 text-lg font-black border-none transition-all group/btn shadow-xl",
+                      plan.popular ? 'bg-accent-gradient hover:opacity-90' : 'glass hover:bg-white/10'
+                    )}>
+                      {plan.cta} 
+                      <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover/btn:translate-x-2" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
