@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -22,6 +21,7 @@ export function Navbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const pathname = usePathname();
 
   useEffect(() => {
@@ -33,9 +33,38 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Intersection Observer for ScrollSpy
+  useEffect(() => {
+    if (!mounted || pathname !== "/") return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-40% 0px -40% 0px", // Trigger when section is in the middle 20% of viewport
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    const sections = ["home", "about", "pricing", "contact"];
+    sections.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [mounted, pathname]);
+
   const navItems = [
-    { name: "Home", href: "/", icon: Home, type: "link" },
-    { name: "About", href: "/#about", icon: Info, type: "link" },
+    { name: "Home", href: pathname === "/" ? "#home" : "/#home", icon: Home, type: "link" },
+    { name: "About", href: pathname === "/" ? "#about" : "/#about", icon: Info, type: "link" },
     { 
       name: "Services", 
       icon: Layers,
@@ -47,16 +76,27 @@ export function Navbar() {
         { name: "Healthy Social Spaces", href: "/services/healthy-social-spaces" },
       ]
     },
-    { name: "Pricing", href: "/#pricing", icon: CreditCard, type: "link" },
-    { name: "Contact", href: "/#contact", icon: MessageCircle, type: "link" },
+    { name: "Pricing", href: pathname === "/" ? "#pricing" : "/#pricing", icon: CreditCard, type: "link" },
+    { name: "Contact", href: pathname === "/" ? "#contact" : "/#contact", icon: MessageCircle, type: "link" },
   ];
 
   const getIsActive = (item: any) => {
     if (!mounted || !pathname) return false;
+    
+    // Services highlight: If we are on any /services path
     if (item.type === "dropdown") {
-      return item.items?.some((sub: any) => pathname === sub.href);
+      return pathname.startsWith("/services");
     }
-    return pathname === item.href;
+
+    // ScrollSpy highlight: Only on the home page
+    if (pathname === "/") {
+      if (item.name === "Home") return activeSection === "home";
+      if (item.name === "About") return activeSection === "about";
+      if (item.name === "Pricing") return activeSection === "pricing";
+      if (item.name === "Contact") return activeSection === "contact";
+    }
+
+    return false;
   };
 
   return (
@@ -92,7 +132,7 @@ export function Navbar() {
         className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
-          <Link href="/" className="flex items-center gap-2 shrink-0 relative z-10">
+          <Link href="/#home" className="flex items-center gap-2 shrink-0 relative z-10">
             <motion.div whileHover={{ scale: 1.05 }} className="bg-accent-gradient w-10 h-10 sm:w-12 sm:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
               <span className="text-white font-black text-sm sm:text-base leading-none tracking-tighter">LC</span>
             </motion.div>
@@ -108,16 +148,16 @@ export function Navbar() {
                     <div className="flex items-center">
                       {item.type === "link" ? (
                         <Link href={item.href!}>
-                          <motion.span className={cn("inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative", isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]")} whileHover={{ scale: 1.15 }}>
+                          <motion.span className={cn("inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative", isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]")}>
                             {item.name}
-                            {isActive && mounted && <motion.div layoutId="activeNav" className="absolute inset-0 bg-white/10 rounded-full -z-10" />}
+                            {isActive && mounted && <motion.div layoutId="activeNav" className="absolute inset-0 bg-white/10 rounded-full -z-10" transition={{ type: "spring", stiffness: 380, damping: 30 }} />}
                           </motion.span>
                         </Link>
                       ) : (
                         <div className={cn("inline-flex items-center gap-1 text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative", isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]")}>
                           {item.name}
                           <ChevronDown className={cn("w-3 h-3 opacity-50 transition-transform duration-300", hoveredItem === item.name && "rotate-180")} />
-                          {isActive && mounted && <motion.div layoutId="activeNav" className="absolute inset-0 bg-white/10 rounded-full -z-10" />}
+                          {isActive && mounted && <motion.div layoutId="activeNav" className="absolute inset-0 bg-white/10 rounded-full -z-10" transition={{ type: "spring", stiffness: 380, damping: 30 }} />}
                         </div>
                       )}
                     </div>
@@ -156,6 +196,7 @@ export function Navbar() {
         </div>
       </motion.nav>
 
+      {/* Mobile Bottom Navbar (YouTube Style) */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pb-4">
         <div className="glass h-20 rounded-[2rem] flex items-center justify-around px-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-white/10">
           {navItems.map((item) => {

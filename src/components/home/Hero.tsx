@@ -11,7 +11,7 @@ export function Hero() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-iso-tech');
 
   return (
-    <section className="relative min-h-screen bg-slate-950 flex items-stretch overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-slate-950 flex items-stretch overflow-hidden">
       <div className="grid lg:grid-cols-2 w-full pt-20 lg:pt-0">
         {/* Left Column: Content */}
         <div className="flex flex-col justify-center px-6 md:px-12 lg:px-24 py-16 lg:py-0 space-y-8 bg-gradient-to-b from-slate-950 to-black z-10">
@@ -45,7 +45,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap gap-4 pt-4"
           >
-            <Link href="/contact">
+            <Link href="/#contact">
               <Button
                 size="lg"
                 className="bg-[#00f5a0] hover:bg-[#00f5a0]/90 text-black font-bold rounded-full px-10 h-14 transition-all hover:scale-105 border-none"
