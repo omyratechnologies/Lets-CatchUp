@@ -49,7 +49,7 @@ export function Navbar() {
 
   return (
     <>
-      {/* Top Navbar - Desktop & Mobile Logo/Sign-in */}
+      {/* Top Navbar - Fixed for all, but center links hidden on mobile */}
       <motion.nav
         initial={false}
         animate={isScrolled ? "scrolled" : "top"}
@@ -97,10 +97,10 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* Floating Center Group - Hidden on Mobile */}
+          {/* Floating Center Group - Desktop Only */}
           <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
             <div className="flex items-center gap-1">
-              {navItems.slice(0, 4).map((item) => {
+              {navItems.map((item) => {
                 const isActive = item.type === "dropdown" 
                   ? item.items?.some(sub => pathname === sub.href)
                   : pathname === item.href;
@@ -211,11 +211,11 @@ export function Navbar() {
               <Link 
                 key={item.name} 
                 href={item.href || "/"} 
-                className="flex flex-col items-center justify-center flex-1 h-full gap-1 group"
+                className="flex flex-col items-center justify-center flex-1 h-full gap-1 group no-hover"
               >
                 <div className={cn(
                   "p-2 rounded-2xl transition-all duration-300",
-                  isActive ? "bg-accent-gradient text-white shadow-lg" : "text-gray-400 group-hover:text-white"
+                  isActive ? "bg-accent-gradient text-white shadow-lg" : "text-gray-400"
                 )}>
                   <item.icon className="w-6 h-6" />
                 </div>
