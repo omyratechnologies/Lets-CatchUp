@@ -188,7 +188,7 @@ export function Navbar() {
                   <Menu className="w-5 h-5 transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_10px_hsla(var(--accent)/1)]" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="bg-[#0f153d]/98 border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
+              <SheetContent side="left" className="bg-[#0f153d] border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
                 <div className="flex flex-col h-full p-6 md:p-8 relative overflow-hidden">
                   <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
                   <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
