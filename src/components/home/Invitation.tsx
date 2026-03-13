@@ -20,27 +20,27 @@ export function Invitation() {
       title: "The 34-Day Immersion",
       desc: "Experience the full operational impact of our ecosystem with a 34-day, risk-free journey. This is a zero-commitment window designed for you to witness the seamless transition from traditional management to high-utility connectivity.",
       icon: Target,
-      color: "text-teal-400",
-      glowColor: "group-hover:border-teal-400/50",
-      hoverText: "group-hover:text-teal-400",
+      color: "text-rose-400",
+      glowColor: "group-hover:border-rose-400/50",
+      hoverText: "group-hover:text-rose-400",
       label: "Operational Impact"
     },
     {
       title: "The Collaborative Future",
       desc: "We are actively seeking visionary institutions and community builders to help us scale this infrastructure. We don't just want users; we want strategic partners ready to architect the next standard of academic and social synergy.",
       icon: Rocket,
-      color: "text-indigo-400",
-      glowColor: "group-hover:border-indigo-400/50",
-      hoverText: "group-hover:text-indigo-400",
+      color: "text-teal-400",
+      glowColor: "group-hover:border-teal-400/50",
+      hoverText: "group-hover:text-teal-400",
       label: "Strategic Partnership"
     },
     {
       title: "Beyond the Digital Noise",
       desc: "It is time to move past the superficial and prioritize intentional connection. Let’s strip away the distractions and focus on what truly adds value to your community.",
       icon: Sparkles,
-      color: "text-rose-400",
-      glowColor: "group-hover:border-rose-400/50",
-      hoverText: "group-hover:text-rose-400",
+      color: "text-indigo-400",
+      glowColor: "group-hover:border-indigo-400/50",
+      hoverText: "group-hover:text-indigo-400",
       label: "Human Centric"
     }
   ];
