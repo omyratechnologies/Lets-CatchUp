@@ -125,7 +125,7 @@ export function Navbar() {
           <Link href="/#home" className="flex items-center gap-3">
             <motion.div whileHover={{ scale: 1.05 }} className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden">
               <Image 
-                src="/logo.png" 
+                src="/favicon-v2.ico" 
                 alt="Let's Catch Up Logo" 
                 fill 
                 className="object-contain"
@@ -196,7 +196,7 @@ export function Navbar() {
                   <SheetHeader className="text-left mb-10 relative z-10">
                     <SheetTitle className="text-white font-headline font-bold text-2xl flex items-center gap-4">
                       <div className="relative w-12 h-12 overflow-hidden">
-                        <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+                        <Image src="/favicon-v2.ico" alt="Logo" fill className="object-contain" />
                       </div>
                       <div className="flex flex-col">
                         <span className="text-lg">Main Menu</span>
