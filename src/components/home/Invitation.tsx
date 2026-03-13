@@ -143,7 +143,7 @@ export function Invitation() {
                             inv.accentBorder
                           )}>
                             {/* Stylized Background Icon */}
-                            <div className="absolute -bottom-10 -right-10 opacity-5 pointer-events-none -z-10 group-data-[state=open]:animate-float">
+                            <div className="absolute -bottom-10 -right-10 opacity-5 pointer-events-none -z-10">
                                 <Icon size={240} strokeWidth={0.5} className={inv.hoverText} />
                             </div>
 

@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -75,8 +74,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 pt-10 border-t border-white/5">
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-accent-gradient w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-xl flex items-center justify-center transition-transform">
-                <span className="text-white font-black text-lg leading-none tracking-tighter">LC</span>
+              <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden shadow-xl">
+                <Image src="/logo.png" alt="Let's Catch Up Logo" fill className="object-contain" />
               </div>
               <span className="font-headline font-bold text-2xl tracking-tight text-white">
                 Let’s catch up

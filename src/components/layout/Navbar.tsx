@@ -1,8 +1,8 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { 
@@ -123,8 +123,14 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
         <div className="flex items-center gap-3 shrink-0 relative z-10">
           <Link href="/#home" className="flex items-center gap-3">
-            <motion.div whileHover={{ scale: 1.05 }} className="bg-accent-gradient w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
-              <span className="text-white font-black text-lg leading-none tracking-tighter">LC</span>
+            <motion.div whileHover={{ scale: 1.05 }} className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden">
+              <Image 
+                src="/logo.png" 
+                alt="Let's Catch Up Logo" 
+                fill 
+                className="object-contain"
+                priority
+              />
             </motion.div>
             <span className="font-headline font-bold text-lg md:text-xl tracking-tight text-white block">Let's Catch Up</span>
           </Link>
@@ -184,14 +190,13 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent side="left" className="bg-[#0b0f2f]/95 border-white/10 backdrop-blur-2xl w-[300px] sm:w-[400px] p-0">
                 <div className="flex flex-col h-full p-8 relative overflow-hidden">
-                  {/* Creative background accent */}
                   <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
                   <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
 
                   <SheetHeader className="text-left mb-10 relative z-10">
                     <SheetTitle className="text-white font-headline font-bold text-2xl flex items-center gap-4">
-                      <div className="bg-accent-gradient w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-accent/20">
-                        <span className="text-white font-black text-sm">LC</span>
+                      <div className="relative w-12 h-12 overflow-hidden">
+                        <Image src="/logo.png" alt="Logo" fill className="object-contain" />
                       </div>
                       <div className="flex flex-col">
                         <span className="text-lg">Main Menu</span>
