@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, MapPin, Mail, ArrowRight, Send } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MapPin, Mail, ArrowRight, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,11 +34,6 @@ export function Footer() {
       Icon: Facebook, 
       href: "https://www.facebook.com/people/Kandhugule-Consultancy-Services/61563863545091/#",
       label: "Facebook"
-    },
-    { 
-      Icon: Twitter, 
-      href: "#",
-      label: "Twitter"
     },
     { 
       Icon: Instagram, 
