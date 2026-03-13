@@ -91,10 +91,9 @@ export function Footer() {
                   <MapPin className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </div>
                 <div className="text-gray-400 text-sm leading-relaxed">
-                  Building No.: 3-37, Old RC Puram,<br />
-                  Back Side ZPHS School, Mumbai Highway,<br />
-                  Ramachandrapuram, Sangareddy<br />
-                  Telangana – 502032
+                  3-37 RC Puram, behind SR chambers,<br />
+                  Hyderabad, 502032,<br />
+                  Telangana
                 </div>
               </div>
               <div className="flex gap-4 items-center group">
@@ -173,19 +172,16 @@ export function Footer() {
 
         <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            {isoLogo && (
-              <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500 group">
-                <Image 
-                  src={isoLogo.imageUrl} 
-                  alt={isoLogo.description} 
-                  width={40} 
-                  height={40} 
-                  className="object-contain"
-                  data-ai-hint={isoLogo.imageHint}
-                />
-                <span className="text-[8px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-accent transition-colors">ISO Certified</span>
-              </div>
-            )}
+            <div className="flex items-center gap-3 p-2 rounded-xl bg-white/5 border border-white/10 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500 group">
+              <Image 
+                src="/iso.png" 
+                alt="ISO Certified Logo" 
+                width={40} 
+                height={40} 
+                className="object-contain"
+              />
+              <span className="text-[8px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-accent transition-colors">ISO Certified</span>
+            </div>
             <p className="text-gray-500 text-[10px] uppercase tracking-widest font-medium">
               @COPYRIGHT {currentYear} | ALL RIGHTS RESERVED BY <span className="font-bold text-white uppercase">KANDHUGULE CONSULTANCY SERVICES PRIVATE LIMITED</span>
             </p>

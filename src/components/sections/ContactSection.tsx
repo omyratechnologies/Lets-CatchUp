@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -43,7 +44,7 @@ export function ContactSection() {
     }
   };
 
-  const mapUrl = "https://www.google.com/maps/place/37,+St+3,+Maruthi+Nagar,+Raghavendra+Colony,+Ramachandrapuram,+Hyderabad,+Telangana+502032/@17.5253292,78.3004977,17z";
+  const mapUrl = "https://www.google.com/maps/place/RC+Puram,+Hyderabad,+Telangana+502032";
 
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
@@ -76,8 +77,9 @@ export function ContactSection() {
                 <div className="space-y-2">
                   <p className="text-[10px] text-accent uppercase tracking-widest font-black">Headquarters</p>
                   <div className="font-bold text-sm text-gray-200 leading-relaxed">
-                    Building No.: 3-37, Old RC Puram, Back Side ZPHS School<br />
-                    Mumbai Highway, Hyderabad, Telangana – 502032
+                    3-37 RC Puram, behind SR chambers,<br />
+                    Hyderabad, 502032,<br />
+                    Telangana
                   </div>
                 </div>
               </div>
