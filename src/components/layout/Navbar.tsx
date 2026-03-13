@@ -75,7 +75,7 @@ export function Navbar() {
       className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
-        <Link href="/" className="flex items-center gap-2 group shrink-0 relative z-10">
+        <Link href="/" className="flex items-center gap-2 shrink-0 relative z-10">
           <motion.div 
             whileHover={{ scale: 1.05 }}
             className="bg-accent-gradient w-10 h-10 sm:w-12 sm:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden"
@@ -223,15 +223,12 @@ export function Navbar() {
                       >
                         <div 
                           className={cn(
-                            "text-lg font-bold flex items-center group transition-all duration-300 cursor-pointer",
-                            isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
+                            "text-lg font-bold flex items-center transition-all duration-300 cursor-pointer",
+                            isActive ? "text-[#2dd4bf]" : "text-gray-300"
                           )}
                           onClick={() => setMobileHoveredItem(mobileHoveredItem === item.name ? null : item.name)}
                         >
-                          <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                            <ArrowRight className="w-4 h-4 mr-2" />
-                          </span>
-                          <span className="group-hover:translate-x-1 transition-transform duration-300 flex items-center gap-2">
+                          <span className="text-lg flex items-center gap-2">
                             {item.name}
                             <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", mobileHoveredItem === item.name && "rotate-180")} />
                           </span>
@@ -242,27 +239,22 @@ export function Navbar() {
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden flex flex-col gap-2 pl-6 mt-3"
+                              className="overflow-hidden flex flex-col gap-2 pl-4 mt-3"
                             >
                               {item.items?.map((sub) => (
                                 <Link
                                   key={sub.name}
                                   href={sub.href}
                                   className={cn(
-                                    "font-semibold py-2 flex items-center group transition-all duration-300",
-                                    pathname === sub.href ? "text-[#2dd4bf]" : "text-gray-400 hover:text-[#2dd4bf]"
+                                    "font-semibold py-2 flex items-center transition-all duration-300",
+                                    pathname === sub.href ? "text-[#2dd4bf]" : "text-gray-400"
                                   )}
                                   onClick={() => {
                                     setIsMobileMenuOpen(false);
                                     setMobileHoveredItem(null);
                                   }}
                                 >
-                                  <span className="w-0 group-hover:w-5 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                                    <ArrowRight className="w-3 h-3 mr-2" />
-                                  </span>
-                                  <span className="group-hover:translate-x-1 transition-transform duration-300">
-                                    {sub.name}
-                                  </span>
+                                  <span>{sub.name}</span>
                                 </Link>
                               ))}
                             </motion.div>
@@ -276,17 +268,12 @@ export function Navbar() {
                       <Link
                         href={item.href!}
                         className={cn(
-                          "text-lg font-bold flex items-center group transition-all duration-300",
-                          pathname === item.href ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
+                          "text-lg font-bold flex items-center transition-all duration-300",
+                          pathname === item.href ? "text-[#2dd4bf]" : "text-gray-300"
                         )}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                          <ArrowRight className="w-4 h-4 mr-2" />
-                        </span>
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item.name}
-                        </span>
+                        <span>{item.name}</span>
                       </Link>
                     </div>
                   );
