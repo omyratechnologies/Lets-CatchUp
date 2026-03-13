@@ -35,7 +35,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-medium"
             >
-              Lets Catch Up is your all-in-one platform for collaboration and learning — built for schools and startups.
+              Lets Catch Up is your all-in-one platform for collaboration and learning.
             </motion.p>
 
             <motion.div
