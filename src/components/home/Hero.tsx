@@ -53,15 +53,6 @@ export function Hero() {
                 Get Started
               </Button>
             </Link>
-            <Link href="/about">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-[#00f5a0] text-white hover:bg-[#00f5a0]/10 font-bold rounded-full px-10 h-14 transition-all hover:scale-105"
-              >
-                Learn More
-              </Button>
-            </Link>
           </motion.div>
         </div>
 
