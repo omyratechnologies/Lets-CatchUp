@@ -3,7 +3,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Shield, Sparkles, Heart, MessageSquare, Handshake, Users } from "lucide-react";
+import { Shield, Sparkles, Heart, MessageSquare, Handshake, Users, MessageCircle } from "lucide-react";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 
 export default function HealthySocialSpacesPage() {
@@ -11,6 +11,7 @@ export default function HealthySocialSpacesPage() {
     { title: "Algorithmic Freedom", desc: "Interact without the noise of addictive algorithms. You control what you see and who you engage with.", icon: Shield, color: "from-teal-400 to-cyan-300" },
     { title: "Safe Communities", desc: "Dedicated, secure environments designed for respectful and meaningful dialogue among peers.", icon: Users, color: "from-blue-400 to-cyan-400" },
     { title: "Wellness Focus", desc: "Integrated tools and reminders to promote digital well-being and mindful consumption.", icon: Heart, color: "from-purple-400 to-pink-400" },
+    { title: "1v1 Private Messaging", desc: "Connect securely with mentors and peers through encrypted direct messaging built for meaningful exchange.", icon: MessageCircle, color: "from-cyan-400 to-blue-500" },
     { title: "Human Connection", desc: "Focus on building real relationships through collaborative projects and shared interests.", icon: Handshake, color: "from-orange-400 to-yellow-400" },
     { title: "Authentic Feedback", desc: "Constructive feedback loops that prioritize growth over vanity metrics or engagement bait.", icon: MessageSquare, color: "from-indigo-400 to-blue-400" },
     { title: "Spark Creativity", desc: "A playground for ideas where curiosity is rewarded and technical mastery is shared.", icon: Sparkles, color: "from-rose-400 to-red-400" },
