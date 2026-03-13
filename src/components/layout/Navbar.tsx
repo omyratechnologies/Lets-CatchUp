@@ -15,7 +15,7 @@ import {
   LayoutGrid,
   HelpCircle,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -41,7 +41,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Intersection Observer for ScrollSpy
   useEffect(() => {
     if (!mounted || pathname !== "/") return;
 
@@ -80,16 +79,13 @@ export function Navbar() {
 
   const getIsActive = (item: any) => {
     if (!mounted || !pathname) return false;
-
     if (item.name === "FAQ") return pathname === "/faq";
-
     if (pathname === "/") {
       if (item.name === "Home") return activeSection === "home";
       if (item.name === "Ecosystem") return activeSection === "ecosystem";
       if (item.name === "About Us") return activeSection === "about";
       if (item.name === "Pricing") return activeSection === "pricing";
     }
-
     return false;
   };
 
@@ -125,7 +121,6 @@ export function Navbar() {
       className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
-        {/* Left Side: Brand */}
         <div className="flex items-center gap-3 shrink-0 relative z-10">
           <Link href="/#home" className="flex items-center gap-3">
             <motion.div whileHover={{ scale: 1.05 }} className="bg-accent-gradient w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
@@ -135,7 +130,6 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop Navigation (Center) */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
           <div className="flex items-center gap-1">
             {navItems.map((item) => {
@@ -163,9 +157,7 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Right Section: Mobile Hamburger + Desktop Actions */}
         <div className="flex items-center gap-4 relative z-10">
-          {/* Desktop Only Buttons */}
           <div className="hidden lg:flex items-center gap-4">
             <Link href="https://app.letscatchup-kcs.com/">
               <Button variant="ghost" className="text-white hover:text-accent hover:bg-white/5 border border-white/10 hover:border-accent/40 text-sm font-bold rounded-full px-6 transition-all h-12">
@@ -179,7 +171,6 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Hamburger (Right Side) */}
           <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
@@ -192,18 +183,25 @@ export function Navbar() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="bg-[#0b0f2f]/95 border-white/10 backdrop-blur-2xl w-[300px] sm:w-[400px] p-0">
-                <div className="flex flex-col h-full p-8">
-                  <SheetHeader className="text-left mb-8">
-                    <SheetTitle className="text-white font-headline font-bold text-2xl flex items-center gap-3">
-                      <div className="bg-accent-gradient w-10 h-10 rounded-xl flex items-center justify-center">
+                <div className="flex flex-col h-full p-8 relative overflow-hidden">
+                  {/* Creative background accent */}
+                  <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
+                  <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
+
+                  <SheetHeader className="text-left mb-10 relative z-10">
+                    <SheetTitle className="text-white font-headline font-bold text-2xl flex items-center gap-4">
+                      <div className="bg-accent-gradient w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-accent/20">
                         <span className="text-white font-black text-sm">LC</span>
                       </div>
-                      Menu
+                      <div className="flex flex-col">
+                        <span className="text-lg">Main Menu</span>
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-accent/60 font-black">Ecosystem Hub</span>
+                      </div>
                     </SheetTitle>
                   </SheetHeader>
                   
-                  <nav className="flex flex-col gap-2">
-                    {navItems.map((item) => {
+                  <nav className="flex flex-col gap-3 relative z-10 flex-1">
+                    {navItems.map((item, idx) => {
                       const isActive = getIsActive(item);
                       return (
                         <Link 
@@ -211,29 +209,45 @@ export function Navbar() {
                           href={item.href}
                           onClick={() => setIsOpen(false)}
                         >
-                          <div className={cn(
-                            "flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-300",
-                            isActive ? "bg-accent-gradient text-white shadow-lg" : "text-gray-400 hover:text-white hover:bg-white/5"
-                          )}>
-                            <item.icon className="w-5 h-5" />
-                            <span className="font-bold text-base">{item.name}</span>
-                          </div>
+                          <motion.div 
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className={cn(
+                              "flex items-center gap-5 px-6 py-4 rounded-2xl transition-all duration-300 group relative overflow-hidden",
+                              isActive 
+                                ? "bg-accent-gradient text-white shadow-xl shadow-accent/10" 
+                                : "text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5"
+                            )}
+                          >
+                            <item.icon className={cn(
+                              "w-5 h-5 transition-transform duration-300 group-hover:scale-110",
+                              isActive ? "text-white" : "text-accent/60"
+                            )} />
+                            <span className="font-bold text-base tracking-tight">{item.name}</span>
+                            {isActive && (
+                              <motion.div 
+                                layoutId="mobileNavActive"
+                                className="absolute left-0 top-0 w-1 h-full bg-white/40"
+                              />
+                            )}
+                          </motion.div>
                         </Link>
                       );
                     })}
                   </nav>
 
-                  <div className="mt-auto pt-8 border-t border-white/10 flex flex-col gap-4">
+                  <div className="mt-auto pt-8 border-t border-white/10 flex flex-col gap-4 relative z-10">
                     <Link 
                       href="https://app.letscatchup-kcs.com/"
                       onClick={() => setIsOpen(false)}
                       className="w-full"
                     >
                       <Button 
-                        className="w-full h-14 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-xs gap-3 shadow-[0_10px_30px_rgba(45,212,191,0.3)] hover:shadow-[0_15px_40px_rgba(45,212,191,0.5)] transition-all active:scale-95 border-none flex items-center justify-center group/signin"
+                        className="w-full h-14 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-[10px] gap-3 shadow-[0_10px_30px_rgba(45,212,191,0.3)] hover:shadow-[0_15px_40px_rgba(45,212,191,0.5)] transition-all active:scale-95 border-none flex items-center justify-center group/signin"
                       >
                         <LogIn className="w-5 h-5 transition-transform group-hover/signin:-translate-x-1" />
-                        Sign In
+                        Sign In to Platform
                       </Button>
                     </Link>
                     
@@ -247,6 +261,10 @@ export function Navbar() {
                         Get in touch
                       </Button>
                     </Link>
+                    
+                    <p className="text-center text-[8px] text-gray-500 uppercase tracking-[0.3em] font-black mt-2">
+                      Lets Catch Up v2.0
+                    </p>
                   </div>
                 </div>
               </SheetContent>
