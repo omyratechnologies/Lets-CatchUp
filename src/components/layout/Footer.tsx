@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -9,9 +10,10 @@ import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 const FOOTER_LINKS = {
   navigation: [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Pricing", href: "/pricing" },
+    { name: "Home", href: "/#home" },
+    { name: "Ecosystem", href: "/#ecosystem" },
+    { name: "About Us", href: "/#about" },
+    { name: "Pricing", href: "/#pricing" },
     { name: "FAQ", href: "/faq" },
   ],
   services: [
@@ -137,7 +139,7 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3 space-y-6">
-            <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Services</h5>
+            <h5 className="text-white font-bold tracking-widest text-xs uppercase opacity-50">Ecosystem</h5>
             <ul className="space-y-4">
               {FOOTER_LINKS.services.map((link) => (
                 <li key={link.name}>
