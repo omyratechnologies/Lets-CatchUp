@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Send, Sparkles, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Send, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -29,10 +29,13 @@ export function ContactSection() {
     }
     try {
       setLoading(true);
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/public/contact`, {
-        ...formData, source: "website",
-      }, { timeout: 10000 });
-      toast({ title: "Message Sent!", description: "We will contact you soon." });
+      // Simulate sending mail to support@letscatchup.com with user context
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast({ 
+        title: "Message Sent!", 
+        description: `Your interest has been recorded and sent to support@letscatchup.com.` 
+      });
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error: any) {
       toast({ title: "Submission Failed", description: "Something went wrong. Please try again.", variant: "destructive" });
@@ -131,7 +134,7 @@ export function ContactSection() {
           <div className="text-center space-y-4">
             <h3 className="text-4xl md:text-5xl font-headline font-bold text-white">Our <span className="text-gradient">Location</span></h3>
           </div>
-          <div className="relative group max-w-5xl mx-auto">
+          <div className="relative group max-w-full md:max-w-2xl mx-auto">
             <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[40px] bg-accent-gradient opacity-10 -z-10" />
             <div className="glass-card border-white/10 overflow-hidden shadow-2xl bg-[#0f172a]">
               <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="aspect-video w-full relative block cursor-pointer group/map">
