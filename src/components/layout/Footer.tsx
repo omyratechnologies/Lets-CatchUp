@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Linkedin, MapPin, Mail, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 const FOOTER_LINKS = {
   navigation: [
@@ -62,7 +61,6 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   const [currentYear, setCurrentYear] = useState<number | string>(2025);
-  const isoLogo = PlaceHolderImages.find(img => img.id === "iso-logo");
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
@@ -91,7 +89,7 @@ export function Footer() {
                   <MapPin className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </div>
                 <div className="text-gray-400 text-sm leading-relaxed">
-                  3-37 RC Puram, behind SR chambers,<br />
+                  Building: 3-37 RC Puram, behind SR chambers,<br />
                   Hyderabad, 502032,<br />
                   Telangana
                 </div>

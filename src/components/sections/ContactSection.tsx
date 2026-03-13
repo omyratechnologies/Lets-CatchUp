@@ -2,12 +2,11 @@
 "use client";
 
 import React, { useState } from "react";
-import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Send, ExternalLink } from "lucide-react";
+import { Mail, MapPin, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -44,7 +43,7 @@ export function ContactSection() {
     }
   };
 
-  const mapUrl = "https://www.google.com/maps/place/3-37+RC+Puram,+behind+SR+chambers,+Hyderabad,+Telangana+502032";
+  const mapUrl = "https://www.google.com/maps/place/3-37+RC+Puram,+Hyderabad,+Telangana+502032";
 
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
@@ -77,7 +76,7 @@ export function ContactSection() {
                 <div className="space-y-2">
                   <p className="text-[10px] text-accent uppercase tracking-widest font-black">Headquarters</p>
                   <div className="font-bold text-sm text-gray-200 leading-relaxed">
-                    3-37 RC Puram, behind SR chambers,<br />
+                    Building: 3-37 RC Puram, behind SR chambers,<br />
                     Hyderabad, 502032,<br />
                     Telangana
                   </div>
