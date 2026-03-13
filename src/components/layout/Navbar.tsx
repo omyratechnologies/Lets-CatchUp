@@ -20,9 +20,12 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -47,9 +50,17 @@ export function Navbar() {
     { name: "Contact", href: "/contact", icon: MessageCircle, type: "link" },
   ];
 
+  const getIsActive = (item: any) => {
+    if (!mounted || !pathname) return false;
+    if (item.type === "dropdown") {
+      return item.items?.some((sub: any) => pathname === sub.href);
+    }
+    return pathname === item.href;
+  };
+
   return (
     <>
-      {/* Top Navbar - Fixed for all, but center links hidden on mobile */}
+      {/* Top Navbar - Desktop/Tablet */}
       <motion.nav
         initial={false}
         animate={isScrolled ? "scrolled" : "top"}
@@ -101,9 +112,7 @@ export function Navbar() {
           <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
             <div className="flex items-center gap-1">
               {navItems.map((item) => {
-                const isActive = item.type === "dropdown" 
-                  ? item.items?.some(sub => pathname === sub.href)
-                  : pathname === item.href;
+                const isActive = getIsActive(item);
 
                 return (
                   <div 
@@ -201,17 +210,74 @@ export function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Bottom Navbar - Mobile Only */}
+      {/* Bottom Navbar - Mobile Only (YouTube Style) */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pb-4">
         <div className="glass h-20 rounded-[2rem] flex items-center justify-around px-2 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-white/10">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.type === "dropdown" && item.items?.some(sub => pathname === sub.href));
+            const isActive = getIsActive(item);
             
+            if (item.type === "dropdown") {
+              return (
+                <div key={item.name} className="flex flex-col items-center justify-center flex-1 h-full relative">
+                  <button 
+                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    className={cn(
+                      "flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300",
+                      isActive ? "text-[#2dd4bf]" : "text-gray-400"
+                    )}
+                  >
+                    <div className={cn(
+                      "p-2 rounded-2xl transition-all duration-300",
+                      isActive ? "bg-accent-gradient text-white shadow-lg" : "text-gray-400"
+                    )}>
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className={cn(
+                        "text-[10px] font-black uppercase tracking-widest",
+                        isActive ? "text-accent" : "text-gray-500"
+                      )}>
+                        {item.name}
+                      </span>
+                      <ChevronDown className={cn("w-2 h-2 transition-transform", isMobileServicesOpen && "rotate-180")} />
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isMobileServicesOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 w-48 bg-[#141d4b]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl overflow-hidden"
+                      >
+                        {item.items?.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            onClick={() => {
+                              setIsMobileServicesOpen(false);
+                            }}
+                            className={cn(
+                              "block px-4 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-center transition-all",
+                              pathname === sub.href ? "text-accent bg-white/10" : "text-gray-400"
+                            )}
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
+
             return (
               <Link 
                 key={item.name} 
                 href={item.href || "/"} 
-                className="flex flex-col items-center justify-center flex-1 h-full gap-1 group no-hover"
+                className="flex flex-col items-center justify-center flex-1 h-full gap-1"
               >
                 <div className={cn(
                   "p-2 rounded-2xl transition-all duration-300",

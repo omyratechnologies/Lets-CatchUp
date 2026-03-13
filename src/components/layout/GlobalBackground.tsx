@@ -1,14 +1,17 @@
+
 "use client";
 
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
 function ParticleField() {
   const ref = useRef<THREE.Points>(null!);
+  const [positions, setPositions] = useState<Float32Array | null>(null);
   
-  const sphere = useMemo(() => {
+  // Generate random positions only on the client to avoid hydration mismatch
+  useEffect(() => {
     const points = new Float32Array(5000 * 3);
     for (let i = 0; i < 5000; i++) {
       const i3 = i * 3;
@@ -17,17 +20,21 @@ function ParticleField() {
       points[i3 + 1] = (Math.random() - 0.5) * 25;
       points[i3 + 2] = (Math.random() - 0.5) * 25;
     }
-    return points;
+    setPositions(points);
   }, []);
 
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 20;
-    ref.current.rotation.y -= delta / 25;
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 20;
+      ref.current.rotation.y -= delta / 25;
+    }
   });
+
+  if (!positions) return null;
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
+      <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
           color="#4fd1c5"
