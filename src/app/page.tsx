@@ -5,6 +5,7 @@ import { Features } from "@/components/home/Features";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { Invitation } from "@/components/home/Invitation";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <UnifiedSpace />
       <AboutSection />
       <PricingSection />
+      <Invitation />
       <ContactSection />
     </div>
   );
