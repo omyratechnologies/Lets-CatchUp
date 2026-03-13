@@ -82,7 +82,6 @@ export default function FeaturesPage() {
           ))}
         </div>
 
-        {/* ISO Certified Trust & Security Section */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
