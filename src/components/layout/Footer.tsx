@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, MapPin, Mail, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MapPin, Mail, ArrowRight, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
@@ -179,19 +179,24 @@ export function Footer() {
             
             {/* ISO Certification Logo & Badge */}
             <div className="flex items-center gap-4 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 group/iso hover:border-accent/30 transition-all duration-500">
-              <div className="relative w-8 h-8 shrink-0 overflow-hidden rounded-full border border-white/10 group-hover/iso:scale-110 transition-transform">
-                {isoLogo && (
+              <div className="relative w-10 h-10 shrink-0 overflow-hidden rounded-full border border-white/10 group-hover/iso:scale-110 transition-transform bg-accent/10 flex items-center justify-center">
+                {isoLogo ? (
                   <Image 
                     src={isoLogo.imageUrl} 
                     alt={isoLogo.description} 
                     fill 
-                    className="object-cover" 
+                    className="object-cover opacity-90 group-hover/iso:opacity-100" 
                     data-ai-hint={isoLogo.imageHint}
                   />
+                ) : (
+                  <ShieldCheck className="w-6 h-6 text-accent" />
                 )}
+                {/* Visual fallback icon always present behind image for high-trust feel */}
+                {!isoLogo && <ShieldCheck className="w-6 h-6 text-accent" />}
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-white leading-none">ISO Certified</span>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-accent/60 leading-none mt-1">Institutional Trust</span>
               </div>
             </div>
           </div>
