@@ -10,7 +10,7 @@ import {
   AccordionItem, 
   AccordionTrigger 
 } from "@/components/ui/accordion";
-import { ArrowRight, Sparkles, Target, Rocket, ChevronRight } from "lucide-react";
+import { ArrowRight, Sparkles, Target, Rocket, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Invitation() {
@@ -128,9 +128,9 @@ export function Invitation() {
                               </h3>
                             </div>
                             
-                            {/* Custom Indicator - Visible on all screens */}
-                            <div className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all duration-300 group-hover:border-accent/40 group-data-[state=open]:rotate-90 shadow-lg shrink-0">
-                              <ChevronRight className="w-5 h-5 text-gray-500 group-hover:text-accent transition-all" />
+                            {/* Custom Indicator - Idle points down, Open points up */}
+                            <div className="flex w-10 h-10 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all duration-300 group-hover:border-accent/40 group-data-[state=open]:rotate-180 shadow-lg shrink-0">
+                              <ChevronDown className="w-5 h-5 text-gray-500 group-hover:text-accent transition-all" />
                             </div>
                           </div>
                         </AccordionTrigger>
