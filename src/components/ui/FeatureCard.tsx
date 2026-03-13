@@ -22,6 +22,10 @@ export function FeatureCard({
   gradientTo = "to-cyan-300",
   href
 }: FeatureCardProps) {
+  // Extract text color class from the gradientFrom class
+  const iconColorClass = gradientFrom.replace('from-', 'text-');
+  const borderColorClass = gradientFrom.replace('from-', 'border-');
+
   return (
     <div className={cn("relative group pt-8 md:pt-14 h-full", className)}>
       {/* Tilted card behind - The Secondary Layer (No Blur) */}
@@ -63,10 +67,10 @@ export function FeatureCard({
           <div className="absolute -top-8 md:-top-12 left-1/2 -translate-x-1/2 w-[64px] h-[64px] md:w-[100px] md:h-[100px] rounded-full bg-gradient-to-b from-[#2d3d6b] to-[#141d3d] flex items-center justify-center border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.5)] z-50 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-6">
             <div className={cn(
               "absolute inset-0 rounded-full border-2 opacity-20 animate-pulse",
-              gradientFrom.replace('from-', 'border-')
+              borderColorClass
             )}></div>
             <Icon
-              className="text-teal-300 relative z-10 w-6 h-6 md:w-10 md:h-10"
+              className={cn("relative z-10 w-6 h-6 md:w-10 md:h-10", iconColorClass)}
               strokeWidth={1.5}
             />
           </div>
@@ -95,8 +99,12 @@ export function FeatureCard({
                   
                   {/* Content Container */}
                   <div className="relative flex items-center justify-center gap-2 md:gap-3 bg-[#0f172a] hover:bg-transparent rounded-[11px] md:rounded-[15px] px-4 md:px-6 py-2.5 md:py-4 transition-all duration-500">
-                    <span className="text-white">Learn More</span>
-                    <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent transition-transform duration-500 group-hover/btn:translate-x-2 group-hover/btn:text-white" />
+                    <span className="text-white transition-colors group-hover/btn:text-white">Learn More</span>
+                    <ArrowRight className={cn(
+                      "w-3.5 h-3.5 md:w-4 md:h-4 transition-all duration-500 group-hover/btn:translate-x-2",
+                      iconColorClass,
+                      "group-hover/btn:text-white"
+                    )} />
                   </div>
                 </button>
               </Link>
