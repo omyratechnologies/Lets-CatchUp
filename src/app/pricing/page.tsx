@@ -4,7 +4,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, ArrowRight, Sparkles, Minus } from "lucide-react";
+import { Check, ArrowRight, Sparkles, Minus, MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
 import {
   Table,
@@ -215,6 +215,12 @@ export default function PricingPage() {
           <div className="text-center space-y-4">
             <h2 className="text-4xl font-headline font-bold">Compare <span className="text-gradient">Capabilities</span></h2>
             <p className="text-gray-400 font-medium">A detailed look at our institutional tools.</p>
+          </div>
+
+          <div className="md:hidden flex items-center justify-center gap-2 mb-6 text-accent/60 animate-pulse">
+            <MoveRight className="w-4 h-4" />
+            <span className="text-[10px] font-black uppercase tracking-widest">Swipe to compare table</span>
+            <MoveRight className="w-4 h-4" />
           </div>
 
           <div className="relative group max-w-6xl mx-auto">

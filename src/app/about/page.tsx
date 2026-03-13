@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Sparkles, ArrowRight } from "lucide-react";
+import { Shield, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -112,14 +112,6 @@ export default function AboutPage() {
                         {v.desc}
                       </p>
                     </div>
-
-                    <button className={cn(
-                      "flex items-center gap-2 font-bold uppercase tracking-widest text-[10px] transition-all group/btn mx-auto md:mx-0",
-                      v.color === "accent" ? "text-accent" : "text-primary"
-                    )}>
-                      <span>Learn more</span>
-                      <ArrowRight className="w-3 h-3 transition-transform group-hover/btn:translate-x-1" />
-                    </button>
                   </div>
                 </div>
               </motion.div>

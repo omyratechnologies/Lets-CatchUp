@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -46,7 +47,6 @@ export default function FeaturesPage() {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center space-y-6 max-w-4xl mx-auto"
         >
-          <Badge className="glass text-accent border-white/10 px-4 py-1">Platform Capabilities</Badge>
           <h1 className="text-5xl md:text-7xl font-headline font-bold leading-tight">
             Engineered for <span className="text-gradient">Excellence</span>
           </h1>

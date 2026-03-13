@@ -77,10 +77,6 @@ export function PlatformDescription() {
                   <span className="text-white font-bold">Let’s catch up</span> simplifies collaboration across schools, startups, and organizations. 
                   From engaging students to enabling seamless teamwork, our platform helps users stay connected, grow faster, and build <span className="text-accent underline decoration-accent/30 decoration-4 underline-offset-8">meaningful relationships</span> in a secure space.
                 </p>
-                <div className="flex items-center gap-4 text-accent text-sm font-black uppercase tracking-[0.2em] opacity-60 group-hover:opacity-100 transition-all cursor-pointer">
-                  <span>Explore Our Vision</span>
-                  <div className="w-8 h-[1px] bg-accent transition-all group-hover:w-12" />
-                </div>
               </div>
 
               {/* Internal Gloss */}
