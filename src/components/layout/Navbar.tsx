@@ -181,9 +181,9 @@ export function Navbar() {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="text-white hover:bg-white/10 rounded-xl w-10 h-10 md:w-12 md:h-12 border border-white/10 transition-all hover:shadow-[0_0_20px_hsla(var(--accent)/0.5)] hover:border-accent/50 group"
+                  className="text-white hover:bg-white/10 rounded-xl w-10 h-10 md:w-12 md:h-12 border border-white/10 transition-all hover:shadow-[0_0_20px_hsla(var(--accent)/0.3)] hover:border-accent/50 group"
                 >
-                  <Menu className="w-5 h-5 md:w-6 h-6 transition-transform group-hover:scale-110" />
+                  <Menu className="w-5 h-5 md:w-6 h-6 transition-all duration-300 group-hover:scale-110 group-hover:text-accent group-hover:drop-shadow-[0_0_10px_hsla(var(--accent)/1)]" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="bg-[#0b0f2f]/95 border-white/10 backdrop-blur-2xl w-[300px] sm:w-[400px] p-0">
@@ -225,9 +225,9 @@ export function Navbar() {
                       className="w-full"
                     >
                       <Button 
-                        className="w-full h-14 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-xs gap-3 shadow-[0_10px_30px_rgba(45,212,191,0.3)] hover:shadow-[0_15px_40px_rgba(45,212,191,0.5)] transition-all active:scale-95 border-none flex items-center justify-center"
+                        className="w-full h-14 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-xs gap-3 shadow-[0_10px_30px_rgba(45,212,191,0.3)] hover:shadow-[0_15px_40px_rgba(45,212,191,0.5)] transition-all active:scale-95 border-none flex items-center justify-center group/signin"
                       >
-                        <LogIn className="w-5 h-5" />
+                        <LogIn className="w-5 h-5 transition-transform group-hover/signin:-translate-x-1" />
                         Sign In
                       </Button>
                     </Link>
