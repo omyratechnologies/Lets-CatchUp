@@ -19,6 +19,10 @@ export default function FAQPage() {
       a: "Let’s Catch Up is an 'all-in-one platform' designed to support schools, colleges, students, teachers, parents, startups, and organizations. It brings together collaboration, learning, and communication through dedicated spaces, tools, and resources tailored to the needs of each user group."
     },
     {
+      q: "Is the community and collaboration feature free to use?",
+      a: "Yes. The community and collaboration features are completely free for all users, allowing students, educators, and professionals to connect and grow without any financial barriers."
+    },
+    {
       q: "How can students benefit from the platform?",
       a: "Students can connect with peers, join interest-based communities, engage with mentors, explore their interests, and develop skills beyond the classroom — all within a safe and supportive digital environment."
     },
