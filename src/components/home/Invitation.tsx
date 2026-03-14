@@ -129,7 +129,7 @@ export function Invitation() {
                             inv.accentBorder
                           )}>
                             <div className="absolute -bottom-6 -right-6 text-white/5 pointer-events-none group-data-[state=open]:rotate-[-12deg] transition-transform duration-1000">
-                              <Icon size={220} strokeWidth={0.5} />
+                              <Icon className="w-32 h-32 md:w-[220px] md:h-[220px]" strokeWidth={0.5} />
                             </div>
                             <p className="text-[11px] md:text-xl text-gray-400 leading-relaxed font-medium relative z-10">
                               {inv.desc}
