@@ -128,6 +128,9 @@ export function Invitation() {
                             "relative bg-white/[0.03] border border-white/5 border-l-2 p-4 md:p-10 rounded-xl md:rounded-[2rem] shadow-inner backdrop-blur-sm transition-all duration-500 group-data-[state=open]:translate-y-0 translate-y-4 opacity-0 group-data-[state=open]:opacity-100 overflow-hidden",
                             inv.accentBorder
                           )}>
+                            <div className="absolute -bottom-6 -right-6 text-white/5 pointer-events-none group-data-[state=open]:rotate-[-12deg] transition-transform duration-1000">
+                              <Icon size={220} strokeWidth={0.5} />
+                            </div>
                             <p className="text-[11px] md:text-xl text-gray-400 leading-relaxed font-medium relative z-10">
                               {inv.desc}
                             </p>
