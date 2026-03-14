@@ -188,10 +188,12 @@ export function Navbar() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="bg-[rgb(15,21,61)] border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
+                {/* Accessibility Headers */}
                 <SheetHeader className="sr-only">
                   <SheetTitle>Navigation Menu</SheetTitle>
                   <SheetDescription>Main navigation links for the Let's Catch Up platform.</SheetDescription>
                 </SheetHeader>
+                
                 <div className="flex flex-col h-full p-0 relative overflow-hidden">
                   <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
                   <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
