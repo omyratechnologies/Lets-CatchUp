@@ -100,20 +100,31 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex gap-3">
-              {SOCIAL_LINKS.map(({ Icon, href, label, hoverClass }, i) => (
-                <motion.a 
-                  key={i}
-                  whileHover={{ scale: 1.15, y: -5 }}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all text-gray-400 ${hoverClass}`}
-                >
-                  <Icon className="w-4 h-4 md:w-5 md:h-5" />
-                </motion.a>
-              ))}
+            <div className="flex flex-col gap-6">
+              <div className="flex gap-3">
+                {SOCIAL_LINKS.map(({ Icon, href, label, hoverClass }, i) => (
+                  <motion.a 
+                    key={i}
+                    whileHover={{ scale: 1.15, y: -5 }}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all text-gray-400 ${hoverClass}`}
+                  >
+                    <Icon className="w-4 h-4 md:w-5 md:h-5" />
+                  </motion.a>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105">
+                  <Image src="/google-play.png" alt="Google Play Store" width={120} height={36} className="object-contain" />
+                </Link>
+                <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105">
+                  <Image src="/app-store.png" alt="Apple App Store" width={120} height={36} className="object-contain" />
+                </Link>
+              </div>
             </div>
           </div>
 

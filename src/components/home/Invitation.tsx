@@ -80,7 +80,7 @@ export function Invitation() {
               const Icon = inv.icon;
               return (
                 <motion.div
-                  key={i}
+                  key={`invitation-motion-${i}`}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
