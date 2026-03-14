@@ -16,7 +16,7 @@ export function FAQSection() {
   const faqs = [
     {
       q: "What is “Let’s Catch Up” and who is it for?",
-      a: "Let’s Catch Up is a free, all-in-one platform designed to support schools, colleges, students, teachers, parents, startups, and organizations. It brings together collaboration, learning, and communication through dedicated spaces, tools, and resources tailored to the needs of each user group."
+      a: "Let’s Catch Up is an 'all-in-one platform' designed to support schools, colleges, students, teachers, parents, startups, and organizations. It brings together collaboration, learning, and communication through dedicated spaces, tools, and resources tailored to the needs of each user group."
     },
     {
       q: "How can students benefit from the platform?",
@@ -34,7 +34,6 @@ export function FAQSection() {
 
   return (
     <section id="faq" className="py-24 px-6 relative overflow-hidden">
-      {/* Background Glows */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] -z-10" />
 
@@ -64,11 +63,9 @@ export function FAQSection() {
           viewport={{ once: true }}
           className="relative group"
         >
-          {/* Architectural Layered Effect */}
           <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[40px] bg-accent-gradient opacity-10 transition-all duration-500 group-hover:opacity-20 group-hover:-bottom-6 group-hover:-right-6 -z-10" />
 
           <div className="glass-card p-8 md:p-12 border-white/10 bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] shadow-2xl relative overflow-hidden">
-            {/* Subtle Icon Background */}
             <div className="absolute top-10 right-10 text-white/5 pointer-events-none">
               <HelpCircle size={160} strokeWidth={1} />
             </div>
