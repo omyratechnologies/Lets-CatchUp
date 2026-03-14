@@ -238,17 +238,28 @@ export function Navbar() {
                     })}
                   </nav>
 
-                  <div className="mt-auto p-6 border-t border-white/20 flex flex-col gap-3 relative z-10 bg-black/20">
-                    <Link href="https://app.letscatchup-kcs.com/" onClick={() => setIsOpen(false)} className="w-full">
-                      <Button className="w-full h-12 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-[10px] gap-3 shadow-xl border-none">
-                        <LogIn className="w-4 h-4" /> Get started
-                      </Button>
-                    </Link>
-                    <Link href="/#contact" onClick={() => setIsOpen(false)} className="w-full">
-                      <Button variant="outline" className="w-full h-12 rounded-2xl border-white/20 bg-white/10 text-white font-bold gap-3">
-                        <Phone className="w-4 h-4 text-accent" /> Get in touch
-                      </Button>
-                    </Link>
+                  <div className="mt-auto p-6 border-t border-white/20 flex flex-col gap-4 relative z-10 bg-black/20">
+                    <div className="flex flex-col gap-3">
+                      <Link href="https://app.letscatchup-kcs.com/" onClick={() => setIsOpen(false)} className="w-full">
+                        <Button className="w-full h-12 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-[10px] gap-3 shadow-xl border-none">
+                          <LogIn className="w-4 h-4" /> Get started
+                        </Button>
+                      </Link>
+                      <Link href="/#contact" onClick={() => setIsOpen(false)} className="w-full">
+                        <Button variant="outline" className="w-full h-12 rounded-2xl border-white/20 bg-white/10 text-white font-bold gap-3">
+                          <Phone className="w-4 h-4 text-accent" /> Get in touch
+                        </Button>
+                      </Link>
+                    </div>
+
+                    <div className="flex gap-4 pt-2 justify-center">
+                      <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105 shrink-0">
+                        <Image src="/googleplay.png" alt="Google Play Store" width={120} height={36} className="object-contain" />
+                      </Link>
+                      <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105 shrink-0">
+                        <Image src="/appstore.jpg" alt="Apple App Store" width={120} height={36} className="object-contain rounded-lg" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </SheetContent>
