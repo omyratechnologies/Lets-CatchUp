@@ -71,15 +71,15 @@ export function Hero() {
               className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4"
             >
               <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105">
-                <Image src="/google-play.png" alt="Google Play Store" width={140} height={42} className="object-contain" />
+                <Image src="/googleplay.png" alt="Google Play Store" width={140} height={42} className="object-contain" />
               </Link>
               <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105">
-                <Image src="/app-store.png" alt="Apple App Store" width={140} height={42} className="object-contain" />
+                <Image src="/appstore.jpg" alt="Apple App Store" width={140} height={42} className="object-contain rounded-lg" />
               </Link>
             </motion.div>
           </div>
 
-          {/* Right Column: Brand Image (image.png) */}
+          {/* Right Column: Brand Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
