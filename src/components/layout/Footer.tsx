@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -86,7 +87,7 @@ export function Footer() {
                 <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:border-accent/40 transition-colors">
                   <MapPin className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </div>
-                <div className="text-gray-400 text-sm leading-relaxed">
+                <div className="text-gray-400 text-xs leading-relaxed">
                   Building: 3-37 RC Puram, behind SR chambers,<br />
                   Hyderabad, 502032,<br />
                   Telangana

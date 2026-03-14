@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from "react";
@@ -68,14 +69,14 @@ export function Invitation() {
             <h2 className="text-4xl md:text-7xl font-headline font-bold leading-tight tracking-tight text-white">
               Join the <span className="text-gradient">Movement</span>
             </h2>
-            <p className="text-sm md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
+            <p className="text-xs md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
               We are building the architecture of the next decade. Be part of a transition that prioritizes utility, safety, and human growth.
             </p>
           </motion.div>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-6 md:space-y-8">
+          <Accordion type="single" collapsible className="space-y-6 md:space-y-12">
             {invitations.map((inv, i) => {
               const Icon = inv.icon;
               return (
@@ -136,9 +137,8 @@ export function Invitation() {
                       </div>
                     </div>
                   </AccordionItem>
-                </motion.div>
-              );
-            })}
+                );
+              })}
           </Accordion>
         </div>
 

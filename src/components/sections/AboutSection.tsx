@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -92,7 +93,7 @@ export function AboutSection() {
                   v.gradient
                 )} />
 
-                <div className="relative h-full bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-2xl md:rounded-[32px] p-5 md:p-10 shadow-2xl overflow-hidden flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-start group-hover:border-white/20 transition-all duration-500">
+                <div className="relative h-full bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-2xl md:rounded-[32px] p-4 md:p-10 shadow-2xl overflow-hidden flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-start group-hover:border-white/20 transition-all duration-500">
                   <div className="relative shrink-0">
                     <div className="w-12 h-12 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl">
                       <v.icon className={cn(

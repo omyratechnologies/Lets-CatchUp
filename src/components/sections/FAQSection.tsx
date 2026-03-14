@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -56,7 +57,7 @@ export function FAQSection() {
           <h2 className="text-4xl md:text-6xl font-headline font-bold leading-tight">
             Frequently Asked <br /><span className="text-gradient">Questions</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-400 font-medium max-w-2xl mx-auto">
+          <p className="text-sm md:text-xl text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
             Everything you need to know about the Let’s Catch Up platform and how it empowers your community.
           </p>
         </motion.div>
@@ -84,7 +85,7 @@ export function FAQSection() {
                   <AccordionTrigger className="text-base md:text-xl font-bold hover:text-accent py-6 transition-all text-left hover:no-underline gap-4">
                     <span className="flex-1">{faq.q}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-lg text-gray-400 leading-relaxed pb-8 pt-2 font-medium">
+                  <AccordionContent className="text-[10px] md:text-lg text-gray-400 leading-relaxed pb-8 pt-2 font-medium">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>

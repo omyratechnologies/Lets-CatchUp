@@ -1,12 +1,17 @@
+
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Settings, Users, GraduationCap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { PlaceHolderImages } from '@/app/lib/placeholder-images';
 
 export function Hero() {
+  const brandLogo = PlaceHolderImages.find(img => img.id === 'hero-brand-logo');
+
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32 pb-16 overflow-hidden">
       {/* Background Ambient Glows */}
@@ -63,71 +68,61 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Column: Dynamic Floating LMS Objects */}
+          {/* Right Column: Dynamic Brand Logo Animation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative h-[400px] md:h-[500px] flex items-center justify-center mt-12 lg:mt-0"
+            className="relative h-[400px] md:h-[600px] flex items-center justify-center mt-12 lg:mt-0"
           >
-            {/* Abstract LMS Object */}
             <div className="relative z-20 group">
-              <div className="absolute -inset-8 bg-accent-gradient opacity-10 blur-3xl rounded-full group-hover:opacity-20 transition-opacity" />
+              <div className="absolute -inset-12 md:-inset-20 bg-accent-gradient opacity-10 blur-[100px] rounded-full group-hover:opacity-25 transition-opacity duration-1000" />
               
               <motion.div
                 animate={{ 
-                  y: [0, -15, 0],
-                  rotate: [0, 3, 0]
+                  y: [0, -20, 0],
+                  rotate: [0, 2, 0],
+                  scale: [1, 1.02, 1]
                 }}
                 transition={{ 
-                  duration: 8, 
+                  duration: 6, 
                   repeat: Infinity, 
                   ease: "easeInOut" 
                 }}
-                className="relative w-56 h-56 md:w-72 md:h-72 glass rounded-[48px] md:rounded-[64px] border-white/10 flex flex-col items-center justify-center gap-4 md:gap-6 shadow-2xl overflow-hidden"
+                className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] flex items-center justify-center"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
-                <div className="bg-accent-gradient w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl flex items-center justify-center shadow-xl">
-                  <GraduationCap className="text-white w-8 h-8 md:w-10 md:h-10" />
-                </div>
-                <div className="text-center space-y-1">
-                  <p className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-accent">Unified Learning</p>
-                  <p className="text-xl md:text-2xl font-bold text-white tracking-tight">The Ecosystem</p>
-                </div>
+                {brandLogo && (
+                  <Image
+                    src={brandLogo.imageUrl}
+                    alt={brandLogo.description}
+                    fill
+                    className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
+                    priority
+                    data-ai-hint={brandLogo.imageHint}
+                  />
+                )}
+                
+                {/* Decorative particles orbiting the logo */}
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 border border-white/5 rounded-full"
+                />
+                <motion.div 
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                  className="absolute -inset-10 border border-white/5 rounded-full opacity-50"
+                />
               </motion.div>
             </div>
-
-            {/* Floating Objects */}
-            <motion.div 
-              animate={{ y: [0, -10, 0], rotate: [0, -5, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-10 md:top-20 -left-4 md:-left-10 w-24 h-24 md:w-32 md:h-32 glass rounded-[24px] md:rounded-[32px] border-white/20 flex flex-col items-center justify-center shadow-2xl z-10"
-            >
-              <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary/20 flex items-center justify-center mb-1 md:mb-2">
-                <Users className="text-accent w-4 h-4 md:w-6 md:h-6" />
-              </div>
-              <span className="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white text-center px-2 leading-tight">Collaboration</span>
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [0, 15, 0], rotate: [0, 5, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-10 md:bottom-20 -right-4 md:-right-10 w-24 h-24 md:w-32 md:h-32 glass rounded-[24px] md:rounded-[40px] border-white/20 flex flex-col items-center justify-center shadow-2xl z-10"
-            >
-              <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-accent-gradient flex items-center justify-center mb-1 md:mb-2 shadow-lg">
-                <Settings className="text-white w-5 h-5 md:w-7 md:h-7" />
-              </div>
-              <span className="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white text-center px-2 leading-tight">Management</span>
-            </motion.div>
 
             {/* Background Glow Rings */}
             <div className="absolute inset-0 flex items-center justify-center -z-10">
               <motion.div 
-                animate={{ scale: [1, 1.05, 1], opacity: [0.05, 0.1, 0.05] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="w-[300px] md:w-[400px] h-[300px] md:h-[400px] rounded-full border border-white/5" 
+                animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.15, 0.05] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="w-[400px] md:w-[600px] h-[400px] md:h-[600px] rounded-full border border-white/10" 
               />
-              <div className="absolute w-[400px] md:w-[500px] h-[400px] md:h-[500px] rounded-full border border-white/5 opacity-20" />
             </div>
           </motion.div>
         </div>

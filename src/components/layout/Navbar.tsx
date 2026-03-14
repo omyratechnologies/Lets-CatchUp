@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -24,6 +25,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -195,14 +197,14 @@ export function Navbar() {
                   <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
                   <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
 
-                  <div className="text-left mb-4 relative z-10 px-6 pt-8 pb-4">
+                  <div className="text-left mb-2 relative z-10 px-6 pt-8 pb-2">
                     <div className="flex items-center gap-3 mb-6">
                       <div className="relative w-10 h-10 overflow-hidden">
                         <Image src="/favicon-v2.ico" alt="Logo" fill className="object-contain" />
                       </div>
                       <span className="text-white font-headline font-bold text-xl tracking-tight">Let's Catch Up</span>
                     </div>
-                    <div className="h-[1px] w-full bg-white/10 mb-6" />
+                    <Separator className="bg-white/10 mb-4" />
                   </div>
                   
                   <nav className="flex flex-col gap-2 relative z-10 flex-1 px-6">

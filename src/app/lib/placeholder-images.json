@@ -14,6 +14,12 @@
       "imageHint": "technology abstract"
     },
     {
+      "id": "hero-brand-logo",
+      "description": "3D brand logo for Let's Catch Up",
+      "imageUrl": "https://picsum.photos/seed/lets-brand-logo/800/800",
+      "imageHint": "brand logo 3D"
+    },
+    {
       "id": "course-web-dev",
       "description": "Modern web development setup",
       "imageUrl": "https://picsum.photos/seed/course1/600/400",
@@ -72,12 +78,6 @@
       "description": "Beautiful natural forest landscape",
       "imageUrl": "https://picsum.photos/seed/nature/200/200",
       "imageHint": "nature forest"
-    },
-    {
-      "id": "iso-logo",
-      "description": "ISO Certified Company Logo",
-      "imageUrl": "/iso.png",
-      "imageHint": "iso certification"
     }
   ]
 }
