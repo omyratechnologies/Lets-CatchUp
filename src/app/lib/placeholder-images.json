@@ -1,10 +1,23 @@
+
 {
   "placeholderImages": [
+    {
+      "id": "hero-iso-tech",
+      "description": "Isometric tech illustration showing connected digital ecosystems",
+      "imageUrl": "https://picsum.photos/seed/lets-iso-hero/1200/1200",
+      "imageHint": "isometric technology"
+    },
     {
       "id": "hero-bg",
       "description": "Abstract technological background with glowing lines",
       "imageUrl": "https://picsum.photos/seed/lets-hero/1200/800",
       "imageHint": "technology abstract"
+    },
+    {
+      "id": "hero-brand-logo",
+      "description": "3D brand logo for Let's Catch Up",
+      "imageUrl": "https://picsum.photos/seed/lets-brand-logo/800/800",
+      "imageHint": "brand logo 3D"
     },
     {
       "id": "course-web-dev",

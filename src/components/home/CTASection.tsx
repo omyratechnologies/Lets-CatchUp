@@ -24,8 +24,6 @@ export function CTASection() {
               Get Started
             </Button>
           </div>
-          
-          <p className="text-sm text-muted-foreground">No credit card required to start exploring.</p>
         </div>
       </div>
     </section>

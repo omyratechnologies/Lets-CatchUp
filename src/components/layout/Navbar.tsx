@@ -1,22 +1,40 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Home, 
+  Info, 
+  CreditCard, 
+  Menu as MenuIcon,
+  LogIn,
+  Phone,
+  LayoutGrid,
+} from "lucide-react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [mobileHoveredItem, setMobileHoveredItem] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -24,20 +42,51 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mounted || pathname !== "/") return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-40% 0px -40% 0px",
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    const sections = ["home", "ecosystem", "about", "pricing", "contact"];
+    sections.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [mounted, pathname]);
+
   const navItems = [
-    { name: "Home", href: "/", type: "link" },
-    { name: "About Us", href: "/about", type: "link" },
-    { 
-      name: "Services", 
-      type: "dropdown",
-      items: [
-        { name: "Educational Institutions", href: "/services/educational-institutions" },
-        { name: "Startups & Organizations", href: "/services/startups-organizations" },
-      ]
-    },
-    { name: "Testimonials", href: "/testimonials", type: "link" },
-    { name: "Pricing", href: "/pricing", type: "link" },
+    { name: "Home", href: pathname === "/" ? "#home" : "/#home", icon: Home },
+    { name: "Ecosystem", href: pathname === "/" ? "#ecosystem" : "/#ecosystem", icon: LayoutGrid },
+    { name: "About Us", href: pathname === "/" ? "#about" : "/#about", icon: Info },
+    { name: "Pricing", href: pathname === "/" ? "#pricing" : "/#pricing", icon: CreditCard },
   ];
+
+  const getIsActive = (item: any) => {
+    if (!mounted || !pathname) return false;
+    if (pathname === "/") {
+      if (item.name === "Home") return activeSection === "home";
+      if (item.name === "Ecosystem") return activeSection === "ecosystem";
+      if (item.name === "About Us") return activeSection === "about";
+      if (item.name === "Pricing") return activeSection === "pricing";
+    }
+    return false;
+  };
 
   return (
     <motion.nav
@@ -51,260 +100,173 @@ export function Navbar() {
           backgroundColor: "rgba(11, 15, 47, 0)",
           backdropFilter: "blur(0px)",
           paddingTop: "1.5rem",
-          paddingBottom: "1.5rem",
+          paddingBottom: "1rem",
           borderBottomColor: "rgba(255, 255, 255, 0)",
-          borderRadius: "0px",
         },
         scrolled: {
           y: 12,
-          width: "calc(100% - 3rem)",
-          left: "1.5rem",
-          backgroundColor: "rgba(20, 29, 75, 0.95)",
+          width: "calc(100% - 2rem)",
+          left: "1rem",
+          backgroundColor: "rgba(15, 21, 61, 0.95)",
           backdropFilter: "blur(24px)",
-          paddingTop: "0.6rem",
-          paddingBottom: "0.6rem",
+          paddingTop: "0.5rem",
+          paddingBottom: "0.5rem",
           borderBottomColor: "rgba(255, 255, 255, 0.1)",
-          borderRadius: "2.5rem",
+          borderRadius: "2rem",
           boxShadow: "0 20px 40px -10px rgba(0, 0, 0, 0.4)",
         },
       }}
-      transition={{ 
-        duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] 
-      }}
-      className="fixed top-0 z-50 px-6 border-b transition-colors duration-500"
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 z-50 px-4 md:px-6 border-b transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative h-full">
-        <Link href="/" className="flex items-center gap-2 group shrink-0 relative z-10">
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="bg-accent-gradient w-10 h-10 sm:w-12 sm:h-12 rounded-xl shadow-lg flex items-center justify-center overflow-hidden"
-          >
-            <span className="text-white font-black text-sm sm:text-base leading-none tracking-tighter">LC</span>
-          </motion.div>
-          <span className="font-headline font-bold text-lg sm:text-xl tracking-tight text-white block">
-            Let's Catch Up
-          </span>
-        </Link>
+        <div className="flex items-center gap-2 shrink-0 relative z-10">
+          <Link href="/#home" className="flex items-center gap-2 md:gap-3">
+            <motion.div whileHover={{ scale: 1.05 }} className="relative w-8 h-8 md:w-10 md:h-10 overflow-hidden shadow-2xl">
+              <Image 
+                src="/favicon-v2.ico" 
+                alt="Let's Catch Up Logo" 
+                fill 
+                className="object-contain"
+                priority
+              />
+            </motion.div>
+            <span className="font-headline font-bold text-base md:text-xl tracking-tight text-white block">Let's Catch Up</span>
+          </Link>
+        </div>
 
-        {/* Floating Center Group */}
         <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 h-full">
           <div className="flex items-center gap-1">
             {navItems.map((item) => {
-              const isActive = item.type === "dropdown" 
-                ? item.items?.some(sub => pathname === sub.href)
-                : pathname === item.href;
-
+              const isActive = getIsActive(item);
               return (
-                <div 
-                  key={item.name} 
-                  className="relative group py-4"
-                  onMouseEnter={() => setHoveredItem(item.name)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <div className="flex items-center">
-                    {item.type === "link" ? (
-                      <Link href={item.href!}>
-                        <motion.span
-                          className={cn(
-                            "inline-block text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative",
-                            isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
-                          )}
-                          whileHover={{ scale: 1.15 }}
-                        >
-                          {item.name}
-                          {isActive && (
-                            <motion.div 
-                              layoutId="activeNav"
-                              className="absolute inset-0 bg-white/10 rounded-full -z-10"
-                            />
-                          )}
-                        </motion.span>
-                      </Link>
-                    ) : (
-                      <div
-                        className={cn(
-                          "inline-flex items-center gap-1 text-[13px] font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative",
-                          isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
-                        )}
-                      >
-                        {item.name}
-                        <ChevronDown className={cn("w-3 h-3 opacity-50 transition-transform duration-300", hoveredItem === item.name && "rotate-180")} />
-                        {isActive && (
-                          <motion.div 
-                            layoutId="activeNav"
-                            className="absolute inset-0 bg-white/10 rounded-full -z-10"
-                          />
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {item.type === "dropdown" && (
-                    <AnimatePresence>
-                      {hoveredItem === item.name && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-0 pt-2 w-max min-w-[220px] z-50"
-                        >
-                          <div className="bg-[#141d4b]/95 backdrop-blur-xl border border-white/10 rounded-[24px] p-2 shadow-2xl">
-                            {item.items?.map((sub) => (
-                              <Link
-                                key={sub.name}
-                                href={sub.href}
-                                className={cn(
-                                  "block px-5 py-3 rounded-xl text-sm font-bold transition-all",
-                                  pathname === sub.href 
-                                    ? "text-[#2dd4bf] bg-white/10" 
-                                    : "text-gray-300 hover:bg-white/5 hover:text-[#2dd4bf]"
-                                )}
-                              >
-                                {sub.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
+                <div key={item.name} className="relative group">
+                  <Link href={item.href}>
+                    <motion.span className={cn(
+                      "inline-block text-sm font-bold transition-all cursor-pointer whitespace-nowrap px-4 py-2 rounded-full relative",
+                      isActive ? "text-accent bg-white/5" : "text-gray-300 hover:text-white"
+                    )}>
+                      {item.name}
+                      {isActive && mounted && (
+                        <motion.div 
+                          layoutId="activeNav" 
+                          className="absolute inset-0 bg-white/10 rounded-full -z-10" 
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }} 
+                        />
                       )}
-                    </AnimatePresence>
-                  )}
+                    </motion.span>
+                  </Link>
                 </div>
               );
             })}
           </div>
         </div>
 
-        <div className="hidden lg:flex items-center gap-4 relative z-10">
-          <Link href="/login">
-            <Button variant="ghost" className="text-gray-300 hover:text-[#2dd4bf] hover:bg-white/5 text-sm font-bold rounded-full px-6 h-11 transition-all">
-              Sign In
-            </Button>
-          </Link>
-          <Link href="/contact">
-            <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-extrabold rounded-full px-8 shadow-lg border-none h-11 transition-all active:scale-95">
-              Contact Us
-            </Button>
-          </Link>
-        </div>
+        <div className="flex items-center gap-3 md:gap-4 relative z-10">
+          <div className="hidden lg:flex items-center gap-4">
+            <Link href="https://app.letscatchup-kcs.com/">
+              <Button variant="ghost" className="text-white hover:text-accent hover:bg-white/5 border border-white/10 hover:border-accent/40 text-sm font-bold rounded-full px-6 transition-all h-10">
+                Get started
+              </Button>
+            </Link>
+            <Link href="/#contact">
+              <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-black rounded-full px-8 shadow-xl border-none h-10 transition-all active:scale-95">
+                Get in touch
+              </Button>
+            </Link>
+          </div>
 
-        <button
-          className="lg:hidden p-2 text-gray-300 hover:text-accent hover:bg-white/5 rounded-full relative z-10 transition-all duration-300 group/ham"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <X className="w-6 h-6 transition-all group-hover/ham:drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
-          ) : (
-            <Menu className="w-6 h-6 transition-all group-hover/ham:drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
-          )}
-        </button>
-      </div>
+          <div className="lg:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-white hover:bg-white/10 rounded-xl w-10 h-10 border border-white/10 transition-all"
+                >
+                  <MenuIcon className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="bg-[rgb(15,21,61)] border-white/10 backdrop-blur-2xl w-[85%] sm:w-[400px] p-0">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>Navigation Menu</SheetTitle>
+                  <SheetDescription>Main navigation for Let's Catch Up platform.</SheetDescription>
+                </SheetHeader>
+                
+                <div className="flex flex-col h-full p-0 relative overflow-hidden bg-[rgb(15,21,61)]">
+                  <div className="absolute top-[-100px] left-[-100px] w-64 h-64 bg-accent/10 rounded-full blur-[80px] pointer-events-none" />
+                  <div className="absolute bottom-[-100px] right-[-100px] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 mt-4 bg-[#0b0f2f] border border-white/10 rounded-[2.5rem] lg:hidden overflow-hidden mx-4 shadow-2xl z-50"
-          >
-            <div className="flex flex-col p-8 gap-4">
-              <div className="w-full space-y-4">
-                {navItems.map((item) => {
-                  const isActive = item.type === "dropdown" 
-                    ? item.items?.some(sub => pathname === sub.href)
-                    : pathname === item.href;
-
-                  if (item.type === "dropdown") {
-                    return (
-                      <div 
-                        key={item.name} 
-                        className="py-2"
-                        onMouseEnter={() => setMobileHoveredItem(item.name)}
-                        onMouseLeave={() => setMobileHoveredItem(null)}
-                      >
-                        <div className={cn(
-                          "text-lg font-bold flex items-center group transition-all duration-300 cursor-pointer",
-                          isActive ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
-                        )}>
-                          <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                            <ArrowRight className="w-4 h-4 mr-2" />
-                          </span>
-                          <span className="group-hover:translate-x-1 transition-transform duration-300 flex items-center gap-2">
-                            {item.name}
-                            <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", mobileHoveredItem === item.name && "rotate-180")} />
-                          </span>
-                        </div>
-                        <AnimatePresence>
-                          {mobileHoveredItem === item.name && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden flex flex-col gap-2 pl-6 mt-3"
-                            >
-                              {item.items?.map((sub) => (
-                                <Link
-                                  key={sub.name}
-                                  href={sub.href}
-                                  className={cn(
-                                    "font-semibold py-2 flex items-center group transition-all duration-300",
-                                    pathname === sub.href ? "text-[#2dd4bf]" : "text-gray-400 hover:text-[#2dd4bf]"
-                                  )}
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                  <span className="w-0 group-hover:w-5 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                                    <ArrowRight className="w-3 h-3 mr-2" />
-                                  </span>
-                                  <span className="group-hover:translate-x-1 transition-transform duration-300">
-                                    {sub.name}
-                                  </span>
-                                </Link>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                  <div className="text-left mb-2 relative z-10 px-6 pt-8 pb-2">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="relative w-10 h-10 overflow-hidden shadow-xl">
+                        <Image src="/favicon-v2.ico" alt="Logo" fill className="object-contain" />
                       </div>
-                    );
-                  }
-                  return (
-                    <div key={item.name} className="py-2">
-                      <Link
-                        href={item.href!}
-                        className={cn(
-                          "text-lg font-bold flex items-center group transition-all duration-300",
-                          pathname === item.href ? "text-[#2dd4bf]" : "text-gray-300 hover:text-[#2dd4bf]"
-                        )}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <span className="w-0 group-hover:w-6 overflow-hidden transition-all duration-300 text-accent opacity-0 group-hover:opacity-100 flex items-center">
-                          <ArrowRight className="w-4 h-4 mr-2" />
-                        </span>
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {item.name}
-                        </span>
+                      <span className="text-white font-headline font-bold text-xl tracking-tight">Let's Catch Up</span>
+                    </div>
+                    <Separator className="bg-white/10 mb-4" />
+                  </div>
+                  
+                  <nav className="flex flex-col gap-2 relative z-10 flex-1 px-6">
+                    {navItems.map((item, idx) => {
+                      const isActive = getIsActive(item);
+                      return (
+                        <Link 
+                          key={item.name} 
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <motion.div 
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className={cn(
+                              "flex items-center gap-4 px-5 py-3.5 rounded-2xl transition-all duration-300 group relative overflow-hidden",
+                              isActive 
+                                ? "bg-accent-gradient text-white shadow-xl shadow-accent/10" 
+                                : "text-gray-100 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/20"
+                            )}
+                          >
+                            <item.icon className={cn(
+                              "w-5 h-5 transition-transform duration-300 group-hover:scale-110",
+                              isActive ? "text-white" : "text-white/80"
+                            )} />
+                            <span className="font-bold text-base tracking-tight">{item.name}</span>
+                          </motion.div>
+                        </Link>
+                      );
+                    })}
+                  </nav>
+
+                  <div className="mt-auto p-6 border-t border-white/20 flex flex-col gap-4 relative z-10 bg-black/20">
+                    <div className="flex flex-col gap-3">
+                      <Link href="https://app.letscatchup-kcs.com/" onClick={() => setIsOpen(false)} className="w-full">
+                        <Button className="w-full h-12 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-[10px] gap-3 shadow-xl border-none">
+                          <LogIn className="w-4 h-4" /> Get started
+                        </Button>
+                      </Link>
+                      <Link href="/#contact" onClick={() => setIsOpen(false)} className="w-full">
+                        <Button variant="outline" className="w-full h-12 rounded-2xl border-white/20 bg-white/10 text-white font-bold gap-3">
+                          <Phone className="w-4 h-4 text-accent" /> Get in touch
+                        </Button>
                       </Link>
                     </div>
-                  );
-                })}
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10 justify-start items-start">
-                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full sm:w-auto">
-                  <Button variant="outline" className="w-full sm:w-48 glass border-white/10 rounded-full h-14 text-lg font-bold">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="w-full sm:w-auto">
-                  <Button className="w-full sm:w-48 bg-accent-gradient border-none rounded-full h-14 text-lg font-extrabold shadow-lg">
-                    Contact Us
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+                    <div className="flex gap-4 pt-2 justify-center">
+                      <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105 shrink-0">
+                        <Image src="/googleplay.png" alt="Google Play Store" width={120} height={36} className="object-contain" />
+                      </Link>
+                      <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105 shrink-0">
+                        <Image src="/appstore.jpg" alt="Apple App Store" width={120} height={36} className="object-contain rounded-lg" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </div>
     </motion.nav>
   );
 }

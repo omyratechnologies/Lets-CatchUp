@@ -1,12 +1,10 @@
-
 "use client";
 
 import React from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, ArrowRight, Globe, Cpu, Zap, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { GraduationCap, Briefcase, Globe, Cpu, Zap, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function ServicesPage() {
@@ -50,7 +48,7 @@ export default function ServicesPage() {
           <p className="text-xl text-gray-400">Professional platforms designed for the unique needs of every learner and leader.</p>
         </motion.div>
 
-        <div className="grid gap-16">
+        <div className="grid gap-8 md:gap-16">
           {services.map((s, i) => (
             <motion.div
               key={i}
@@ -95,17 +93,6 @@ export default function ServicesPage() {
                         {feat.name}
                       </div>
                     ))}
-                  </div>
-
-                  <div className="pt-4">
-                    <Link href={s.href}>
-                      <Button size="lg" className={cn(
-                        "rounded-full px-12 h-16 text-lg font-bold shadow-xl transition-all hover:scale-105 active:scale-95",
-                        s.color === "accent" ? "bg-accent-gradient border-none" : "bg-primary hover:bg-primary/90"
-                      )}>
-                        Explore Tools <ArrowRight className="ml-2 w-5 h-5" />
-                      </Button>
-                    </Link>
                   </div>
                 </div>
 

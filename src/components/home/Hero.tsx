@@ -1,155 +1,137 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle2, BarChart3, Users } from "lucide-react";
-import Link from "next/link";
-import gsap from "gsap";
-import { motion } from "framer-motion";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const blob1Ref = useRef<HTMLDivElement>(null);
-  const blob2Ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const blobs = [blob1Ref.current, blob2Ref.current];
-    
-    blobs.forEach((blob, i) => {
-      if (!blob) return;
-      gsap.to(blob, {
-        x: "random(-80, 80)",
-        y: "random(-80, 80)",
-        duration: "random(12, 18)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: i * 2
-      });
-    });
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const xPos = (clientX / window.innerWidth - 0.5);
-      const yPos = (clientY / window.innerHeight - 0.5);
-
-      blobs.forEach((blob, i) => {
-        if (!blob) return;
-        gsap.to(blob, {
-          x: xPos * (40 * (i + 1)),
-          y: yPos * (40 * (i + 1)),
-          duration: 1.5,
-          ease: "power2.out",
-        });
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
-    <section ref={containerRef} className="relative pt-32 pb-20 overflow-hidden min-h-[90vh] flex items-center px-6">
-      <div ref={blob1Ref} className="absolute top-[15%] right-[10%] -z-10 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/10 rounded-full blur-[100px] md:blur-[150px]" />
-      <div ref={blob2Ref} className="absolute bottom-[15%] left-[5%] -z-10 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-accent/10 rounded-full blur-[90px] md:blur-[130px]" />
+    <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32 pb-16 overflow-hidden">
+      {/* Background Ambient Glows */}
+      <div className="absolute top-20 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary/10 rounded-full blur-[80px] md:blur-[120px] -z-10" />
+      <div className="absolute bottom-0 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent/10 rounded-full blur-[80px] md:blur-[120px] -z-10" />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center w-full relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8 text-center lg:text-left"
-        >
-          <div className="flex justify-center lg:justify-start">
-            <Badge variant="secondary" className="bg-white/5 border-white/10 text-accent px-5 py-2 rounded-full backdrop-blur-md">
-              🚀 Accelerate Your Growth
-            </Badge>
+      <div className="max-w-7xl mx-auto px-6 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Content */}
+          <div className="space-y-8 md:space-y-10 z-10 text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-headline font-bold text-white leading-[1.1] tracking-tight">
+                Unlock potential <br className="hidden sm:block" />
+                and <span className="text-gradient">build <br className="hidden lg:block" />connections</span>
+              </h1>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base md:text-xl text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium"
+            >
+              Building a unified, secure ecosystem where education meets community — without the algorithmic noise.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 md:gap-5"
+            >
+              <Link href="https://app.letscatchup-kcs.com/">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-accent-gradient hover:opacity-90 text-white font-black rounded-full px-10 h-14 md:h-16 text-base md:text-lg transition-all hover:scale-105 border-none shadow-2xl"
+                >
+                  Get Started <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link href="/#contact">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto bg-white/5 border-white/10 text-white font-bold rounded-full px-10 h-14 md:h-16 text-base md:text-lg transition-all hover:bg-white/10 hover:text-accent hover:border-accent/40"
+                >
+                  Get in touch
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* App Store Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4"
+            >
+              <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105 shrink-0">
+                <Image src="/googleplay.png" alt="Google Play Store" width={140} height={42} className="object-contain" />
+              </Link>
+              <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105 shrink-0">
+                <Image src="/appstore.jpg" alt="Apple App Store" width={140} height={42} className="object-contain rounded-lg" />
+              </Link>
+            </motion.div>
           </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-headline font-bold leading-tight tracking-tight">
-            Unlock potential and <br className="hidden md:block" />
-            <span className="text-gradient">build connections</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed font-medium mx-auto lg:mx-0">
-            Lets Catch Up is your all-in-one platform for collaboration and learning — built for schools and startups.
-          </p>
 
-          <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full bg-accent-gradient hover:opacity-90 rounded-full px-10 h-14 md:h-16 text-lg font-bold transition-all hover:scale-105 button-glow border-none">
-                Get Started <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full rounded-full px-10 h-14 md:h-16 text-lg glass border-white/20 hover:bg-white/10 transition-all">
-                Contact Us
-              </Button>
-            </Link>
-          </div>
-
-          <div className="flex items-center justify-center lg:justify-start gap-8 pt-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span>Free tier</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span>No credit card</span>
-            </div>
-          </div>
-        </motion.div>
-
-        <div className="relative min-h-[400px] flex items-center justify-center lg:justify-end">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
+          {/* Right Column: Brand Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            className="relative"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative h-[400px] md:h-[600px] flex items-center justify-center mt-12 lg:mt-0"
           >
-            <motion.div 
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="glass-card p-6 md:p-8 w-64 md:w-80 relative z-20 shadow-2xl border-white/10"
-            >
-               <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-accent-gradient flex items-center justify-center mb-6">
-                 <BarChart3 className="text-white w-5 h-5 md:w-6 md:h-6" />
-               </div>
-               <h4 className="text-xl md:text-2xl font-bold mb-2">Smart Analytics</h4>
-               <p className="text-xs md:text-sm text-muted-foreground">Track student progress with real-time AI insights.</p>
-               <div className="mt-6 space-y-3">
-                 <div className="space-y-1">
-                   <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-accent">
-                     <span>Completion</span>
-                     <span>88%</span>
-                   </div>
-                   <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                     <motion.div 
-                       initial={{ width: 0 }}
-                       animate={{ width: "88%" }}
-                       transition={{ duration: 1.5, delay: 1 }}
-                       className="h-full bg-accent" 
-                     />
-                   </div>
-                 </div>
-               </div>
-            </motion.div>
+            <div className="relative z-20 group">
+              <div className="absolute -inset-12 md:-inset-20 bg-accent-gradient opacity-10 blur-[100px] rounded-full group-hover:opacity-25 transition-opacity duration-1000" />
+              
+              <motion.div
+                animate={{ 
+                  y: [0, -20, 0],
+                  rotate: [0, 2, 0],
+                  scale: [1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 6, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] flex items-center justify-center"
+              >
+                <Image
+                  src="/logo-3D.png"
+                  alt="Let's Catch Up Brand Logo"
+                  fill
+                  className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
+                  priority
+                />
+                
+                {/* Decorative particles orbiting the logo */}
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 border border-white/5 rounded-full"
+                />
+                <motion.div 
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                  className="absolute -inset-10 border border-white/5 rounded-full opacity-50"
+                />
+              </motion.div>
+            </div>
 
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-10 -right-4 md:-right-8 glass-card p-3 md:p-4 rounded-2xl z-30 border-white/10 shadow-xl"
-            >
-              <div className="flex items-center gap-2 md:gap-3">
-                <div className="relative w-2 h-2 md:w-3 md:h-3">
-                  <div className="absolute inset-0 bg-emerald-500 rounded-full animate-ping opacity-75" />
-                  <div className="relative w-2 h-2 md:w-3 md:h-3 rounded-full bg-emerald-500" />
-                </div>
-                <span className="text-[10px] md:text-xs font-bold">2.4k Live</span>
-              </div>
-            </motion.div>
+            {/* Background Glow Rings */}
+            <div className="absolute inset-0 flex items-center justify-center -z-10">
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.15, 0.05] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="w-[400px] md:w-[600px] h-[400px] md:h-[600px] rounded-full border border-white/10" 
+              />
+            </div>
           </motion.div>
         </div>
       </div>

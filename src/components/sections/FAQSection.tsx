@@ -12,7 +12,7 @@ import {
 import { motion } from "framer-motion";
 import { HelpCircle, Sparkles } from "lucide-react";
 
-export default function FAQPage() {
+export function FAQSection() {
   const faqs = [
     {
       q: "What is “Let’s Catch Up” and who is it for?",
@@ -37,14 +37,15 @@ export default function FAQPage() {
   ];
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
+    <section id="faq" className="py-24 px-6 relative overflow-hidden">
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-4xl mx-auto space-y-16 md:space-y-20 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-center space-y-6"
         >
           <div className="flex justify-center">
@@ -52,18 +53,18 @@ export default function FAQPage() {
               Support Center
             </Badge>
           </div>
-          <h1 className="text-5xl md:text-7xl font-headline font-bold leading-tight">
+          <h2 className="text-4xl md:text-6xl font-headline font-bold leading-tight">
             Frequently Asked <br /><span className="text-gradient">Questions</span>
-          </h1>
-          <p className="text-xl text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
+          </h2>
+          <p className="text-[10px] md:text-xl text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
             Everything you need to know about the Let’s Catch Up platform and how it empowers your community.
           </p>
         </motion.div>
 
         <motion.div 
           initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           className="relative group"
         >
           <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[40px] bg-accent-gradient opacity-10 transition-all duration-500 group-hover:opacity-20 group-hover:-bottom-6 group-hover:-right-6 -z-10" />
@@ -83,7 +84,7 @@ export default function FAQPage() {
                   <AccordionTrigger className="text-base md:text-xl font-bold hover:text-accent py-6 transition-all text-left hover:no-underline gap-4">
                     <span className="flex-1">{faq.q}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-xs md:text-lg text-gray-400 leading-relaxed pb-8 pt-2 font-medium">
+                  <AccordionContent className="text-[10px] md:text-lg text-gray-400 leading-relaxed pb-8 pt-2 font-medium">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -108,6 +109,6 @@ export default function FAQPage() {
           </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

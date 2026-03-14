@@ -3,7 +3,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Network, Settings, Users, Layout, Zap, Shield, Cpu } from "lucide-react";
+import { Network, Settings, Users, Layout, Zap, Shield, Cpu, ShieldCheck } from "lucide-react";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 
 export default function FeaturesPage() {
@@ -40,13 +40,12 @@ export default function FeaturesPage() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
-      <div className="max-w-7xl mx-auto space-y-24">
+      <div className="max-w-7xl mx-auto space-y-16 md:space-y-24">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center space-y-6 max-w-4xl mx-auto"
         >
-          <Badge className="glass text-accent border-white/10 px-4 py-1">Platform Capabilities</Badge>
           <h1 className="text-5xl md:text-7xl font-headline font-bold leading-tight">
             Engineered for <span className="text-gradient">Excellence</span>
           </h1>
@@ -55,14 +54,14 @@ export default function FeaturesPage() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-32">
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-12 md:gap-y-32">
           {detailedFeatures.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1 }}
-              className="space-y-8"
+              className="space-y-6 md:space-y-8"
             >
               <FeatureCard
                 title={f.title}
@@ -71,9 +70,9 @@ export default function FeaturesPage() {
                 gradientFrom={f.color.split(' ')[0]}
                 gradientTo={f.color.split(' ')[1]}
               />
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-6 pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 px-4 md:px-6 pt-2 md:pt-4">
                 {f.capabilities.map((cap, j) => (
-                  <div key={j} className="flex items-center gap-2 text-xs font-bold text-gray-300 uppercase tracking-widest">
+                  <div key={j} className="flex items-center gap-2 text-[10px] md:text-xs font-bold text-gray-300 uppercase tracking-widest">
                     <Zap className="w-3 h-3 text-accent" />
                     {cap}
                   </div>
@@ -86,23 +85,35 @@ export default function FeaturesPage() {
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="glass-card p-12 bg-gradient-to-br from-primary/10 to-accent/10 border-white/10 flex flex-col md:flex-row items-center justify-between gap-12"
+          className="glass-card p-8 md:p-12 bg-gradient-to-br from-primary/10 to-accent/10 border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative overflow-hidden"
         >
-          <div className="space-y-4 text-center md:text-left">
-            <h2 className="text-4xl font-headline font-bold">Secure & Reliable</h2>
-            <p className="text-lg text-gray-400 max-w-xl">
-              Our infrastructure is built with enterprise-grade security to ensure your data is always protected and your platform stays online.
+          <div className="space-y-6 text-center md:text-left relative z-10">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+               <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-accent/20 flex items-center justify-center border border-accent/30 shadow-2xl">
+                <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-accent glow-icon" />
+              </div>
+              <div className="space-y-1">
+                <Badge variant="outline" className="border-accent/40 text-accent font-black uppercase tracking-widest text-[9px] md:text-[10px]">Certified Trust</Badge>
+                <h2 className="text-3xl md:text-4xl font-headline font-bold">ISO Certified Environment</h2>
+              </div>
+            </div>
+            <p className="text-sm md:text-lg text-gray-400 max-w-xl font-medium">
+              ISO-certified, secure, and private environment — built to the highest standards of data integrity and protection for <strong>High Trust</strong> institutional operations.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-6 shrink-0">
-            <div className="flex items-center gap-3 glass p-4 rounded-xl">
-              <Shield className="text-accent" />
-              <span className="font-bold">Encrypted</span>
+          <div className="grid grid-cols-2 gap-4 md:gap-6 shrink-0 relative z-10">
+            <div className="flex items-center gap-2 md:gap-3 glass p-3 md:p-4 rounded-xl">
+              <Shield className="text-accent w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-bold text-xs md:text-base">Encrypted</span>
             </div>
-            <div className="flex items-center gap-3 glass p-4 rounded-xl">
-              <Cpu className="text-primary" />
-              <span className="font-bold">99.9% Uptime</span>
+            <div className="flex items-center gap-2 md:gap-3 glass p-3 md:p-4 rounded-xl">
+              <Cpu className="text-primary w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-bold text-xs md:text-base">99.9% Uptime</span>
             </div>
+          </div>
+          
+          <div className="absolute -bottom-10 -right-10 opacity-5 pointer-events-none">
+            <ShieldCheck size={300} strokeWidth={0.5} />
           </div>
         </motion.div>
       </div>
