@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from "react";
@@ -69,7 +68,7 @@ export function Invitation() {
             <h2 className="text-4xl md:text-7xl font-headline font-bold leading-tight tracking-tight text-white">
               Join the <span className="text-gradient">Movement</span>
             </h2>
-            <p className="text-[10px] md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
+            <p className="text-[11px] md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium">
               We are building the architecture of the next decade. Be part of a transition that prioritizes utility, safety, and human growth.
             </p>
           </motion.div>
@@ -129,7 +128,7 @@ export function Invitation() {
                             "relative bg-white/[0.03] border border-white/5 border-l-2 p-4 md:p-10 rounded-xl md:rounded-[2rem] shadow-inner backdrop-blur-sm transition-all duration-500 group-data-[state=open]:translate-y-0 translate-y-4 opacity-0 group-data-[state=open]:opacity-100 overflow-hidden",
                             inv.accentBorder
                           )}>
-                            <p className="text-[10px] md:text-xl text-gray-400 leading-relaxed font-medium relative z-10">
+                            <p className="text-[11px] md:text-xl text-gray-400 leading-relaxed font-medium relative z-10">
                               {inv.desc}
                             </p>
                           </div>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -7,11 +6,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { PlaceHolderImages } from '@/app/lib/placeholder-images';
 
 export function Hero() {
-  const brandLogo = PlaceHolderImages.find(img => img.id === 'hero-brand-logo');
-
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-32 pb-16 overflow-hidden">
       {/* Background Ambient Glows */}
@@ -91,16 +87,13 @@ export function Hero() {
                 }}
                 className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] flex items-center justify-center"
               >
-                {brandLogo && (
-                  <Image
-                    src={brandLogo.imageUrl}
-                    alt={brandLogo.description}
-                    fill
-                    className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
-                    priority
-                    data-ai-hint={brandLogo.imageHint}
-                  />
-                )}
+                <Image
+                  src="/image.png"
+                  alt="Let's Catch Up Brand Logo"
+                  fill
+                  className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
+                  priority
+                />
                 
                 {/* Decorative particles orbiting the logo */}
                 <motion.div 
