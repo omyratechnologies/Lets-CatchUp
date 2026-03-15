@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from "react";
@@ -158,21 +159,6 @@ export function Invitation() {
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 transition-transform group-hover:translate-x-1" />
               <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-0 lg:group-hover:opacity-10 transition-opacity" />
             </button>
-          </Link>
-        </motion.div>
-
-        {/* App Store Links Migration */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 pt-8 md:pt-12"
-        >
-          <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105 shrink-0">
-            <Image src="/googleplay.png" alt="Google Play Store" width={140} height={42} className="object-contain" />
-          </Link>
-          <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105 shrink-0">
-            <Image src="/appstore.jpg" alt="Apple App Store" width={140} height={42} className="object-contain rounded-lg" />
           </Link>
         </motion.div>
       </div>
