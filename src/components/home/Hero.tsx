@@ -62,21 +62,6 @@ export function Hero() {
                 </Button>
               </Link>
             </motion.div>
-
-            {/* App Store Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4"
-            >
-              <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105 shrink-0">
-                <Image src="/googleplay.png" alt="Google Play Store" width={140} height={42} className="object-contain" />
-              </Link>
-              <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105 shrink-0">
-                <Image src="/appstore.jpg" alt="Apple App Store" width={140} height={42} className="object-contain rounded-lg" />
-              </Link>
-            </motion.div>
           </div>
 
           {/* Right Column: Brand Image */}
@@ -103,7 +88,7 @@ export function Hero() {
                 className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] flex items-center justify-center"
               >
                 <Image
-                  src="/logo-3D.png"
+                  src="/image.png"
                   alt="Let's Catch Up Brand Logo"
                   fill
                   className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
