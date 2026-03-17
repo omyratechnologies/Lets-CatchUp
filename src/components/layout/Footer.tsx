@@ -23,7 +23,7 @@ const FOOTER_LINKS = {
     { name: "Privacy Policy", href: "#" },
     { name: "Terms of Service", href: "#" },
     { name: "Refund Policy", href: "#" },
-    { name: "Security", href: "#" },
+    { name: "Community Guidelines", href: "#" },
   ]
 };
 
@@ -123,7 +123,7 @@ export function Footer() {
                   <Image src="/googleplay.png" alt="Google Play Store" width={120} height={36} className="object-contain" />
                 </Link>
                 <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105 shrink-0">
-                  <Image src="/appstore.jpg" alt="Apple App Store" width={120} height={36} className="object-contain rounded-lg" />
+                  <Image src="/appstore.jpg" alt="Apple App Store" width={120} height={36} className="object-contain rounded-lg shadow-xl" />
                 </Link>
               </div>
             </div>
@@ -197,7 +197,7 @@ export function Footer() {
 
           <div className="flex gap-6 md:gap-8 text-[9px] uppercase tracking-widest font-black text-gray-500">
             <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Security</Link>
+            <Link href="#" className="hover:text-white transition-colors">Community Guidelines</Link>
           </div>
         </div>
       </div>
