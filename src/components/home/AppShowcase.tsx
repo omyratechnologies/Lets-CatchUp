@@ -100,12 +100,9 @@ export function AppShowcase() {
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    scale: 1,
-                  }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   animate={{
-                    y: [0, -12, 0],
+                    y: [0, -15, 0],
                   }}
                   transition={{
                     opacity: { duration: 0.8, delay: f.delay },
@@ -114,7 +111,7 @@ export function AppShowcase() {
                       duration: f.duration,
                       repeat: Infinity,
                       ease: "easeInOut",
-                      delay: f.delay * 2, // Stagger the start of the float
+                      delay: f.delay,
                     }
                   }}
                   viewport={{ once: true }}
