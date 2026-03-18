@@ -11,7 +11,9 @@ import {
   Layout, 
   Download, 
   Bell, 
-  TrendingUp 
+  TrendingUp,
+  ClipboardCheck,
+  Library
 } from "lucide-react";
 
 export function AppShowcase() {
@@ -57,6 +59,18 @@ export function AppShowcase() {
       description: "Monitor growth on the go",
       icon: TrendingUp,
       color: "text-emerald-400"
+    },
+    {
+      title: "Smart Attendance",
+      description: "Geo-fenced check-ins",
+      icon: ClipboardCheck,
+      color: "text-amber-400"
+    },
+    {
+      title: "Digital Library",
+      description: "24/7 resource access",
+      icon: Library,
+      color: "text-violet-400"
     }
   ];
 
@@ -223,7 +237,7 @@ export function AppShowcase() {
           </div>
 
           {/* Features Stats Row */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 border-t border-white/5 pt-12 w-full max-w-4xl">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 border-t border-white/5 pt-12 w-full max-w-6xl">
             {bottomFeatures.map((feat, i) => (
               <div key={i} className="flex flex-col items-center gap-3">
                 <div className={`p-3 rounded-xl bg-white/5 border border-white/10 ${feat.color}`}>
