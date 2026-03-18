@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -78,7 +77,7 @@ export function Footer() {
               <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden shadow-2xl">
                 <Image src="/favicon-v2.ico" alt="Let's Catch Up Logo" fill sizes="48px" className="object-contain" />
               </div>
-              <span className="font-headline font-bold text-xl md:text-2xl tracking-tight text-white">
+              <span className="font-bold text-xl md:text-2xl tracking-tight text-white">
                 Let’s catch up
               </span>
             </Link>
@@ -181,7 +180,7 @@ export function Footer() {
                 style={{ height: 'auto' }}
                 className="object-contain"
               />
-              <span className="text-[8px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-accent transition-colors">ISO Certified</span>
+              <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-gray-500 group-hover:text-accent transition-colors">ISO Certified</span>
             </div>
             <p className="text-gray-500 text-[9px] uppercase tracking-widest font-medium leading-relaxed">
               @COPYRIGHT {currentYear} | ALL RIGHTS RESERVED BY <span className="font-bold text-white">KANDHUGULE CONSULTANCY SERVICES PRIVATE LIMITED</span>

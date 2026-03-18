@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -132,7 +131,7 @@ export function Navbar() {
                 priority
               />
             </motion.div>
-            <span className="font-headline font-bold text-base md:text-xl tracking-tight text-white block">Let's Catch Up</span>
+            <span className="font-bold text-base md:text-xl tracking-tight text-white block">Let's Catch Up</span>
           </Link>
         </div>
 
@@ -171,7 +170,7 @@ export function Navbar() {
               </Button>
             </Link>
             <Link href="/#contact">
-              <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-black rounded-full px-8 shadow-xl border-none h-10 transition-all active:scale-95">
+              <Button className="bg-accent-gradient hover:opacity-90 text-white text-sm font-bold rounded-full px-8 shadow-xl border-none h-10 transition-all active:scale-95">
                 Get in touch
               </Button>
             </Link>
@@ -203,7 +202,7 @@ export function Navbar() {
                       <div className="relative w-10 h-10 overflow-hidden shadow-xl">
                         <Image src="/favicon-v2.ico" alt="Logo" fill className="object-contain" />
                       </div>
-                      <span className="text-white font-headline font-bold text-xl tracking-tight">Let's Catch Up</span>
+                      <span className="text-white font-bold text-xl tracking-tight">Let's Catch Up</span>
                     </div>
                     <Separator className="bg-white/10 mb-4" />
                   </div>
@@ -242,7 +241,7 @@ export function Navbar() {
                   <div className="mt-auto p-6 border-t border-white/20 flex flex-col gap-4 relative z-10 bg-black/20">
                     <div className="flex flex-col gap-3">
                       <Link href="https://app.letscatchup-kcs.com/" onClick={() => setIsOpen(false)} className="w-full">
-                        <Button className="w-full h-12 rounded-2xl bg-accent-gradient text-white font-black uppercase tracking-widest text-[10px] gap-3 shadow-xl border-none">
+                        <Button className="w-full h-12 rounded-2xl bg-accent-gradient text-white font-bold uppercase tracking-widest text-[10px] gap-3 shadow-xl border-none">
                           <LogIn className="w-4 h-4" /> Get started
                         </Button>
                       </Link>
