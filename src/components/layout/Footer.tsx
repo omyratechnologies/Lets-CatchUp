@@ -118,17 +118,6 @@ export function Footer() {
                   </motion.a>
                 ))}
               </div>
-
-              <div className="flex flex-wrap gap-3">
-                <Link href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" target="_blank" className="transition-transform hover:scale-105 shrink-0 group relative">
-                  <div className="absolute -inset-1 bg-accent/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Image src="/googleplay.png" alt="Google Play Store" width={120} height={36} style={{ height: 'auto' }} className="relative object-contain" />
-                </Link>
-                <Link href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" target="_blank" className="transition-transform hover:scale-105 shrink-0 group relative">
-                  <div className="absolute -inset-1 bg-primary/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Image src="/appstore.jpg" alt="Apple App Store" width={120} height={36} style={{ height: 'auto' }} className="relative object-contain rounded-lg shadow-xl" />
-                </Link>
-              </div>
             </div>
           </div>
 
