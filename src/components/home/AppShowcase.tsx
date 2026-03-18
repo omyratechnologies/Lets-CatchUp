@@ -26,8 +26,8 @@ export function AppShowcase() {
           <div className="flex flex-col items-center gap-4">
             <motion.span 
               initial={{ opacity: 0, letterSpacing: "0.1em" }}
-              whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
-              className="text-[10px] md:text-xs font-bold uppercase text-accent tracking-[0.3em] drop-shadow-[0_0_10px_rgba(45,212,191,0.5)]"
+              whileInView={{ opacity: 1, letterSpacing: "0.2em" }}
+              className="text-xs font-bold uppercase text-accent tracking-[0.2em] drop-shadow-[0_0_10px_rgba(45,212,191,0.5)] font-body"
             >
               Mobile Experience
             </motion.span>
@@ -35,25 +35,25 @@ export function AppShowcase() {
               Take Let’s Catch Up <span className="text-gradient">Anywhere</span>
             </h2>
           </div>
-          <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto font-body">
             Seamlessly stay connected to your communities, conversations, and learning — wherever you are.
           </p>
         </motion.div>
 
-        {/* Mobile Mockup Section */}
+        {/* High-Fidelity Mobile Mockup Section */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="relative w-full max-w-[280px] md:max-w-[360px] aspect-[9/18.5] mx-auto z-20"
+          className="relative w-full max-w-[280px] md:max-w-[340px] aspect-[9/18.5] mx-auto z-20"
         >
           {/* Ambient Glow behind phone */}
           <div className="absolute inset-0 bg-accent/20 blur-[80px] md:blur-[120px] rounded-full -z-10" />
           
           <motion.div
             animate={{ 
-              y: [0, -20, 0],
+              y: [0, -15, 0],
             }}
             transition={{ 
               duration: 6, 
@@ -62,14 +62,38 @@ export function AppShowcase() {
             }}
             className="relative w-full h-full"
           >
-            <Image 
-              src="/mobile-view.png" 
-              alt="Let's Catch Up Mobile App View"
-              fill
-              sizes="(max-width: 768px) 280px, 360px"
-              className="object-contain drop-shadow-[0_32px_64px_rgba(0,0,0,0.6)]"
-              priority
-            />
+            {/* The Phone Frame */}
+            <div className="absolute inset-0 bg-slate-900 border-[8px] border-slate-800 rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden">
+              {/* Internal Bezel/Edge */}
+              <div className="absolute inset-0 border-[2px] border-white/5 rounded-[2.6rem] pointer-events-none z-30" />
+              
+              {/* Dynamic Notch */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl z-40 flex items-center justify-center gap-2">
+                <div className="w-8 h-1 bg-slate-700 rounded-full" />
+                <div className="w-2 h-2 bg-slate-700 rounded-full" />
+              </div>
+
+              {/* Screen Content */}
+              <div className="relative w-full h-full overflow-hidden bg-black">
+                <Image 
+                  src="/mobile-view.png" 
+                  alt="Let's Catch Up Mobile App View"
+                  fill
+                  sizes="(max-width: 768px) 280px, 340px"
+                  className="object-cover"
+                  priority
+                />
+                {/* Screen Reflection Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-20" />
+              </div>
+            </div>
+
+            {/* Hardware Buttons - Left Side */}
+            <div className="absolute top-24 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
+            <div className="absolute top-40 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
+            
+            {/* Power Button - Right Side */}
+            <div className="absolute top-32 -right-2 w-1 h-16 bg-slate-700 rounded-r-md border-l border-black/20" />
           </motion.div>
         </motion.div>
 
@@ -81,12 +105,12 @@ export function AppShowcase() {
           transition={{ delay: 0.5 }}
           className="flex flex-col items-center gap-8"
         >
-          <div className="flex flex-col items-center gap-4">
-             <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
-                <Smartphone className="w-3 h-3 text-accent" />
+          <div className="flex flex-col items-center gap-6">
+             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2 font-body">
+                <Smartphone className="w-4 h-4 text-accent" />
                 Available on Android & iOS
              </span>
-             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+             <div className="flex flex-wrap justify-center gap-6">
                 <Link 
                   href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" 
                   target="_blank"
@@ -108,7 +132,7 @@ export function AppShowcase() {
                   className="group relative transition-all duration-300 hover:scale-105 hover:-translate-y-1"
                 >
                   <div className="absolute -inset-1 bg-primary/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative overflow-hidden rounded-lg shadow-xl">
+                  <div className="relative overflow-hidden rounded-lg shadow-xl border border-white/5">
                     <Image 
                       src="/appstore.jpg" 
                       alt="Apple App Store" 
