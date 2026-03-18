@@ -19,15 +19,14 @@ export function AppShowcase() {
     {
       title: "Smart Attendance",
       icon: ClipboardCheck,
-      pos: "top-4 -right-4 md:top-12 md:-right-8",
+      pos: "top-12 -right-12 md:-right-24",
       delay: 0.2,
       duration: 5,
       color: "text-accent"
     },
     {
       title: "Real-time Chat",
-      icon: MessageCircle,
-      pos: "top-[25%] -left-4 md:top-[28%] md:-left-16",
+      icon: "top-[28%] -left-12 md:-left-32",
       delay: 0.4,
       duration: 6,
       color: "text-cyan-400"
@@ -35,7 +34,7 @@ export function AppShowcase() {
     {
       title: "Private Spaces",
       icon: Shield,
-      pos: "top-[45%] -right-6 md:top-[42%] md:-right-14",
+      pos: "top-[45%] -right-14 md:-right-32",
       delay: 0.6,
       duration: 5.5,
       color: "text-indigo-400"
@@ -43,7 +42,7 @@ export function AppShowcase() {
     {
       title: "Instant Alerts",
       icon: Bell,
-      pos: "top-[65%] -left-6 md:top-[58%] md:-left-10",
+      pos: "top-[65%] -left-14 md:-left-24",
       delay: 0.8,
       duration: 4.8,
       color: "text-primary"
@@ -51,7 +50,7 @@ export function AppShowcase() {
     {
       title: "Progress Sync",
       icon: TrendingUp,
-      pos: "bottom-4 -right-4 md:bottom-[15%] md:-right-12",
+      pos: "bottom-[15%] -right-12 md:-right-28",
       delay: 1.0,
       duration: 6.2,
       color: "text-emerald-400"
@@ -93,38 +92,82 @@ export function AppShowcase() {
         {/* Mockup Section with Responsive Bubbles */}
         <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center">
           <div className="relative w-full max-w-[280px] md:max-w-[320px]">
-            {/* Desktop & Tablet Floating Bubbles (Zigzag outside frame) */}
+            {/* Desktop & Tablet Floating Bubbles (Zigzag outside frame - NO OVERLAP) */}
             <div className="absolute inset-0 pointer-events-none z-30 hidden md:block">
-              {floatingFeatures.map((f, i) => {
-                const Icon = f.icon;
-                return (
-                  <motion.div
-                    key={`desktop-bubble-${i}`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    animate={{
-                      y: [0, -12, 0],
-                    }}
-                    transition={{
-                      opacity: { duration: 0.8, delay: f.delay },
-                      scale: { duration: 0.8, delay: f.delay },
-                      y: {
-                        duration: f.duration,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: f.delay,
-                      }
-                    }}
-                    viewport={{ once: true }}
-                    className={`absolute ${f.pos} glass-card p-2 md:p-3 flex items-center gap-2 md:gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto`}
-                  >
-                    <div className={`w-6 h-6 md:w-8 md:h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 ${f.color}`}>
-                      <Icon className="w-3 h-3 md:w-4 md:h-4" />
-                    </div>
-                    <span className="font-headline text-[8px] md:text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">{f.title}</span>
-                  </motion.div>
-                );
-              })}
+              <motion.div
+                key="bubble-1"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ opacity: { delay: 0.2 }, scale: { delay: 0.2 }, y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 } }}
+                viewport={{ once: true }}
+                className="absolute top-12 -right-32 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-accent">
+                  <ClipboardCheck className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Smart Attendance</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-2"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -15, 0] }}
+                transition={{ opacity: { delay: 0.4 }, scale: { delay: 0.4 }, y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 } }}
+                viewport={{ once: true }}
+                className="absolute top-[28%] -left-36 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-cyan-400">
+                  <MessageCircle className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Real-time Chat</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-3"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ opacity: { delay: 0.6 }, scale: { delay: 0.6 }, y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 } }}
+                viewport={{ once: true }}
+                className="absolute top-[45%] -right-40 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-indigo-400">
+                  <Shield className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Private Spaces</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-4"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ opacity: { delay: 0.8 }, scale: { delay: 0.8 }, y: { duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.8 } }}
+                viewport={{ once: true }}
+                className="absolute top-[65%] -left-32 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-primary">
+                  <Bell className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Instant Alerts</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-5"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -18, 0] }}
+                transition={{ opacity: { delay: 1.0 }, scale: { delay: 1.0 }, y: { duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 1.0 } }}
+                viewport={{ once: true }}
+                className="absolute bottom-[15%] -right-32 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-emerald-400">
+                  <TrendingUp className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Progress Sync</span>
+              </motion.div>
             </div>
 
             {/* High-Fidelity Mobile Mockup (Stationary) */}
@@ -165,10 +208,10 @@ export function AppShowcase() {
             </motion.div>
           </div>
 
-          {/* Mobile Small Devices Feature Bubbles (Zigzag below mockup) */}
-          <div className="grid grid-cols-2 gap-4 mt-12 w-full max-w-[320px] md:hidden px-4">
+          {/* Mobile Small Devices Feature Bubbles (Separated Below Mockup) */}
+          <div className="grid grid-cols-2 gap-4 mt-16 w-full max-w-[320px] md:hidden px-4">
             {floatingFeatures.map((f, i) => {
-              const Icon = f.icon;
+              const Icon = typeof f.icon === 'string' ? MessageCircle : f.icon;
               return (
                 <motion.div
                   key={`mobile-bubble-${i}`}
@@ -209,7 +252,7 @@ export function AppShowcase() {
         >
           {/* Download Buttons */}
           <div className="flex flex-col items-center gap-6">
-             <span className="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2 font-body">
+             <span className="font-body text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
                 <Smartphone className="w-4 h-4 text-accent" />
                 Available on Android & iOS
              </span>
