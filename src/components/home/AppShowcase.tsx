@@ -4,9 +4,33 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Smartphone } from "lucide-react";
+import { Smartphone, MessageSquare, CreditCard, Layout, Star, Users, ShieldCheck } from "lucide-react";
 
 export function AppShowcase() {
+  const floatingFeatures = [
+    {
+      title: "Real-time Chat",
+      icon: MessageSquare,
+      pos: "top-10 -left-16",
+      delay: 0.5,
+      color: "text-accent"
+    },
+    {
+      title: "Secure Payments",
+      icon: CreditCard,
+      pos: "bottom-20 -right-16",
+      delay: 0.8,
+      color: "text-primary"
+    },
+    {
+      title: "Smart Feed",
+      icon: Layout,
+      pos: "top-1/2 -right-20",
+      delay: 1.1,
+      color: "text-emerald-400"
+    }
+  ];
+
   return (
     <section 
       className="py-24 md:py-32 px-6 relative overflow-hidden bg-transparent"
@@ -14,7 +38,7 @@ export function AppShowcase() {
       {/* Background Ambient Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[400px] bg-primary/5 rounded-full blur-[160px] -z-10" />
       
-      <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-12 md:space-y-20">
+      <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-16 md:space-y-24">
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -39,71 +63,95 @@ export function AppShowcase() {
           </p>
         </motion.div>
 
-        {/* High-Fidelity Mobile Mockup Section */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="relative w-full max-w-[250px] md:max-w-[300px] aspect-[9/19] mx-auto z-20"
-        >
-          {/* Ambient Glow behind phone */}
-          <div className="absolute inset-0 bg-accent/20 blur-[80px] md:blur-[120px] rounded-full -z-10" />
-          
-          <motion.div
-            animate={{ 
-              y: [0, -15, 0],
-            }}
-            transition={{ 
-              duration: 6, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="relative w-full h-full"
+        {/* Mockup Section with Floating Elements */}
+        <div className="relative w-full max-w-lg mx-auto">
+          {/* Floating Feature Cards (Desktop Only) */}
+          <div className="hidden lg:block">
+            {floatingFeatures.map((f, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8, x: i % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: f.delay, duration: 0.8 }}
+                className={`absolute ${f.pos} glass-card p-4 flex items-center gap-3 border-white/10 z-30 shadow-2xl`}
+              >
+                <div className={`w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 ${f.color}`}>
+                  <f.icon className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-xs font-bold text-white whitespace-nowrap">{f.title}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* High-Fidelity Mobile Mockup */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="relative w-full max-w-[250px] md:max-w-[300px] aspect-[9/19] mx-auto z-20"
           >
-            {/* The Phone Frame */}
-            <div className="absolute inset-0 bg-slate-900 border-[8px] border-slate-800 rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden">
-              {/* Internal Bezel/Edge */}
-              <div className="absolute inset-0 border-[2px] border-white/5 rounded-[2.1rem] pointer-events-none z-30" />
-              
-              {/* Dynamic Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl z-40 flex items-center justify-center gap-2">
-                <div className="w-8 h-1 bg-slate-700 rounded-full" />
-                <div className="w-2 h-2 bg-slate-700 rounded-full" />
-              </div>
-
-              {/* Screen Content */}
-              <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
-                <Image 
-                  src="/mobile-view.png" 
-                  alt="Let's Catch Up Mobile App View"
-                  fill
-                  sizes="(max-width: 768px) 250px, 300px"
-                  className="object-cover"
-                  priority
-                />
-                {/* Screen Reflection Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-20" />
-              </div>
-            </div>
-
-            {/* Hardware Buttons - Left Side */}
-            <div className="absolute top-24 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
-            <div className="absolute top-40 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
+            {/* Ambient Glow behind phone */}
+            <div className="absolute inset-0 bg-accent/20 blur-[80px] md:blur-[120px] rounded-full -z-10" />
             
-            {/* Power Button - Right Side */}
-            <div className="absolute top-32 -right-2 w-1 h-16 bg-slate-700 rounded-r-md border-l border-black/20" />
-          </motion.div>
-        </motion.div>
+            {/* Orbiting Ring Decoration */}
+            <div className="absolute inset-[-40px] border border-white/5 rounded-full -z-10 animate-[spin_20s_linear_infinite] opacity-50" />
+            
+            <motion.div
+              animate={{ 
+                y: [0, -15, 0],
+              }}
+              transition={{ 
+                duration: 6, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="relative w-full h-full"
+            >
+              {/* The Phone Frame */}
+              <div className="absolute inset-0 bg-slate-900 border-[8px] border-slate-800 rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden">
+                {/* Internal Bezel */}
+                <div className="absolute inset-0 border-[2px] border-white/5 rounded-[2.1rem] pointer-events-none z-30" />
+                
+                {/* Dynamic Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl z-40 flex items-center justify-center gap-2">
+                  <div className="w-8 h-1 bg-slate-700 rounded-full" />
+                  <div className="w-2 h-2 bg-slate-700 rounded-full" />
+                </div>
 
-        {/* Download Buttons Area */}
+                {/* Screen Content */}
+                <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-[#0b0f2f]">
+                  <Image 
+                    src="/mobile-view.png" 
+                    alt="Let's Catch Up Mobile App View"
+                    fill
+                    sizes="(max-width: 768px) 250px, 300px"
+                    className="object-cover"
+                    priority
+                  />
+                  {/* Screen Reflection */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-20" />
+                </div>
+              </div>
+
+              {/* Hardware Buttons */}
+              <div className="absolute top-24 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
+              <div className="absolute top-40 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
+              <div className="absolute top-32 -right-2 w-1 h-16 bg-slate-700 rounded-r-md border-l border-black/20" />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Action & Trust Area */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="flex flex-col items-center gap-8"
+          className="flex flex-col items-center gap-12 w-full"
         >
+          {/* Download Buttons */}
           <div className="flex flex-col items-center gap-6">
              <span className="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
                 <Smartphone className="w-4 h-4 text-accent" />
@@ -113,7 +161,7 @@ export function AppShowcase() {
                 <Link 
                   href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" 
                   target="_blank"
-                  className="group relative transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+                  className="group relative transition-all duration-300 hover:scale-105"
                 >
                   <div className="absolute -inset-1 bg-accent/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                   <Image 
@@ -128,7 +176,7 @@ export function AppShowcase() {
                 <Link 
                   href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" 
                   target="_blank"
-                  className="group relative transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+                  className="group relative transition-all duration-300 hover:scale-105"
                 >
                   <div className="absolute -inset-1 bg-primary/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative overflow-hidden rounded-lg shadow-xl border border-white/5">
@@ -143,6 +191,29 @@ export function AppShowcase() {
                   </div>
                 </Link>
              </div>
+          </div>
+
+          {/* Trust Stats Row */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 border-t border-white/5 pt-12 w-full max-w-4xl">
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-1 text-accent">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} className={`w-3 h-3 ${s === 5 ? 'fill-none' : 'fill-current'}`} />
+                ))}
+              </div>
+              <span className="font-headline text-lg font-bold text-white">4.8/5 Rating</span>
+              <span className="font-body text-[10px] uppercase tracking-widest text-gray-500">Global Satisfaction</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Users className="w-5 h-5 text-primary" />
+              <span className="font-headline text-lg font-bold text-white">10k+ Learners</span>
+              <span className="font-body text-[10px] uppercase tracking-widest text-gray-500">Active Community</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-emerald-400" />
+              <span className="font-headline text-lg font-bold text-white">Secure Access</span>
+              <span className="font-body text-[10px] uppercase tracking-widest text-gray-500">ISO Certified Platform</span>
+            </div>
           </div>
         </motion.div>
       </div>
