@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -10,7 +11,9 @@ import {
   Bell, 
   TrendingUp, 
   ClipboardCheck, 
-  Library
+  Library,
+  MessageCircle,
+  Shield
 } from "lucide-react";
 
 export function AppShowcase() {
@@ -18,36 +21,49 @@ export function AppShowcase() {
     {
       title: "Offline Learning",
       icon: Download,
-      pos: "top-10 -left-20",
+      pos: "top-4 -left-20",
       delay: 0.4,
       color: "text-accent"
     },
     {
+      title: "Real-time Chat",
+      icon: MessageCircle,
+      pos: "top-1/4 -left-32",
+      delay: 0.6,
+      color: "text-cyan-400"
+    },
+    {
       title: "Instant Alerts",
       icon: Bell,
-      pos: "top-1/2 -left-28 -translate-y-1/2",
-      delay: 0.6,
+      pos: "top-1/2 -left-36 -translate-y-1/2",
+      delay: 0.8,
       color: "text-primary"
     },
     {
       title: "Progress Sync",
-      icon: TrendingUp,
-      pos: "bottom-10 -left-16",
-      delay: 0.8,
+      icon: "bottom-10 -left-16",
+      delay: 1.0,
       color: "text-emerald-400"
     },
     {
       title: "Smart Attendance",
       icon: ClipboardCheck,
-      pos: "top-20 -right-24",
-      delay: 1.0,
+      pos: "top-10 -right-24",
+      delay: 1.2,
       color: "text-amber-400"
+    },
+    {
+      title: "Private Spaces",
+      icon: Shield,
+      pos: "top-1/3 -right-36",
+      delay: 1.4,
+      color: "text-indigo-400"
     },
     {
       title: "Digital Library",
       icon: Library,
       pos: "bottom-20 -right-28",
-      delay: 1.2,
+      delay: 1.6,
       color: "text-rose-400"
     }
   ];
@@ -88,21 +104,24 @@ export function AppShowcase() {
         <div className="relative w-full max-w-2xl mx-auto">
           {/* Floating Feature Cards (Desktop Only) */}
           <div className="hidden lg:block">
-            {floatingFeatures.map((f, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.8, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: f.delay, duration: 0.8 }}
-                className={`absolute ${f.pos} glass-card p-4 flex items-center gap-3 border-white/10 z-30 shadow-2xl`}
-              >
-                <div className={`w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 ${f.color}`}>
-                  <f.icon className="w-4 h-4" />
-                </div>
-                <span className="font-headline text-xs font-bold text-white whitespace-nowrap">{f.title}</span>
-              </motion.div>
-            ))}
+            {floatingFeatures.map((f, i) => {
+              const Icon = typeof f.icon === 'string' ? TrendingUp : f.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.8, x: i % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: f.delay, duration: 0.8 }}
+                  className={`absolute ${f.pos} glass-card p-4 flex items-center gap-3 border-white/10 z-30 shadow-2xl`}
+                >
+                  <div className={`w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 ${f.color}`}>
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <span className="font-headline text-xs font-bold text-white whitespace-nowrap">{f.title}</span>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* High-Fidelity Mobile Mockup */}
