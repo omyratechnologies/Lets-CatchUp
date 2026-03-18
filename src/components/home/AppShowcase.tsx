@@ -8,12 +8,7 @@ import {
   Smartphone, 
   MessageSquare, 
   CreditCard, 
-  Layout, 
-  Download, 
-  Bell, 
-  TrendingUp,
-  ClipboardCheck,
-  Library
+  Layout
 } from "lucide-react";
 
 export function AppShowcase() {
@@ -38,39 +33,6 @@ export function AppShowcase() {
       pos: "top-1/2 -right-20",
       delay: 1.1,
       color: "text-emerald-400"
-    }
-  ];
-
-  const bottomFeatures = [
-    {
-      title: "Offline Learning",
-      description: "Access courses without data",
-      icon: Download,
-      color: "text-accent"
-    },
-    {
-      title: "Instant Notifications",
-      description: "Stay updated in real-time",
-      icon: Bell,
-      color: "text-primary"
-    },
-    {
-      title: "Progress Tracking",
-      description: "Monitor growth on the go",
-      icon: TrendingUp,
-      color: "text-emerald-400"
-    },
-    {
-      title: "Smart Attendance",
-      description: "Geo-fenced check-ins",
-      icon: ClipboardCheck,
-      color: "text-amber-400"
-    },
-    {
-      title: "Digital Library",
-      description: "24/7 resource access",
-      icon: Library,
-      color: "text-violet-400"
     }
   ];
 
@@ -234,21 +196,6 @@ export function AppShowcase() {
                   </div>
                 </Link>
              </div>
-          </div>
-
-          {/* Features Stats Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 border-t border-white/5 pt-12 w-full max-w-6xl">
-            {bottomFeatures.map((feat, i) => (
-              <div key={i} className="flex flex-col items-center gap-3">
-                <div className={`p-3 rounded-xl bg-white/5 border border-white/10 ${feat.color}`}>
-                  <feat.icon className="w-5 h-5" />
-                </div>
-                <div className="space-y-1">
-                  <span className="font-headline text-lg font-bold text-white block">{feat.title}</span>
-                  <span className="font-body text-[10px] uppercase tracking-widest text-gray-500 block">{feat.description}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </motion.div>
       </div>
