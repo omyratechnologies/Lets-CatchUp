@@ -7,11 +7,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
   Smartphone, 
-  Download, 
   Bell, 
   TrendingUp, 
   ClipboardCheck, 
-  Library,
   MessageCircle,
   Shield
 } from "lucide-react";
@@ -19,31 +17,27 @@ import {
 export function AppShowcase() {
   const floatingFeatures = [
     {
-      title: "Offline Learning",
-      icon: Download,
-      pos: "top-4 -left-12",
-      delay: 0.4,
-      color: "text-accent"
-    },
-    {
       title: "Smart Attendance",
       icon: ClipboardCheck,
       pos: "top-12 -right-8",
-      delay: 1.2,
+      delay: 0.2,
+      duration: 5,
       color: "text-amber-400"
     },
     {
       title: "Real-time Chat",
       icon: MessageCircle,
       pos: "top-[28%] -left-16",
-      delay: 0.6,
+      delay: 0.4,
+      duration: 6,
       color: "text-cyan-400"
     },
     {
       title: "Private Spaces",
       icon: Shield,
       pos: "top-[42%] -right-14",
-      delay: 1.4,
+      delay: 0.6,
+      duration: 5.5,
       color: "text-indigo-400"
     },
     {
@@ -51,20 +45,15 @@ export function AppShowcase() {
       icon: Bell,
       pos: "top-[58%] -left-10",
       delay: 0.8,
+      duration: 4.8,
       color: "text-primary"
-    },
-    {
-      title: "Digital Library",
-      icon: Library,
-      pos: "top-[75%] -right-12",
-      delay: 1.6,
-      color: "text-rose-400"
     },
     {
       title: "Progress Sync",
       icon: TrendingUp,
-      pos: "bottom-[10%] -left-14",
+      pos: "bottom-[15%] -right-12",
       delay: 1.0,
+      duration: 6.2,
       color: "text-emerald-400"
     }
   ];
@@ -110,10 +99,25 @@ export function AppShowcase() {
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.8, x: i % 2 === 0 ? -10 : 10 }}
-                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ 
+                    opacity: 1, 
+                    scale: 1,
+                  }}
+                  animate={{
+                    y: [0, -12, 0],
+                  }}
+                  transition={{
+                    opacity: { duration: 0.8, delay: f.delay },
+                    scale: { duration: 0.8, delay: f.delay },
+                    y: {
+                      duration: f.duration,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: f.delay * 2, // Stagger the start of the float
+                    }
+                  }}
                   viewport={{ once: true }}
-                  transition={{ delay: f.delay, duration: 0.8 }}
                   className={`absolute ${f.pos} glass-card p-3 flex items-center gap-3 border-white/10 z-30 shadow-2xl backdrop-blur-md`}
                 >
                   <div className={`w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 ${f.color}`}>
@@ -140,17 +144,7 @@ export function AppShowcase() {
             <div className="absolute inset-[-60px] border border-white/5 rounded-full -z-10 animate-[spin_20s_linear_infinite] opacity-30" />
             <div className="absolute inset-[-100px] border border-white/5 rounded-full -z-10 animate-[spin_30s_linear_infinite_reverse] opacity-20" />
             
-            <motion.div
-              animate={{ 
-                y: [0, -15, 0],
-              }}
-              transition={{ 
-                duration: 6, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="relative w-full h-full"
-            >
+            <div className="relative w-full h-full">
               {/* The Phone Frame */}
               <div className="absolute inset-0 bg-slate-900 border-[8px] border-slate-800 rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden">
                 {/* Internal Bezel */}
@@ -181,7 +175,7 @@ export function AppShowcase() {
               <div className="absolute top-24 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
               <div className="absolute top-40 -left-2 w-1 h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
               <div className="absolute top-32 -right-2 w-1 h-16 bg-slate-700 rounded-r-md border-l border-black/20" />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 
