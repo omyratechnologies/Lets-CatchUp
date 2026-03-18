@@ -20,7 +20,7 @@ const FOOTER_LINKS = {
   ],
   legal: [
     { name: "Privacy Policy", href: "#" },
-    { name: "Terms and Conditions", href: "#" },
+    { name: "Terms of Service", href: "#" },
     { name: "Community Guidelines", href: "#" },
     { name: "Grievance Policy", href: "#" },
     { name: "Refund Policy", href: "#" },
