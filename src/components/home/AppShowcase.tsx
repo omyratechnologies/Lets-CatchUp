@@ -27,7 +27,7 @@ export function AppShowcase() {
             <motion.span 
               initial={{ opacity: 0, letterSpacing: "0.1em" }}
               whileInView={{ opacity: 1, letterSpacing: "0.2em" }}
-              className="text-xs font-bold uppercase text-accent tracking-[0.2em] drop-shadow-[0_0_10px_rgba(45,212,191,0.5)] font-body"
+              className="text-xs font-semibold uppercase text-accent tracking-[0.2em] drop-shadow-[0_0_10px_rgba(45,212,191,0.5)] font-body"
             >
               Mobile Experience
             </motion.span>
@@ -46,7 +46,7 @@ export function AppShowcase() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="relative w-full max-w-[280px] md:max-w-[340px] aspect-[9/19] mx-auto z-20"
+          className="relative w-full max-w-[250px] md:max-w-[300px] aspect-[9/19] mx-auto z-20"
         >
           {/* Ambient Glow behind phone */}
           <div className="absolute inset-0 bg-accent/20 blur-[80px] md:blur-[120px] rounded-full -z-10" />
@@ -74,13 +74,13 @@ export function AppShowcase() {
               </div>
 
               {/* Screen Content */}
-              <div className="relative w-full h-full overflow-hidden bg-black flex items-center justify-center">
+              <div className="relative w-full h-full overflow-hidden flex items-center justify-center">
                 <Image 
                   src="/mobile-view.png" 
                   alt="Let's Catch Up Mobile App View"
                   fill
-                  sizes="(max-width: 768px) 280px, 340px"
-                  className="object-contain"
+                  sizes="(max-width: 768px) 250px, 300px"
+                  className="object-cover"
                   priority
                 />
                 {/* Screen Reflection Overlay */}
@@ -106,7 +106,7 @@ export function AppShowcase() {
           className="flex flex-col items-center gap-8"
         >
           <div className="flex flex-col items-center gap-6">
-             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2 font-body">
+             <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2 font-body">
                 <Smartphone className="w-4 h-4 text-accent" />
                 Available on Android & iOS
              </span>
