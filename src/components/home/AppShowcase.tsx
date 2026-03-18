@@ -15,7 +15,7 @@ export function AppShowcase() {
       {/* Background Ambient Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[400px] bg-primary/5 rounded-full blur-[160px] -z-10" />
       
-      <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-12 md:space-y-16">
+      <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-12 md:space-y-20">
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -27,7 +27,7 @@ export function AppShowcase() {
             <motion.span 
               initial={{ opacity: 0, letterSpacing: "0.1em" }}
               whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
-              className="text-[10px] md:text-xs font-black uppercase text-accent tracking-[0.3em] drop-shadow-[0_0_10px_rgba(45,212,191,0.5)]"
+              className="text-[10px] md:text-xs font-bold uppercase text-accent tracking-[0.3em] drop-shadow-[0_0_10px_rgba(45,212,191,0.5)]"
             >
               Mobile Experience
             </motion.span>
@@ -40,16 +40,49 @@ export function AppShowcase() {
           </p>
         </motion.div>
 
+        {/* Mobile Mockup Section */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="relative w-full max-w-[280px] md:max-w-[360px] aspect-[9/18.5] mx-auto z-20"
+        >
+          {/* Ambient Glow behind phone */}
+          <div className="absolute inset-0 bg-accent/20 blur-[80px] md:blur-[120px] rounded-full -z-10" />
+          
+          <motion.div
+            animate={{ 
+              y: [0, -20, 0],
+            }}
+            transition={{ 
+              duration: 6, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            className="relative w-full h-full"
+          >
+            <Image 
+              src="/mobile-view.png" 
+              alt="Let's Catch Up Mobile App View"
+              fill
+              sizes="(max-width: 768px) 280px, 360px"
+              className="object-contain drop-shadow-[0_32px_64px_rgba(0,0,0,0.6)]"
+              priority
+            />
+          </motion.div>
+        </motion.div>
+
         {/* Download Buttons Area */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.5 }}
           className="flex flex-col items-center gap-8"
         >
           <div className="flex flex-col items-center gap-4">
-             <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
+             <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
                 <Smartphone className="w-3 h-3 text-accent" />
                 Available on Android & iOS
              </span>
@@ -75,14 +108,16 @@ export function AppShowcase() {
                   className="group relative transition-all duration-300 hover:scale-105 hover:-translate-y-1"
                 >
                   <div className="absolute -inset-1 bg-primary/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Image 
-                    src="/appstore.jpg" 
-                    alt="Apple App Store" 
-                    width={140} 
-                    height={42} 
-                    style={{ height: 'auto' }}
-                    className="relative object-contain rounded-lg shadow-xl" 
-                  />
+                  <div className="relative overflow-hidden rounded-lg shadow-xl">
+                    <Image 
+                      src="/appstore.jpg" 
+                      alt="Apple App Store" 
+                      width={140} 
+                      height={42} 
+                      style={{ height: 'auto' }}
+                      className="object-contain" 
+                    />
+                  </div>
                 </Link>
              </div>
           </div>
