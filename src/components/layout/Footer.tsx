@@ -266,12 +266,6 @@ export function Footer() {
             >
               Cookie Policy
             </Link>
-            <Link
-              href="#"
-              className="font-headline hover:text-white transition-colors"
-            >
-              Security
-            </Link>
           </div>
         </div>
       </div>
