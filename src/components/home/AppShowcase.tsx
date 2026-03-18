@@ -90,16 +90,16 @@ export function AppShowcase() {
           </p>
         </motion.div>
 
-        {/* Mockup Section with Floating Elements */}
-        <div className="relative w-full max-w-2xl mx-auto flex justify-center">
+        {/* Mockup Section with Responsive Bubbles */}
+        <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center">
           <div className="relative w-full max-w-[280px] md:max-w-[320px]">
-            {/* Floating Feature Cards - Constant across all screens */}
-            <div className="absolute inset-0 pointer-events-none z-30">
+            {/* Desktop & Tablet Floating Bubbles (Zigzag) */}
+            <div className="absolute inset-0 pointer-events-none z-30 hidden md:block">
               {floatingFeatures.map((f, i) => {
                 const Icon = f.icon;
                 return (
                   <motion.div
-                    key={i}
+                    key={`desktop-bubble-${i}`}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     animate={{
@@ -127,7 +127,7 @@ export function AppShowcase() {
               })}
             </div>
 
-            {/* High-Fidelity Mobile Mockup - Stationary */}
+            {/* High-Fidelity Mobile Mockup (Stationary) */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -135,26 +135,17 @@ export function AppShowcase() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="relative w-full aspect-[9/19] z-20"
             >
-              {/* Ambient Glow behind phone */}
               <div className="absolute inset-0 bg-accent/20 blur-[60px] md:blur-[120px] rounded-full -z-10" />
-              
-              {/* Orbiting Ring Decoration */}
               <div className="absolute inset-[-40px] md:inset-[-60px] border border-white/5 rounded-full -z-10 animate-[spin_20s_linear_infinite] opacity-30" />
               <div className="absolute inset-[-80px] md:inset-[-100px] border border-white/5 rounded-full -z-10 animate-[spin_30s_linear_infinite_reverse] opacity-20" />
               
               <div className="relative w-full h-full">
-                {/* The Phone Frame */}
                 <div className="absolute inset-0 bg-slate-900 border-[6px] md:border-[8px] border-slate-800 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden">
-                  {/* Internal Bezel */}
                   <div className="absolute inset-0 border-[2px] border-white/5 rounded-[1.8rem] md:rounded-[2.1rem] pointer-events-none z-30" />
-                  
-                  {/* Dynamic Notch */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 md:w-24 h-5 md:h-6 bg-slate-800 rounded-b-xl md:rounded-b-2xl z-40 flex items-center justify-center gap-1.5 md:gap-2">
                     <div className="w-6 md:w-8 h-1 bg-slate-700 rounded-full" />
                     <div className="w-1.5 md:w-2 h-1.5 md:h-2 bg-slate-700 rounded-full" />
                   </div>
-
-                  {/* Screen Content */}
                   <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-[#0b0f2f]">
                     <Image 
                       src="/mobile-view.png" 
@@ -164,17 +155,47 @@ export function AppShowcase() {
                       className="object-cover"
                       priority
                     />
-                    {/* Screen Reflection */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-20" />
                   </div>
                 </div>
-
-                {/* Hardware Buttons */}
                 <div className="absolute top-20 md:top-24 -left-1.5 md:-left-2 w-1 h-10 md:h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
                 <div className="absolute top-36 md:top-40 -left-1.5 md:-left-2 w-1 h-10 md:h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
                 <div className="absolute top-28 md:top-32 -right-1.5 md:-right-2 w-1 h-14 md:h-16 bg-slate-700 rounded-r-md border-l border-black/20" />
               </div>
             </motion.div>
+          </div>
+
+          {/* Mobile Small Devices Feature Bubbles (Zigzag below mockup) */}
+          <div className="grid grid-cols-2 gap-4 mt-12 w-full max-w-[320px] md:hidden px-4">
+            {floatingFeatures.map((f, i) => {
+              const Icon = f.icon;
+              return (
+                <motion.div
+                  key={`mobile-bubble-${i}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    opacity: { duration: 0.5, delay: i * 0.1 },
+                    y: {
+                      duration: f.duration,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: f.delay,
+                    }
+                  }}
+                  viewport={{ once: true }}
+                  className="glass-card p-3 flex flex-col items-center justify-center gap-2 border-white/10 shadow-xl backdrop-blur-md"
+                >
+                  <div className={`w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 ${f.color}`}>
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <span className="font-headline text-[9px] font-bold text-white uppercase tracking-widest text-center">{f.title}</span>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -188,7 +209,7 @@ export function AppShowcase() {
         >
           {/* Download Buttons */}
           <div className="flex flex-col items-center gap-6">
-             <span className="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
+             <span className="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2 font-body">
                 <Smartphone className="w-4 h-4 text-accent" />
                 Available on Android & iOS
              </span>
