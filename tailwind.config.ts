@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Source Sans 3', 'sans-serif'],
-        body: ['Source Sans 3', 'sans-serif'],
+        sans: ['Public Sans', 'sans-serif'],
+        body: ['Public Sans', 'sans-serif'],
         headline: ['Space Grotesk', 'sans-serif'],
       },
       colors: {
