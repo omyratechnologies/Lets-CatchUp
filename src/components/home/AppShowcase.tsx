@@ -36,7 +36,7 @@ export function AppShowcase() {
             </h2>
           </div>
           <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
-            Stay connected to your communities, conversations, and learning spaces — wherever you go.
+            Seamlessly stay connected to your communities, conversations, and learning — wherever you are.
           </p>
         </motion.div>
 
