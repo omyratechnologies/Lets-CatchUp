@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -16,9 +17,9 @@ import { useEffect, useState } from "react";
 const FOOTER_LINKS = {
   navigation: [
     { name: "Home", href: "/#home" },
-    { name: "Ecosystem", href: "/#ecosystem" },
-    { name: "About Us", href: "/#about" },
+    { name: "Who we help", href: "/#ecosystem" },
     { name: "Pricing", href: "/#pricing" },
+    { name: "About Us", href: "/about" },
   ],
   services: [
     { name: "Academic Operations", href: "/services/educational-institutions" },
@@ -194,7 +195,7 @@ export function Footer() {
 
           <div className="lg:col-span-3 space-y-4 md:space-y-6">
             <h5 className="font-headline text-white font-bold tracking-widest text-xs uppercase opacity-50">
-              Ecosystem
+              Who we help
             </h5>
             <ul className="space-y-3 md:space-y-4">
               {FOOTER_LINKS.services.map((link) => (

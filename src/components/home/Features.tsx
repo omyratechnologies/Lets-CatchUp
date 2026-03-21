@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -64,7 +65,7 @@ export function Features() {
           <div className="space-y-6">
             <div className="flex justify-center">
               <Badge variant="outline" className="border-accent/30 text-accent px-6 py-1.5 uppercase tracking-[0.2em] text-[10px] font-black bg-accent/5 backdrop-blur-sm">
-                The Unified Institutional Command Center
+                Who we help
               </Badge>
             </div>
             <h3 className="text-4xl md:text-6xl font-headline font-bold leading-tight tracking-tight text-white">

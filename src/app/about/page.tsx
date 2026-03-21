@@ -1,19 +1,20 @@
 
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { motion } from "framer-motion";
 
 export default function AboutPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/#about");
-  }, [router]);
-
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+    <div className="min-h-screen pt-20 md:pt-32">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <AboutSection />
+      </motion.div>
     </div>
   );
 }

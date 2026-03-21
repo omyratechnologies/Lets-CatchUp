@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -14,7 +15,7 @@ import {
   Phone,
   LayoutGrid,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -61,7 +62,7 @@ export function Navbar() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    const sections = ["home", "ecosystem", "about", "pricing", "contact"];
+    const sections = ["home", "ecosystem", "pricing", "contact"];
     sections.forEach(id => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -72,17 +73,17 @@ export function Navbar() {
 
   const navItems = [
     { name: "Home", href: pathname === "/" ? "#home" : "/#home", icon: Home },
-    { name: "Ecosystem", href: pathname === "/" ? "#ecosystem" : "/#ecosystem", icon: LayoutGrid },
-    { name: "About Us", href: pathname === "/" ? "#about" : "/#about", icon: Info },
+    { name: "Who we help", href: pathname === "/" ? "#ecosystem" : "/#ecosystem", icon: LayoutGrid },
     { name: "Pricing", href: pathname === "/" ? "#pricing" : "/#pricing", icon: CreditCard },
+    { name: "About Us", href: "/about", icon: Info },
   ];
 
   const getIsActive = (item: any) => {
     if (!mounted || !pathname) return false;
+    if (pathname === "/about" && item.name === "About Us") return true;
     if (pathname === "/") {
       if (item.name === "Home") return activeSection === "home";
-      if (item.name === "Ecosystem") return activeSection === "ecosystem";
-      if (item.name === "About Us") return activeSection === "about";
+      if (item.name === "Who we help") return activeSection === "ecosystem";
       if (item.name === "Pricing") return activeSection === "pricing";
     }
     return false;
@@ -147,13 +148,18 @@ export function Navbar() {
                       isActive ? "text-accent bg-white/5" : "text-gray-300 hover:text-white"
                     )}>
                       {item.name}
-                      {isActive && mounted && (
-                        <motion.div 
-                          layoutId="activeNav" 
-                          className="absolute inset-0 bg-white/10 rounded-full -z-10" 
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }} 
-                        />
-                      )}
+                      <AnimatePresence>
+                        {isActive && mounted && (
+                          <motion.div 
+                            layoutId="activeNav" 
+                            className="absolute inset-0 bg-white/10 rounded-full -z-10" 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 380, damping: 30 }} 
+                          />
+                        )}
+                      </AnimatePresence>
                     </motion.span>
                   </Link>
                 </div>
