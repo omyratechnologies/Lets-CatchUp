@@ -71,11 +71,13 @@ const SOCIAL_LINKS = [
 ];
 
 export function Footer() {
-  const [currentYear, setCurrentYear] = useState<string>("");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setCurrentYear(new Date().getFullYear().toString());
+    setMounted(true);
   }, []);
+
+  const currentYear = mounted ? new Date().getFullYear() : 2025;
 
   return (
     <footer className="relative pt-16 pb-12 bg-[#0b0f2f] overflow-hidden">
@@ -123,7 +125,7 @@ export function Footer() {
 
             <div className="flex flex-col gap-6">
               <div className="flex gap-3">
-                {SOCIAL_LINKS.map(({ Icon, href, label, hoverClass }, i) => (
+                {mounted && SOCIAL_LINKS.map(({ Icon, href, label, hoverClass }, i) => (
                   <motion.a
                     key={i}
                     whileHover={{ scale: 1.1, y: -4 }}
@@ -252,7 +254,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-gray-500 text-[9px] uppercase tracking-widest font-medium leading-relaxed font-body">
-              @COPYRIGHT {currentYear || "2025"} | ALL RIGHTS RESERVED BY{" "}
+              @COPYRIGHT {currentYear} | ALL RIGHTS RESERVED BY{" "}
               <br className="md:hidden" />{" "}
               <span className="font-bold text-white">
                 KANDHUGULE CONSULTANCY SERVICES PRIVATE LIMITED
