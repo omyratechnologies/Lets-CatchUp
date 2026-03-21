@@ -1,11 +1,9 @@
-
 import { Hero } from "@/components/home/Hero";
 import { PlatformDescription } from "@/components/home/PlatformDescription";
 import { UnifiedSpace } from "@/components/home/UnifiedSpace";
 import { Features } from "@/components/home/Features";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { Invitation } from "@/components/home/Invitation";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { AppShowcase } from "@/components/home/AppShowcase";
 
@@ -17,7 +15,6 @@ export default function Home() {
       <Features />
       <UnifiedSpace />
       <PricingSection />
-      <Invitation />
       <AppShowcase />
       <FAQSection />
       <ContactSection />
