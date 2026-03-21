@@ -32,20 +32,20 @@ const problems = [
 export function ProblemSection() {
   return (
     <section className="py-24 px-6 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto space-y-16">
+      <div className="max-w-3xl mx-auto space-y-12 md:space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="space-y-6"
         >
-          <h2 className="text-4xl md:text-6xl font-headline font-bold leading-tight text-white max-w-2xl">
+          <h2 className="text-3xl md:text-5xl font-headline font-bold leading-tight text-white">
             The Problem: The <br />
             <span className="text-gradient">"Fragmented & Distracted"</span> World
           </h2>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           {problems.map((prob, i) => (
             <motion.div
               key={i}
@@ -56,17 +56,17 @@ export function ProblemSection() {
               className="relative group"
             >
               <div className={cn(
-                "relative bg-gradient-to-br from-[#1e294b] to-[#0f172a] border border-white/10 rounded-2xl md:rounded-[32px] p-8 md:p-12 flex flex-col gap-4 overflow-hidden transition-all duration-500 hover:border-white/20",
+                "relative bg-gradient-to-br from-[#1e294b] to-[#0f172a] border border-white/10 rounded-2xl md:rounded-[32px] p-6 md:p-10 flex flex-col gap-3 md:gap-4 overflow-hidden transition-all duration-500 hover:border-white/20",
                 prob.glow
               )}>
                 {/* Glowing Left Accent Bar */}
-                <div className={cn("absolute left-0 top-0 bottom-0 w-2 md:w-2.5", prob.color)} />
+                <div className={cn("absolute left-0 top-0 bottom-0 w-1.5 md:w-2", prob.color)} />
                 
-                <h3 className="text-2xl md:text-4xl font-headline font-bold text-white tracking-tight">
+                <h3 className="text-xl md:text-3xl font-headline font-bold text-white tracking-tight">
                   {prob.title}
                 </h3>
                 
-                <p className="text-sm md:text-2xl text-gray-400 leading-relaxed font-medium font-body">
+                <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium font-body">
                   {prob.description.split(new RegExp(`(${prob.highlights.map(h => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g')).map((part, index) => 
                     prob.highlights.includes(part) ? (
                       <span key={index} className="text-white font-bold">{part}</span>
