@@ -44,21 +44,21 @@ const SOCIAL_LINKS = [
     href: "https://www.facebook.com/people/Kandhugule-Consultancy-Services/61563863545091/#",
     label: "Facebook",
     hoverClass:
-      "hover:text-[#1877F2] hover:border-[#1877F2]/40 hover:shadow-[0_0_20px_rgba(24,119,242,0.5)]",
+      "hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2]",
   },
   {
     Icon: Instagram,
     href: "https://www.instagram.com/kandhuguleconsultancyservices/",
     label: "Instagram",
     hoverClass:
-      "hover:text-[#E4405F] hover:border-[#E4405F]/40 hover:shadow-[0_0_20px_rgba(228,64,95,0.5)]",
+      "hover:bg-[#E4405F] hover:text-white hover:border-[#E4405F]",
   },
   {
     Icon: Linkedin,
     href: "https://www.linkedin.com/company/kandhuguleconsultancyservicespvtltd/posts/?feedView=all",
     label: "LinkedIn",
     hoverClass:
-      "hover:text-[#0A66C2] hover:border-[#0A66C2]/40 hover:shadow-[0_0_20px_rgba(10,102,194,0.5)]",
+      "hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]",
   },
   {
     Icon: (props: any) => (
@@ -69,7 +69,7 @@ const SOCIAL_LINKS = [
     href: "https://x.com/Kandhugule_KCS",
     label: "X",
     hoverClass:
-      "hover:text-white hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]",
+      "hover:bg-white hover:text-black hover:border-white",
   },
 ];
 
@@ -129,12 +129,12 @@ export function Footer() {
                 {SOCIAL_LINKS.map(({ Icon, href, label, hoverClass }, i) => (
                   <motion.a
                     key={i}
-                    whileHover={{ scale: 1.15, y: -5 }}
+                    whileHover={{ scale: 1.1, y: -4 }}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all text-gray-400 ${hoverClass}`}
+                    className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 text-gray-400 ${hoverClass}`}
                   >
                     <Icon className="w-4 h-4 md:w-5 md:h-5" />
                   </motion.a>
