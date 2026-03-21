@@ -10,6 +10,7 @@ import { NetworkedStudentSection } from "@/components/sections/NetworkedStudentS
 import { BreakingAlgorithmSection } from "@/components/sections/BreakingAlgorithmSection";
 import { CharterSection } from "@/components/sections/CharterSection";
 import { WhyItWinsSection } from "@/components/sections/WhyItWinsSection";
+import { CoreValuesSection } from "@/components/sections/CoreValuesSection";
 import { Invitation } from "@/components/home/Invitation";
 import { motion } from "framer-motion";
 
@@ -30,6 +31,7 @@ export default function AboutPage() {
         <BreakingAlgorithmSection />
         <CharterSection />
         <WhyItWinsSection />
+        <CoreValuesSection />
         <Invitation />
       </motion.div>
     </div>
