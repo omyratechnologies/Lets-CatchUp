@@ -6,6 +6,8 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { SolutionSection } from "@/components/sections/SolutionSection";
 import { InstitutionalExcellenceSection } from "@/components/sections/InstitutionalExcellenceSection";
+import { CollaborationSuiteSection } from "@/components/sections/CollaborationSuiteSection";
+import { NetworkedStudentSection } from "@/components/sections/NetworkedStudentSection";
 import { motion } from "framer-motion";
 
 export default function AboutPage() {
@@ -20,6 +22,8 @@ export default function AboutPage() {
         <ProblemSection />
         <SolutionSection />
         <InstitutionalExcellenceSection />
+        <CollaborationSuiteSection />
+        <NetworkedStudentSection />
       </motion.div>
     </div>
   );
