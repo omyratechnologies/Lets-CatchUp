@@ -9,6 +9,7 @@ import { InstitutionalExcellenceSection } from "@/components/sections/Institutio
 import { CollaborationSuiteSection } from "@/components/sections/CollaborationSuiteSection";
 import { NetworkedStudentSection } from "@/components/sections/NetworkedStudentSection";
 import { BreakingAlgorithmSection } from "@/components/sections/BreakingAlgorithmSection";
+import { CharterSection } from "@/components/sections/CharterSection";
 import { motion } from "framer-motion";
 
 export default function AboutPage() {
@@ -26,6 +27,7 @@ export default function AboutPage() {
         <CollaborationSuiteSection />
         <NetworkedStudentSection />
         <BreakingAlgorithmSection />
+        <CharterSection />
       </motion.div>
     </div>
   );
