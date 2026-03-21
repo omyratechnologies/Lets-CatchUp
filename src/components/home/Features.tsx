@@ -60,7 +60,7 @@ export function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-5xl mx-auto mb-16 md:mb-20 space-y-12"
+          className="text-center max-w-5xl mx-auto mb-16 md:mb-20 space-y-8"
         >
           <div className="space-y-6">
             <div className="flex justify-center">
@@ -72,44 +72,15 @@ export function Features() {
               Core capabilities for <br /><span className="text-gradient">every community</span>
             </h3>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {/* Philosophy Card */}
-            <div className="glass-card p-6 md:p-8 border-white/5 text-left flex gap-6 items-start group hover:border-accent/30 transition-all duration-500 relative overflow-hidden">
-               <div className="absolute top-0 left-0 w-1 h-full bg-accent opacity-20 group-hover:opacity-100 transition-opacity" />
-               <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-accent/10 transition-colors shadow-xl">
-                <Target className="w-6 h-6 text-white transition-colors duration-500 group-hover:text-accent glow-icon" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-[10px] font-black uppercase tracking-widest text-accent/60">Our Philosophy</p>
-                <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed">
-                  Shifting the paradigm from superficial engagement to <span className="text-white font-bold">high-impact functional utility</span>.
-                </p>
-              </div>
-            </div>
-
-            {/* Infrastructure Card */}
-            <div className="glass-card p-6 md:p-8 border-white/5 text-left flex gap-6 items-start group hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-1 h-full bg-primary opacity-20 group-hover:opacity-100 transition-opacity" />
-              <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors shadow-xl">
-                <Network className="w-6 h-6 text-white transition-colors duration-500 group-hover:text-primary glow-icon" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-[10px] font-black uppercase tracking-widest text-primary/60">The Infrastructure</p>
-                <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed">
-                  Three foundational pillars seamlessly integrated within a <span className="text-white font-bold">secure, all-encompassing digital ecosystem</span>.
-                </p>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
+        {/* Capability Cards Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-20 max-w-6xl mx-auto"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-20 max-w-6xl mx-auto mb-20 md:mb-32"
         >
           {features.map((feature, idx) => (
             <motion.div key={idx} variants={itemVariants}>
@@ -123,6 +94,43 @@ export function Features() {
               />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Philosophy & Infrastructure Section (Moved Below Capabilities) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-8 border-t border-white/5"
+        >
+          {/* Philosophy Card */}
+          <div className="glass-card p-6 md:p-8 border-white/5 text-left flex gap-6 items-start group hover:border-accent/30 transition-all duration-500 relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-1 h-full bg-accent opacity-20 group-hover:opacity-100 transition-opacity" />
+             <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-accent/10 transition-colors shadow-xl">
+              <Target className="w-6 h-6 text-white transition-colors duration-500 group-hover:text-accent glow-icon" />
+            </div>
+            <div className="space-y-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-accent/60">Our Philosophy</p>
+              <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed font-body">
+                Shifting the paradigm from superficial engagement to <span className="text-white font-bold">high-impact functional utility</span>.
+              </p>
+            </div>
+          </div>
+
+          {/* Infrastructure Card */}
+          <div className="glass-card p-6 md:p-8 border-white/5 text-left flex gap-6 items-start group hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-primary opacity-20 group-hover:opacity-100 transition-opacity" />
+            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors shadow-xl">
+              <Network className="w-6 h-6 text-white transition-colors duration-500 group-hover:text-primary glow-icon" />
+            </div>
+            <div className="space-y-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-primary/60">The Infrastructure</p>
+              <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed font-body">
+                Three foundational pillars seamlessly integrated within a <span className="text-white font-bold">secure, all-encompassing digital ecosystem</span>.
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
