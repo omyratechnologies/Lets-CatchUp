@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -99,15 +100,16 @@ export function AboutSection() {
             <div className="absolute -bottom-6 -right-6 w-full h-full rounded-[40px] bg-accent-gradient opacity-20 transition-all duration-500 group-hover:opacity-30 group-hover:-bottom-8 group-hover:-right-8 -z-10" />
             
             <div className="relative bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[40px] p-3 shadow-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500">
-              <div className="relative rounded-[32px] overflow-hidden w-full h-auto">
+              <div className="relative rounded-[32px] overflow-hidden w-full h-auto bg-black/20">
                 <video
                   src="/promotion.mp4"
                   autoPlay
                   loop
                   muted
                   controls
+                  controlsList="nodownload"
                   playsInline
-                  className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 p-2 md:p-6"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
               </div>
