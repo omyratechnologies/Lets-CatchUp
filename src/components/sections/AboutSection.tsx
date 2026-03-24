@@ -57,8 +57,8 @@ export function AboutSection() {
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <motion.div 
             style={{ y: y1 }}
             initial={{ opacity: 0, x: -30 }}
@@ -94,7 +94,7 @@ export function AboutSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative group w-full"
+            className="relative group w-full lg:ml-auto lg:max-w-[540px]"
           >
             {/* Architectural Layered Effect */}
             <div className="absolute -bottom-6 -right-6 w-full h-full rounded-[40px] bg-accent-gradient opacity-20 transition-all duration-500 group-hover:opacity-30 group-hover:-bottom-8 group-hover:-right-8 -z-10" />
