@@ -1,16 +1,47 @@
+
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function AboutSection() {
+  const { scrollYProgress } = useScroll();
+  const y1 = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 0.2], [0, 100]);
+  const rotate = useTransform(scrollYProgress, [0, 0.2], [0, 5]);
+
   return (
-    <section id="about" className="py-24 px-6 relative overflow-hidden">
+    <section id="about" className="py-24 px-6 relative overflow-hidden w-full">
+      {/* Interactive Particles Layer */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-accent rounded-full"
+            initial={{ 
+              x: Math.random() * 100 + "%", 
+              y: Math.random() * 100 + "%" 
+            }}
+            animate={{
+              y: [null, "-20%"],
+              opacity: [0, 1, 0]
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              ease: "linear",
+              delay: Math.random() * 5
+            }}
+          />
+        ))}
+      </div>
+
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div 
+            style={{ y: y1 }}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -40,6 +71,7 @@ export function AboutSection() {
           </motion.div>
           
           <motion.div 
+            style={{ y: y2, rotate }}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -73,21 +74,28 @@ export function SolutionSection() {
               transition={{ delay: i * 0.1 }}
               className="relative group h-full"
             >
-              {/* High Fidelity Layered Card */}
-              <div className={cn(
-                "relative h-full p-10 rounded-[40px] bg-gradient-to-br from-[#1e294b] to-[#0f172a] border transition-all duration-500 hover:bg-[#1e294b] flex flex-col items-center text-center shadow-2xl group-hover:-translate-y-2 group-hover:border-white/20",
-                sol.border
-              )}>
+              {/* High Fidelity Layered Card with 3D Interaction triggers the parent div in FeatureCard usually, but here we inline it */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className={cn(
+                  "relative h-full p-10 rounded-[40px] bg-gradient-to-br from-[#1e294b] to-[#0f172a] border transition-all duration-500 flex flex-col items-center text-center shadow-2xl group-hover:border-white/20",
+                  sol.border
+                )}
+              >
                 {/* Glow Background */}
                 <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity rounded-[40px] bg-gradient-to-br", sol.gradient)} />
 
-                {/* Architectural Icon Container */}
-                <div className={cn(
-                  "w-20 h-20 rounded-[24px] flex items-center justify-center mb-8 shadow-[0_20px_40px_rgba(0,0,0,0.4)] bg-white/5 border border-white/10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6",
-                  "relative z-10"
-                )}>
+                {/* Architectural Icon Container with pulse */}
+                <motion.div 
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+                  className={cn(
+                    "w-20 h-20 rounded-[24px] flex items-center justify-center mb-8 shadow-[0_20px_40px_rgba(0,0,0,0.4)] bg-white/5 border border-white/10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6",
+                    "relative z-10"
+                  )}
+                >
                   <sol.icon className={cn("w-10 h-10", sol.color)} strokeWidth={1.5} />
-                </div>
+                </motion.div>
 
                 <h3 className="text-2xl md:text-3xl font-headline font-bold text-white mb-4 relative z-10 tracking-tight">
                   {sol.title}
@@ -98,7 +106,7 @@ export function SolutionSection() {
 
                 {/* Top Gloss Lip */}
                 <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-20" />
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

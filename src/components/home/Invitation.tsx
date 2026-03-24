@@ -3,7 +3,6 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -99,7 +98,7 @@ export function Invitation() {
                       )}>
                         <div className={cn("absolute inset-0 bg-gradient-to-br opacity-0 lg:group-hover:opacity-100 transition-opacity pointer-events-none group-data-[state=open]:opacity-100", inv.bgGradient)} />
 
-                        <AccordionTrigger className="hover:no-underline py-6 md:py-8 px-6 md:px-12 [&>svg]:hidden">
+                        <AccordionTrigger className="hover:no-underline py-6 md:py-8 px-6 md:px-12 [&>svg]:hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
                           <div className="flex items-center gap-4 md:gap-6 text-left w-full">
                             <div className={cn(
                               "w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-xl shrink-0 transition-all duration-500",
@@ -124,7 +123,7 @@ export function Invitation() {
                             </div>
                           </div>
                         </AccordionTrigger>
-                        <AccordionContent className="pb-6 md:pb-12 pt-0 px-6 md:px-12">
+                        <AccordionContent className="pb-6 md:pb-12 pt-0 px-6 md:px-12 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
                           <div className="h-[1px] w-full bg-white/5 mb-4 md:mb-8" />
                           <div className={cn(
                             "relative bg-white/[0.03] border border-white/5 border-l-2 p-4 md:p-10 rounded-xl md:rounded-[2rem] shadow-inner backdrop-blur-sm transition-all duration-500 group-data-[state=open]:translate-y-0 translate-y-4 opacity-0 group-data-[state=open]:opacity-100 overflow-hidden",
@@ -157,7 +156,8 @@ export function Invitation() {
             <button className="group relative bg-accent-gradient hover:opacity-90 text-white px-10 md:px-16 py-4 md:py-6 rounded-full font-black uppercase tracking-widest text-[10px] md:text-xs shadow-[0_15px_40px_rgba(45,212,191,0.2)] transition-all hover:scale-105 active:scale-95 flex items-center gap-2 md:gap-3">
               <span className="relative z-10">Start Your Journey</span>
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 transition-transform group-hover:translate-x-1" />
-              <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-0 lg:group-hover:opacity-10 transition-opacity" />
+              <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-20 lg:group-hover:opacity-40 transition-opacity" />
+              <div className="absolute inset-[-10px] rounded-full border border-accent/20 animate-[pulse_2s_infinite]" />
             </button>
           </Link>
         </motion.div>

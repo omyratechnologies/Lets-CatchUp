@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -31,31 +32,31 @@ const problems = [
 
 export function ProblemSection() {
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
-      <div className="max-w-3xl mx-auto space-y-16">
+    <section className="py-32 md:py-44 px-6 relative overflow-hidden">
+      <div className="max-w-3xl mx-auto space-y-24 md:space-y-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center space-y-6"
+          className="text-center space-y-8"
         >
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-6">
             <div className="flex items-center gap-3">
               <span className="font-headline text-accent font-black tracking-widest text-sm">02</span>
               <Badge variant="outline" className="border-red-500/30 text-red-400 px-4 py-1 uppercase tracking-widest text-[9px] md:text-[10px] font-black bg-red-500/5 backdrop-blur-sm">
                 The Challenge
               </Badge>
             </div>
-            <h2 className="text-4xl md:text-7xl font-headline font-bold leading-tight text-white tracking-tight">
+            <h2 className="text-4xl md:text-7xl font-headline font-bold leading-[1.1] text-white tracking-tight">
               The <span className="text-gradient">"Fragmented"</span> <br /> Digital World
             </h2>
           </div>
-          <p className="text-sm md:text-xl text-gray-400 max-w-2xl mx-auto font-body font-medium leading-relaxed">
+          <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto font-body font-medium leading-loose">
             Identifying the friction points that prevent genuine human growth and institutional excellence.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:gap-12">
+        <div className="grid gap-12 md:gap-20">
           {problems.map((prob, i) => (
             <motion.div
               key={i}
@@ -67,23 +68,23 @@ export function ProblemSection() {
             >
               {/* Stacked Card Layer */}
               <div className={cn(
-                "absolute -bottom-2 -right-2 w-full h-full rounded-[32px] bg-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10",
+                "absolute -bottom-3 -right-3 w-full h-full rounded-[32px] bg-white/5 opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10",
                 "border border-white/5"
               )} />
 
               <div className={cn(
-                "relative h-full bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[32px] p-8 md:p-12 flex flex-col gap-6 overflow-hidden transition-all duration-500 hover:border-white/20 shadow-2xl",
+                "relative h-full bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[32px] p-10 md:p-14 flex flex-col gap-8 overflow-hidden transition-all duration-500 hover:border-white/20 shadow-2xl",
                 prob.glow
               )}>
                 {/* Glowing Side Accent */}
-                <div className={cn("absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b", prob.color)} />
+                <div className={cn("absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b", prob.color)} />
                 
-                <div className="space-y-4 relative z-10">
-                  <h3 className="text-2xl md:text-4xl font-headline font-bold text-white tracking-tight group-hover:text-accent transition-colors">
+                <div className="space-y-6 relative z-10">
+                  <h3 className="text-3xl md:text-5xl font-headline font-bold text-white tracking-tight group-hover:text-accent transition-colors">
                     {prob.title}
                   </h3>
                   
-                  <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium font-body">
+                  <p className="text-base md:text-2xl text-gray-400 leading-relaxed md:leading-loose font-medium font-body">
                     {prob.description.split(new RegExp(`(${prob.highlights.map(h => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g')).map((part, index) => 
                       prob.highlights.includes(part) ? (
                         <span key={index} className="text-white font-bold">{part}</span>
