@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -106,6 +105,7 @@ export function AboutSection() {
                   autoPlay
                   loop
                   muted
+                  controls
                   playsInline
                   className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
                 />
