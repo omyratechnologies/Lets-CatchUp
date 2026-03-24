@@ -76,16 +76,20 @@ export function Footer() {
     setMounted(true);
   }, []);
 
-  const currentYear = mounted ? new Date().getFullYear() : "2025";
+  // Use a stable default for the initial server render to match client hydration
+  const currentYear = mounted ? new Date().getFullYear().toString() : "2025";
 
   return (
-    <footer className="relative pt-24 pb-12 bg-[#0b0f2f] overflow-hidden border-t border-white/5">
-      {/* Visual Highlighting Ambient Glows */}
-      <div className="absolute top-[-100px] left-1/4 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[140px] pointer-events-none opacity-50" />
-      <div className="absolute bottom-[-100px] right-1/4 w-[600px] h-[400px] bg-accent/10 rounded-full blur-[140px] pointer-events-none opacity-50" />
+    <footer className={cn(
+      "relative pt-24 pb-12 bg-[#0b0f2f] overflow-hidden border-t border-white/5",
+      "transition-colors duration-500"
+    )}>
+      {/* Visual Highlighting Ambient Glows - Static containers for hydration stability */}
+      <div className="absolute top-[-100px] left-1/4 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[140px] pointer-events-none opacity-50 z-0" />
+      <div className="absolute bottom-[-100px] right-1/4 w-[600px] h-[400px] bg-accent/10 rounded-full blur-[140px] pointer-events-none opacity-50 z-0" />
       
       {/* High-Fidelity Top Line */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
@@ -127,8 +131,8 @@ export function Footer() {
             </div>
 
             <div className="flex flex-col gap-8 pt-4">
-              <div className="flex gap-4">
-                {mounted && SOCIAL_LINKS.map(({ Icon, href, label, hoverClass }, i) => (
+              <div className="flex gap-4 min-h-[48px]">
+                {mounted && SOCIAL_LINKS.map(({ Icon, href, label, hoverClass }) => (
                   <motion.a
                     key={label}
                     whileHover={{ scale: 1.1, y: -4 }}
