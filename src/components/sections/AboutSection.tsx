@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -157,10 +156,10 @@ export function AboutSection() {
                   ref={videoRef}
                   src="/promotion.mp4"
                   autoPlay
-                  loop
                   muted
                   playsInline
                   onTimeUpdate={handleTimeUpdate}
+                  onEnded={() => setIsPlaying(false)}
                   className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 p-2 md:p-6"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
