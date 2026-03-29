@@ -1,122 +1,232 @@
-
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
+import React, { useState, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, ShieldCheck } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function AboutSection() {
-  const aboutImg = PlaceHolderImages?.find((img) => img.id === "about-img");
+type Particle = {
+  x: string;
+  y: string;
+  duration: number;
+  delay: number;
+};
 
-  const values = [
-    {
-      title: "Empowerment & Inclusivity",
-      desc: "We believe that every learner, regardless of their background, should have the tools and community support to build their dream career in tech.",
-      icon: Sparkles,
-      color: "accent",
-      gradient: "from-teal-400 to-cyan-300",
-    },
-    {
-      title: "ISO Certified Trust",
-      desc: "ISO-certified, secure, and private environment — maintaining the highest levels of data security and institutional integrity.",
-      icon: ShieldCheck,
-      color: "primary",
-      gradient: "from-indigo-500 to-purple-500",
-    },
-  ];
+export function AboutSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [isHoveringVideo, setIsHoveringVideo] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const y1 = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 0.2], [0, 100]);
+  const rotate = useTransform(scrollYProgress, [0, 0.2], [0, 5]);
+
+  useEffect(() => {
+    // Generate random positions only on the client to avoid hydration mismatch
+    const generatedParticles = [...Array(20)].map(() => ({
+      x: Math.random() * 100 + "%",
+      y: Math.random() * 100 + "%",
+      duration: Math.random() * 5 + 5,
+      delay: Math.random() * 5,
+    }));
+    setParticles(generatedParticles);
+  }, []);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      const newMuted = !isMuted;
+      videoRef.current.muted = newMuted;
+      setIsMuted(newMuted);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const current = videoRef.current.currentTime;
+      const duration = videoRef.current.duration;
+      if (duration > 0) {
+        setProgress((current / duration) * 100);
+      }
+    }
+  };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const clickedPos = x / rect.width;
+      videoRef.current.currentTime = clickedPos * videoRef.current.duration;
+    }
+  };
 
   return (
-    <section id="about" className="py-24 px-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-24 md:space-y-32">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="py-24 px-6 relative overflow-hidden w-full">
+      {/* Interactive Particles Layer */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        {particles.map((p, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-accent rounded-full"
+            initial={{ 
+              x: p.x, 
+              y: p.y 
+            }}
+            animate={{
+              y: [null, "-20%"],
+              opacity: [0, 1, 0]
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: p.delay
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <motion.div 
+            style={{ y: y1 }}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6 md:space-y-8"
+            className="space-y-8"
           >
-            <Badge variant="secondary" className="glass text-accent px-4 py-1 border-white/10 uppercase tracking-widest text-[10px] font-black">
-              Our Story
-            </Badge>
-            <h2 className="text-4xl md:text-7xl font-headline font-bold leading-tight">
-              The journey of <br /><span className="text-gradient">Lets Catch Up</span>
-            </h2>
-            <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium">
-              Founded with the vision to democratize technical education, Lets Catch Up started as a small project to bridge the gap between classroom learning and industry requirements. Today, we are a unified ecosystem empowering thousands of students and educators worldwide.
-            </p>
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <span className="font-headline text-accent font-black tracking-widest text-sm">01</span>
+                <Badge variant="secondary" className="glass text-accent px-4 py-1 border-white/10 uppercase tracking-widest text-[10px] font-black bg-accent/5 backdrop-blur-sm">
+                  Our Story
+                </Badge>
+              </div>
+              <h1 className="text-5xl md:text-8xl font-headline font-bold leading-tight tracking-tight text-white">
+                Democratizing <br /><span className="text-gradient">Potential</span>
+              </h1>
+            </div>
+            
+            <div className="space-y-6">
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-medium font-body">
+                Founded with the vision to democratize technical education, <span className="text-white font-bold">Lets Catch Up</span> started as a response to the growing gap between academic theory and industry reality.
+              </p>
+              <div className="h-[1px] w-20 bg-accent-gradient rounded-full" />
+              <p className="text-base text-gray-400 leading-relaxed font-body">
+                Today, we are a high-fidelity unified ecosystem empowering thousands of students, educators, and organizations worldwide through secure, mindful technology.
+              </p>
+            </div>
           </motion.div>
           
           <motion.div 
+            style={{ y: y2, rotate }}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative group"
+            className="relative group w-full lg:ml-auto lg:max-w-[540px]"
           >
-            <div className="absolute -bottom-4 -right-4 w-full h-full rounded-[32px] bg-gradient-to-br from-primary/30 to-accent/30 opacity-40 transition-all duration-500 group-hover:opacity-70 group-hover:-bottom-5 group-hover:-right-5" />
+            {/* Architectural Layered Effect */}
+            <div className="absolute -bottom-6 -right-6 w-full h-full rounded-[40px] bg-accent-gradient opacity-20 transition-all duration-500 group-hover:opacity-30 group-hover:-bottom-8 group-hover:-right-8 -z-10" />
             
-            <div className="relative bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[32px] p-3 shadow-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500">
-              <div className="relative rounded-[20px] overflow-hidden aspect-video">
-                {aboutImg && (
-                  <Image
-                    src={aboutImg.imageUrl}
-                    alt={aboutImg.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={aboutImg.imageHint}
-                  />
-                )}
+            <div 
+              className="relative bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-[40px] p-3 shadow-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500"
+              onMouseEnter={() => setIsHoveringVideo(true)}
+              onMouseLeave={() => setIsHoveringVideo(false)}
+            >
+              <div className="relative rounded-[32px] overflow-hidden w-full h-auto bg-black/20 group/video">
+                <video
+                  ref={videoRef}
+                  src="/promotion.mp4"
+                  autoPlay
+                  muted
+                  playsInline
+                  onTimeUpdate={handleTimeUpdate}
+                  onEnded={() => setIsPlaying(false)}
+                  className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 p-2 md:p-6"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
+
+                {/* Custom Controls Overlay */}
+                <AnimatePresence>
+                  {(isHoveringVideo || !isPlaying) && (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 z-30 flex flex-col justify-end p-6 md:p-10 pointer-events-none"
+                    >
+                      {/* Central Play Button when paused */}
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <AnimatePresence>
+                          {!isPlaying && (
+                            <motion.button
+                              initial={{ scale: 0.5, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              exit={{ scale: 0.5, opacity: 0 }}
+                              onClick={togglePlay}
+                              className="w-16 h-16 md:w-20 md:h-20 rounded-full glass flex items-center justify-center text-accent shadow-2xl pointer-events-auto hover:scale-110 transition-transform"
+                            >
+                              <Play size={32} fill="currentColor" className="ml-1" />
+                            </motion.button>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Control Bar */}
+                      <motion.div 
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: 20, opacity: 0 }}
+                        className="glass p-3 md:p-4 rounded-2xl flex items-center gap-4 pointer-events-auto border-white/10 shadow-2xl backdrop-blur-2xl"
+                      >
+                        <button 
+                          onClick={togglePlay}
+                          className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors text-white"
+                        >
+                          {isPlaying ? <Pause size={20} /> : <Play size={20} fill="currentColor" />}
+                        </button>
+
+                        <div 
+                          className="flex-1 h-1.5 bg-white/10 rounded-full cursor-pointer relative overflow-hidden group/progress"
+                          onClick={handleProgressClick}
+                        >
+                          <div 
+                            className="absolute inset-y-0 left-0 bg-accent-gradient transition-all duration-100 ease-linear"
+                            style={{ width: `${progress}%` }}
+                          />
+                        </div>
+
+                        <button 
+                          onClick={toggleMute}
+                          className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors text-white"
+                        >
+                          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                        </button>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>
-        </div>
-
-        <div className="space-y-12 md:space-y-16">
-          <div className="text-center">
-            <h3 className="text-3xl lg:text-5xl font-headline font-bold">Our Core Values</h3>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12">
-            {values.map((v, i) => (
-              <motion.div 
-                key={i} 
-                initial={{ opacity: 0, x: i === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="relative group h-full"
-              >
-                <div className={cn(
-                  "absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-full h-full rounded-2xl md:rounded-[32px] bg-gradient-to-br opacity-40 transition-all duration-500 group-hover:opacity-70 group-hover:-bottom-3 md:group-hover:-bottom-5 group-hover:-right-3 md:group-hover:-right-5",
-                  v.gradient
-                )} />
-
-                <div className="relative h-full bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] border border-white/10 rounded-2xl md:rounded-[32px] p-4 md:p-10 shadow-2xl overflow-hidden flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-start group-hover:border-white/20 transition-all duration-500">
-                  <div className="relative shrink-0">
-                    <div className="w-12 h-12 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-xl">
-                      <v.icon className={cn(
-                        "w-6 h-6 md:w-10 md:h-10 glow-icon",
-                        v.color === "accent" ? "text-accent" : "text-primary"
-                      )} />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 md:space-y-4 flex-1 text-center md:text-left">
-                    <div className="space-y-1 md:space-y-2">
-                      <h4 className="text-lg md:text-3xl font-bold tracking-tight">
-                        {v.title}
-                      </h4>
-                      <p className="text-[10px] md:text-lg text-gray-400 leading-relaxed font-medium">
-                        {v.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

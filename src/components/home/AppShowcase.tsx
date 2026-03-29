@@ -1,0 +1,298 @@
+
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { 
+  Smartphone, 
+  Bell, 
+  TrendingUp, 
+  ClipboardCheck, 
+  MessageCircle,
+  Shield
+} from "lucide-react";
+
+export function AppShowcase() {
+  const floatingFeatures = [
+    {
+      title: "Smart Attendance",
+      icon: ClipboardCheck,
+      pos: "top-12 -right-12 md:-right-24",
+      delay: 0.2,
+      duration: 5,
+      color: "text-accent"
+    },
+    {
+      title: "Real-time Chat",
+      icon: "top-[28%] -left-12 md:-left-32",
+      delay: 0.4,
+      duration: 6,
+      color: "text-cyan-400"
+    },
+    {
+      title: "Private Spaces",
+      icon: Shield,
+      pos: "top-[45%] -right-14 md:-right-32",
+      delay: 0.6,
+      duration: 5.5,
+      color: "text-indigo-400"
+    },
+    {
+      title: "Instant Alerts",
+      icon: Bell,
+      pos: "top-[65%] -left-14 md:-left-24",
+      delay: 0.8,
+      duration: 4.8,
+      color: "text-primary"
+    },
+    {
+      title: "Progress Sync",
+      icon: TrendingUp,
+      pos: "bottom-[15%] -right-12 md:-right-28",
+      delay: 1.0,
+      duration: 6.2,
+      color: "text-emerald-400"
+    }
+  ];
+
+  return (
+    <section 
+      className="py-24 md:py-32 px-6 relative overflow-hidden bg-transparent"
+    >
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[400px] bg-primary/5 rounded-full blur-[160px] -z-10" />
+      
+      <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-16 md:space-y-24">
+        {/* Header Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="space-y-6 max-w-4xl"
+        >
+          <div className="flex flex-col items-center gap-4">
+            <motion.span 
+              initial={{ opacity: 0, letterSpacing: "0.1em" }}
+              whileInView={{ opacity: 1, letterSpacing: "0.2em" }}
+              className="font-headline text-xs font-bold uppercase text-accent tracking-[0.2em] drop-shadow-[0_0_10px_rgba(45,212,191,0.5)]"
+            >
+              Mobile Experience
+            </motion.span>
+            <h2 className="text-4xl md:text-7xl font-headline font-bold leading-tight tracking-tight text-white">
+              Take Let’s Catch Up <span className="text-gradient">Anywhere</span>
+            </h2>
+          </div>
+          <p className="text-sm md:text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto font-body">
+            Seamlessly stay connected to your communities, conversations, and learning — wherever you are.
+          </p>
+        </motion.div>
+
+        {/* Mockup Section with Responsive Bubbles */}
+        <div className="relative w-full max-w-2xl mx-auto flex flex-col items-center">
+          <div className="relative w-full max-w-[280px] md:max-w-[320px]">
+            {/* Desktop & Tablet Floating Bubbles (Zigzag outside frame - NO OVERLAP) */}
+            <div className="absolute inset-0 pointer-events-none z-30 hidden md:block">
+              <motion.div
+                key="bubble-1"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ opacity: { delay: 0.2 }, scale: { delay: 0.2 }, y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 } }}
+                viewport={{ once: true }}
+                className="absolute top-12 -right-32 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-accent">
+                  <ClipboardCheck className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Smart Attendance</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-2"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -15, 0] }}
+                transition={{ opacity: { delay: 0.4 }, scale: { delay: 0.4 }, y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 } }}
+                viewport={{ once: true }}
+                className="absolute top-[28%] -left-36 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-cyan-400">
+                  <MessageCircle className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Real-time Chat</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-3"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ opacity: { delay: 0.6 }, scale: { delay: 0.6 }, y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 } }}
+                viewport={{ once: true }}
+                className="absolute top-[45%] -right-40 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-indigo-400">
+                  <Shield className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Private Spaces</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-4"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ opacity: { delay: 0.8 }, scale: { delay: 0.8 }, y: { duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.8 } }}
+                viewport={{ once: true }}
+                className="absolute top-[65%] -left-32 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-primary">
+                  <Bell className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Instant Alerts</span>
+              </motion.div>
+
+              <motion.div
+                key="bubble-5"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ y: [0, -18, 0] }}
+                transition={{ opacity: { delay: 1.0 }, scale: { delay: 1.0 }, y: { duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 1.0 } }}
+                viewport={{ once: true }}
+                className="absolute bottom-[15%] -right-32 glass-card p-3 flex items-center gap-3 border-white/10 shadow-2xl backdrop-blur-md pointer-events-auto"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-emerald-400">
+                  <TrendingUp className="w-4 h-4" />
+                </div>
+                <span className="font-headline text-[10px] font-bold text-white whitespace-nowrap uppercase tracking-widest">Progress Sync</span>
+              </motion.div>
+            </div>
+
+            {/* High-Fidelity Mobile Mockup (Stationary) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="relative w-full aspect-[9/19] z-20"
+            >
+              <div className="absolute inset-0 bg-accent/20 blur-[60px] md:blur-[120px] rounded-full -z-10" />
+              <div className="absolute inset-[-40px] md:inset-[-60px] border border-white/5 rounded-full -z-10 animate-[spin_20s_linear_infinite] opacity-30" />
+              <div className="absolute inset-[-80px] md:inset-[-100px] border border-white/5 rounded-full -z-10 animate-[spin_30s_linear_infinite_reverse] opacity-20" />
+              
+              <div className="relative w-full h-full">
+                <div className="absolute inset-0 bg-slate-900 border-[6px] md:border-[8px] border-slate-800 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.8)] overflow-hidden">
+                  <div className="absolute inset-0 border-[2px] border-white/5 rounded-[1.8rem] md:rounded-[2.1rem] pointer-events-none z-30" />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 md:w-24 h-5 md:h-6 bg-slate-800 rounded-b-xl md:rounded-b-2xl z-40 flex items-center justify-center gap-1.5 md:gap-2">
+                    <div className="w-6 md:w-8 h-1 bg-slate-700 rounded-full" />
+                    <div className="w-1.5 md:w-2 h-1.5 md:h-2 bg-slate-700 rounded-full" />
+                  </div>
+                  <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-[#0b0f2f]">
+                    <Image 
+                      src="/mobile-view.png" 
+                      alt="Let's Catch Up Mobile App View"
+                      fill
+                      sizes="(max-width: 768px) 280px, 320px"
+                      className="object-cover"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none z-20" />
+                  </div>
+                </div>
+                <div className="absolute top-20 md:top-24 -left-1.5 md:-left-2 w-1 h-10 md:h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
+                <div className="absolute top-36 md:top-40 -left-1.5 md:-left-2 w-1 h-10 md:h-12 bg-slate-700 rounded-l-md border-r border-black/20" />
+                <div className="absolute top-28 md:top-32 -right-1.5 md:-right-2 w-1 h-14 md:h-16 bg-slate-700 rounded-r-md border-l border-black/20" />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Mobile Small Devices Feature Bubbles (Separated Below Mockup) */}
+          <div className="grid grid-cols-2 gap-4 mt-16 w-full max-w-[320px] md:hidden px-4">
+            {floatingFeatures.map((f, i) => {
+              const Icon = typeof f.icon === 'string' ? MessageCircle : f.icon;
+              return (
+                <motion.div
+                  key={`mobile-bubble-${i}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    opacity: { duration: 0.5, delay: i * 0.1 },
+                    y: {
+                      duration: f.duration,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: f.delay,
+                    }
+                  }}
+                  viewport={{ once: true }}
+                  className="glass-card p-3 flex flex-col items-center justify-center gap-2 border-white/10 shadow-xl backdrop-blur-md"
+                >
+                  <div className={`w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 ${f.color}`}>
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <span className="font-headline text-[9px] font-bold text-white uppercase tracking-widest text-center">{f.title}</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Action Area */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="flex flex-col items-center gap-10 md:gap-12 w-full pt-8"
+        >
+          {/* Download Buttons */}
+          <div className="flex flex-col items-center gap-6">
+             <span className="font-body text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
+                <Smartphone className="w-4 h-4 text-accent" />
+                Available on Android & iOS
+             </span>
+             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                <Link 
+                  href="https://play.google.com/store/apps/details?id=com.kcs.letscatchup&pcampaignid=web_share" 
+                  target="_blank"
+                  className="group relative transition-all duration-300 hover:scale-105"
+                >
+                  <div className="absolute -inset-1 bg-accent/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Image 
+                    src="/googleplay.png" 
+                    alt="Google Play Store" 
+                    width={130} 
+                    height={38} 
+                    style={{ height: 'auto' }}
+                    className="relative object-contain md:w-[140px]" 
+                  />
+                </Link>
+                <Link 
+                  href="https://apps.apple.com/in/app/lets-catch-up-kcs/id6749822557" 
+                  target="_blank"
+                  className="group relative transition-all duration-300 hover:scale-105"
+                >
+                  <div className="absolute -inset-1 bg-primary/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative overflow-hidden rounded-lg shadow-xl border border-white/5">
+                    <Image 
+                      src="/appstore.jpg" 
+                      alt="Apple App Store" 
+                      width={130} 
+                      height={38} 
+                      style={{ height: 'auto' }}
+                      className="object-contain md:w-[140px]" 
+                    />
+                  </div>
+                </Link>
+             </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

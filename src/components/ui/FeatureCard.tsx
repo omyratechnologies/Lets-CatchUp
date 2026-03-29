@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { LucideIcon, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 interface FeatureCardProps {
   title: string;
@@ -23,25 +24,68 @@ export function FeatureCard({
   gradientTo = "to-cyan-300",
   href
 }: FeatureCardProps) {
-  const colorMap: Record<string, { text: string; border: string }> = {
-    "from-emerald-400": { text: "group-hover:text-emerald-400", border: "border-emerald-400" },
-    "from-blue-500": { text: "group-hover:text-blue-500", border: "border-blue-500" },
-    "from-pink-500": { text: "group-hover:text-pink-400", border: "border-pink-400" },
-    "from-teal-400": { text: "group-hover:text-teal-400", border: "border-teal-400" },
-    "from-indigo-500": { text: "group-hover:text-indigo-400", border: "border-indigo-400" },
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const colorMap: Record<string, { text: string; border: string; glow: string }> = {
+    "from-emerald-400": { text: "group-hover:text-emerald-400", border: "border-emerald-400", glow: "rgba(52, 211, 153, 0.2)" },
+    "from-blue-500": { text: "group-hover:text-blue-500", border: "border-blue-500", glow: "rgba(59, 130, 246, 0.2)" },
+    "from-pink-500": { text: "group-hover:text-pink-400", border: "border-pink-400", glow: "rgba(244, 114, 182, 0.2)" },
+    "from-teal-400": { text: "group-hover:text-teal-400", border: "border-teal-400", glow: "rgba(45, 212, 191, 0.2)" },
+    "from-indigo-500": { text: "group-hover:text-indigo-400", border: "border-indigo-400", glow: "rgba(99, 102, 241, 0.2)" },
   };
 
   const theme = colorMap[gradientFrom] || colorMap["from-teal-400"];
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
-    <div className={cn("relative group pt-10 md:pt-14 h-full", className)}>
+    <motion.div 
+      className={cn("relative group pt-10 md:pt-14 h-full cursor-default", className)}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Background Shadow Layer */}
       <div className={cn(
         "absolute bottom-0 right-0 w-[92%] md:w-[95%] h-[60px] md:h-[120px] bg-gradient-to-r rounded-[24px] md:rounded-[32px] rotate-[3deg] md:rotate-[6deg] -translate-x-1 translate-y-2 md:translate-y-4 z-0 opacity-60 md:opacity-70 transition-all duration-700 group-hover:rotate-[5deg] md:group-hover:rotate-[8deg] group-hover:translate-y-4 md:group-hover:translate-y-6 group-hover:opacity-100",
         gradientFrom,
         gradientTo
       )}></div>
 
-      <div className="relative w-full h-full transition-all duration-500 group-hover:-translate-y-2 z-10">
+      <div className="relative w-full h-full transition-all duration-500 group-hover:-translate-y-2 z-10" style={{ transform: "translateZ(50px)" }}>
+        {/* Border Trace Effect */}
+        <div className={cn(
+          "absolute -inset-[1px] rounded-[24px] md:rounded-[32px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r",
+          gradientFrom,
+          gradientTo
+        )} />
+
         <div className="absolute inset-0 bg-gradient-to-br from-[#1e294b] via-[#141d3d] to-[#0f172a] rounded-[24px] md:rounded-[32px] shadow-[0_15px_35px_rgba(0,0,0,0.5)] border border-white/10 overflow-hidden group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.7)] transition-all duration-500">
           <div className="absolute top-0 right-0 w-12 h-12 md:w-16 md:h-16 pointer-events-none">
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-black/30 to-transparent z-20"></div>
@@ -55,7 +99,7 @@ export function FeatureCard({
           )}></div>
         </div>
 
-        <div className="relative px-5 md:px-8 pt-8 md:pt-16 pb-6 md:pb-12 flex flex-col items-center text-center h-full">
+        <div className="relative px-5 md:px-8 pt-8 md:pt-16 pb-6 md:pb-12 flex flex-col items-center text-center h-full" style={{ transform: "translateZ(75px)" }}>
           <div className="absolute -top-6 md:-top-12 left-1/2 -translate-x-1/2 w-[56px] h-[56px] md:w-[100px] md:h-[100px] rounded-full bg-gradient-to-b from-[#2d3d6b] to-[#141d3d] flex items-center justify-center border border-white/20 shadow-xl z-50 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-6">
             <div className={cn(
               "absolute inset-0 rounded-full border-2 opacity-20 animate-pulse",
@@ -70,18 +114,18 @@ export function FeatureCard({
             />
           </div>
 
-          <h3 className="text-white text-base md:text-2xl font-bold tracking-tight z-20 relative drop-shadow-md group-hover:text-white transition-colors">
+          <h3 className="text-white text-base md:text-2xl font-headline font-bold tracking-tight z-20 relative drop-shadow-md group-hover:text-white transition-colors">
             {title}
           </h3>
 
-          <p className="text-[#cfd6ec] text-[10px] md:text-sm leading-relaxed mt-2 md:mt-5 flex-1 z-20 relative font-medium">
+          <p className="text-[#cfd6ec] text-[10px] md:text-sm leading-relaxed mt-2 md:mt-5 flex-1 z-20 relative font-medium font-body">
             {description}
           </p>
 
           {href && (
             <div className="mt-4 md:mt-8 pt-2 md:pt-6 w-full flex justify-center z-20 relative">
               <Link href={href} className="w-full">
-                <button className="group/btn relative w-full overflow-hidden rounded-xl md:rounded-2xl p-[1px] font-black uppercase tracking-[0.2em] text-[8px] md:text-[10px] transition-all hover:scale-[1.02] active:scale-95">
+                <button className="font-headline group/btn relative w-full overflow-hidden rounded-xl md:rounded-2xl p-[1px] font-bold uppercase tracking-[0.2em] text-[8px] md:text-[10px] transition-all hover:scale-[1.02] active:scale-95">
                   <div className={cn(
                     "absolute inset-0 bg-gradient-to-r opacity-50 transition-opacity group-hover/btn:opacity-100",
                     gradientFrom,
@@ -97,6 +141,6 @@ export function FeatureCard({
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
